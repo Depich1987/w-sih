@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_depich1987_wsih_domain_WSHospital" modelAttribute="WSHospital_" path="/wshospitals" versionField="Version" z="rMgjjZXduZZOGapUcD3wJvSRKJU=">
+        <field:input field="name" id="c_com_depich1987_wsih_domain_WSHospital_name" z="zMAyKDkp8eIgIIKAr0vkOfc6Isk="/>
+        <field:input field="email" id="c_com_depich1987_wsih_domain_WSHospital_email" validationMessageCode="field_invalid_email" z="ik/QStzLxuf7Wq+Jcx6zSj2sW4Q="/>
+        <field:input field="phoneNumber" id="c_com_depich1987_wsih_domain_WSHospital_phoneNumber" z="iEeEJVhp0M/ab0L0TG9qgcuDPeI="/>
+        <field:input field="city" id="c_com_depich1987_wsih_domain_WSHospital_city" z="ua3ZOW6vYKVo06+m3p/3a5K/Xro="/>
+        <field:input field="header" id="c_com_depich1987_wsih_domain_WSHospital_header" z="F7rEyqLCcSPxsHNBv6K7VagXmms="/>
+        <field:input field="footer" id="c_com_depich1987_wsih_domain_WSHospital_footer" z="Ig2/DtqubqVYEM6Y7caLUIiItSU="/>
+        <field:input field="address" id="c_com_depich1987_wsih_domain_WSHospital_address" z="FpnHWafTQkReHIIVGW0YvlIC4iw="/>
+    </form:update>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_wshostpital" z="EfpfXuTk+5HYAfHryi9pMD+QCLc=">
+            <menu:item id="i_wshostpital_new" messageCode="global_menu_new" url="/wshostpitals?form" z="DbWsZePzxcScoOhsEw+DrvHTaWg="/>
+            <menu:item id="i_wshostpital_list" messageCode="global_menu_list" url="/wshostpitals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Gcro8r84f3lRrHq2LOKYfNaNOdk="/>
+        </menu:category>
+        <menu:category id="c_wshospital" z="fdouk2rR8RUzxVOk8KvoBsB05GE=">
+            <menu:item id="i_wshospital_new" messageCode="global_menu_new" url="/wshospitals?form" z="K0FNUdjnL04EeZrZA11jfawzOpY="/>
+            <menu:item id="i_wshospital_list" messageCode="global_menu_list" url="/wshospitals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bV1ez0XBf83fvm7O/lFRWumxbhQ="/>
+        </menu:category>
+    </menu:menu>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSHospital" object="${wshospital_}" path="/wshospitals" z="sa8o7r4W0bO4A73ZOAHPfgqNTVg=">
+        <field:display field="name" id="s_com_depich1987_wsih_domain_WSHospital_name" object="${wshospital_}" z="GR6qM4PiXxj2qhz1fh2g7Bgm9gQ="/>
+        <field:display field="email" id="s_com_depich1987_wsih_domain_WSHospital_email" object="${wshospital_}" z="F9AZQf/oqvkd/QkZ7aZ5y+yypEg="/>
+        <field:display field="phoneNumber" id="s_com_depich1987_wsih_domain_WSHospital_phoneNumber" object="${wshospital_}" z="2DicRdWW6/fLXAlTniwofUJOkkY="/>
+        <field:display field="city" id="s_com_depich1987_wsih_domain_WSHospital_city" object="${wshospital_}" z="yfG5hPj5B43sG6WUnHtW6eBK8UM="/>
+        <field:display field="header" id="s_com_depich1987_wsih_domain_WSHospital_header" object="${wshospital_}" z="oBubir+F9cwGgail3oPjui8t6L8="/>
+        <field:display field="footer" id="s_com_depich1987_wsih_domain_WSHospital_footer" object="${wshospital_}" z="IxG0V/VDOmpc2g6n5jQ+n3Gnqy8="/>
+        <field:display field="address" id="s_com_depich1987_wsih_domain_WSHospital_address" object="${wshospital_}" z="TOblqWGoPaR5ReGNw3LASRESsCM="/>
+    </page:show>
+</div>
