@@ -1,11 +1,11 @@
 package com.depich1987.wsih.web;
-import com.depich1987.wsih.domain.WSHospital;
+import com.depich1987.wsih.domain.WSDepartment;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/wshostpitals")
+@RequestMapping("/wsdepartments")
 @Controller
-@RooWebScaffold(path = "wshostpitals", formBackingObject = WSHospital.class)
-public class HostpitalController {
+@RooWebScaffold(path = "wsdepartments", formBackingObject = WSDepartment.class)
+public class DepartmentController {
 }

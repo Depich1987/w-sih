@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_depich1987_wsih_domain_WSDepartment" modelAttribute="WSDepartment_" path="/wsdepartments" versionField="Version" z="cvT21TUEma453X9CVU67cAnpKN8=">
+        <field:input field="name" id="c_com_depich1987_wsih_domain_WSDepartment_name" z="fHM+D9U/pZWY/orTPxUogMOowzY="/>
+        <field:input field="description" id="c_com_depich1987_wsih_domain_WSDepartment_description" z="rW6tpQGa7l+Uu2QEDlzFDh1YOyw="/>
+        <field:input field="colorIdentifier" id="c_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" z="nd4AXKdMLBPax2niSYA3dBPLdys="/>
+    </form:update>
+</div>

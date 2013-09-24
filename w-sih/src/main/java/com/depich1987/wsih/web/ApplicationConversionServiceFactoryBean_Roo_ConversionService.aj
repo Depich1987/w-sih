@@ -3,6 +3,7 @@
 
 package com.depich1987.wsih.web;
 
+import com.depich1987.wsih.domain.WSDepartment;
 import com.depich1987.wsih.domain.WSHospital;
 import com.depich1987.wsih.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -12,6 +13,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<WSDepartment, String> ApplicationConversionServiceFactoryBean.getWSDepartmentToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSDepartment, java.lang.String>() {
+            public String convert(WSDepartment wSDepartment) {
+                return new StringBuilder().append(wSDepartment.getName()).append(' ').append(wSDepartment.getDescription()).append(' ').append(wSDepartment.getColorIdentifier()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSDepartment> ApplicationConversionServiceFactoryBean.getIdToWSDepartmentConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSDepartment>() {
+            public com.depich1987.wsih.domain.WSDepartment convert(java.lang.Long id) {
+                return WSDepartment.findWSDepartment(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSDepartment> ApplicationConversionServiceFactoryBean.getStringToWSDepartmentConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSDepartment>() {
+            public com.depich1987.wsih.domain.WSDepartment convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSDepartment.class);
+            }
+        };
+    }
     
     public Converter<WSHospital, String> ApplicationConversionServiceFactoryBean.getWSHospitalToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSHospital, java.lang.String>() {
@@ -38,6 +63,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getWSDepartmentToStringConverter());
+        registry.addConverter(getIdToWSDepartmentConverter());
+        registry.addConverter(getStringToWSDepartmentConverter());
         registry.addConverter(getWSHospitalToStringConverter());
         registry.addConverter(getIdToWSHospitalConverter());
         registry.addConverter(getStringToWSHospitalConverter());

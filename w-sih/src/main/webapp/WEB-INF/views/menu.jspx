@@ -11,5 +11,9 @@
             <menu:item id="i_wshospital_new" messageCode="global_menu_new" url="/wshospitals?form" z="K0FNUdjnL04EeZrZA11jfawzOpY="/>
             <menu:item id="i_wshospital_list" messageCode="global_menu_list" url="/wshospitals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bV1ez0XBf83fvm7O/lFRWumxbhQ="/>
         </menu:category>
+        <menu:category id="c_wsdepartment" z="7mIOz95cUsCe5WpLCoFImcdSNLo=">
+            <menu:item id="i_wsdepartment_new" messageCode="global_menu_new" url="/wsdepartments?form" z="aTZLMXFqI46opbzJvHBV9jHOuFk="/>
+            <menu:item id="i_wsdepartment_list" messageCode="global_menu_list" url="/wsdepartments?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Synl1Aj5fwC6fC25YSSFmXo8p60="/>
+        </menu:category>
     </menu:menu>
 </div>
