@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <definition extends="defaultLayout" name="admin/departments/list">
+    	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/departments/list.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/departments/show">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/departments/show.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/departments/create">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/departments/create.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/departments/update">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/departments/update.jspx"/>
+    </definition>
+    
+</tiles-definitions>

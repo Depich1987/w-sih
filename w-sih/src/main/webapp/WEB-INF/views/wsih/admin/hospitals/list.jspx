@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSHospital" items="${wshospitals}" z="SU6Ixb2a8/Ixx7fJceMpi7gmc+g=">
+        <table:table data="${wshospitals}" id="l_com_depich1987_wsih_domain_WSHospital" path="/wshospitals" z="biKvJmLmioG6k6yuo24ynSM7Q/A=">
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_name" property="name" z="532mPpQdkCKN9HFWu/lRMv2sJ0w="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_email" property="email" z="E7kRRVZ6XaLznyIwxuiHIcHO1f4="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_phoneNumber" property="phoneNumber" z="T+6UVP4WDEegB4enB9yC7IAFL+g="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_city" property="city" z="8PcQQ/XrZS9XmYnXVpv/e4PU9B4="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_header" property="header" z="AKApGvsQgZRYU1HzucnZtQq4hKo="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHospital_footer" property="footer" z="lXEO7Ejw8T+WhLFwieMIvNMZxBQ="/>
+        </table:table>
+    </page:list>
+</div>

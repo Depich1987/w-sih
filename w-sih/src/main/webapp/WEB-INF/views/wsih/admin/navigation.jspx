@@ -1,0 +1,24 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <spring:message code="wsih_generalsettings" var="generalsettings_label"/>
+  <spring:message code="menu_category_wshospital_label" var="hospital_label"/>
+  <spring:message code="menu_item_wsdepartment_list_label" var="departments_label"/>
+  
+  <spring:url value="/admin/hospital" var="hospital_url"/>
+  <spring:url value="/admin/departments" var="departments_url"/>
+
+	<div class="well sidebar-nav">
+       <ul class="nav nav-list">
+         <li class="nav-header">${generalsettings_label}</li>
+         <li class="active">
+         	<a href="${hospital_url}">${hospital_label}</a>
+         </li>
+         <li>
+         	<a href="${departments_url}">${departments_label}</a>
+         </li>
+       </ul>
+     </div><!--/.well -->
+</div>

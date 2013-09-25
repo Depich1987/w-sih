@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:form="http://www.springframework.org/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags"
+
+        version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital" var="hospital_label"/>
+    <spring:message code="wsih_entityformlabel" arguments="${hospital_label}" var="formheader_label"/>
+    <spring:message code="button_save" var="buttonsave_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_city" var="city_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_email" var="email_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_phonenumber" var="phoneNumber_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_address" var="address_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_header" var="header_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_footer" var="footer_label"/>
+    
+    <spring:url value="/admin/hospital/create" var="createhospital_url"/>
+    
+    <form:form modelAttribute="WSHospital_" method="post" action="${createhospital_url}">
+    	<fieldset>
+    		<legend>
+    			${formheader_label}
+    		</legend>
+    		
+    		<div class="row-fluid">
+    		
+    			<ul class="nav nav-tabs">
+    				<li><a href="#general" data-toggle="tab">General</a></li>
+    				<li><a href="#headerFooter" data-toggle="tab">Header and Footer</a></li>
+    			</ul>
+    			
+    			<div class="tab-content">
+    				
+    				<div class="tab-pane active" id="general">
+    					<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${name_label}</label>
+				    			<form:input path="name" />
+				    		</p>
+			    		</div>
+			    		
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${city_label}</label>
+				    			<form:input path="city" />
+				    		</p>
+			    		</div>
+			    		
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${address_label}</label>
+				    			<form:input path="address" />
+				    		</p>
+			    		</div>
+			    		
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${phoneNumber_label}</label>
+				    			<form:input path="phoneNumber" />
+				    		</p>
+			    		</div>
+			    		
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${email_label}</label>
+				    			<form:input path="email" />
+				    		</p>
+			    		</div>
+			    		
+    				</div>
+    				
+    				<div class="tab-pane" id="headerFooter">
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${header_label}</label>
+				    			<form:textarea path="header" />
+				    		</p>
+			    		</div>
+			    		<div class="row-fluid">
+				    		<p class="span5">
+				    			<label>${footer_label}</label>
+				    			<form:textarea path="footer" />
+				    		</p>
+			    		</div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="row-fluid">
+    			<BUTTON class="btn btn-success">
+					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+    			</BUTTON>
+    		</div>
+    		
+    	</fieldset>
+    </form:form>
+    
+    
+</div>

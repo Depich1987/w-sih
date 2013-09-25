@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSDepartment" items="${wsdepartments}" z="mfJDQyUNSFeuBW4iL/23a4Z6APA=">
+        <table:table data="${wsdepartments}" id="l_com_depich1987_wsih_domain_WSDepartment" path="/wsdepartments" z="Ddjdc9/qase++5Uw+U23wCM6Fjg=">
+            <table:column id="c_com_depich1987_wsih_domain_WSDepartment_name" property="name" z="9crpkCcwIWat10Zu/Y7hycF9RQg="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSDepartment_description" property="description" z="pNFKPRqmrUS+bTYSHmrhKfVjriE="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" property="colorIdentifier" z="IN9VLtzyBUHtJwJEpBkYR3B8dZ8="/>
+        </table:table>
+    </page:list>
+</div>
