@@ -68,4 +68,6 @@
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    
+    <bean id="hospitalService" class="com.depich1987.wsih.services.dao.HospitalServiceImpl"/>
 </beans>

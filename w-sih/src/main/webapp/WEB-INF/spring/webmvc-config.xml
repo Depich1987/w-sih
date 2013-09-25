@@ -26,6 +26,7 @@
 
     <!-- Selects a static view for rendering without the need for an explicit controller -->
     <mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/admin/" view-name="admin/index"/>
     <mvc:view-controller path="/uncaughtException"/>
     <mvc:view-controller path="/resourceNotFound"/>
     <mvc:view-controller path="/dataAccessFailure"/>
@@ -67,6 +68,7 @@
     <property name="definitions">
       <list>
         <value>/WEB-INF/layouts/layouts.xml</value>
+        <value>/WEB-INF/layouts/wsih/layouts.xml</value>
         <!-- Scan views directory for Tiles configurations -->
         <value>/WEB-INF/views/**/views.xml</value>
       </list>

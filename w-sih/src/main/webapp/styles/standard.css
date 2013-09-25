@@ -1,5 +1,5 @@
-/* main elements */
-
+ /* main elements */
+/*
 body,div,td {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -22,14 +22,14 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 
-	/* fix max-width incompatibility in IE6 */
+	fix max-width incompatibility in IE6
 	width:expression(document.body.clientWidth > 800? "800px": "auto" );
 	
 	overflow:hidden;
 	display:block;
 }
 
-/* header and footer elements */
+header and footer elements
 
 #main {
 	overflow:hidden;
@@ -142,11 +142,11 @@ div .box {
 	margin-left:105px;
 }
 
-/* menu elements*/
+menu elements
 
 a.menu, a.menu:link, a.menu:visited {display:block; width:150px; height:25px;} 
 	
-/* text styles */
+text styles
 
 h1,h2,h3 {
 	font-family: Helvetica, sans-serif;
@@ -224,7 +224,7 @@ ul li {
 	margin:0 0 0.25em 0;
 	padding:0;
 }
-/* table elements */
+table elements
 
 table {
 	background: #EEEEEE;
@@ -370,4 +370,4 @@ fieldset th {
 .flag {
 	height: 11px;
 	width: 16px;
-}
+} */
