@@ -70,4 +70,5 @@
     </bean>
     
     <bean id="hospitalService" class="com.depich1987.wsih.services.dao.HospitalServiceImpl"/>
+    <bean id="departmentService" class="com.depich1987.wsih.services.dao.DepartmentServiceImpl"/>
 </beans>

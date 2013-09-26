@@ -30,6 +30,10 @@ public class AdminHospitalController{
 	private static final String SHOW_VIEW = "admin/hospital/show";
 	private static final String UPDATE_VIEW = "admin/hospital/update";
 	
+	public AdminHospitalController() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Autowired
 	private HospitalService hospitalService;
 	
@@ -79,10 +83,18 @@ public class AdminHospitalController{
         }
     	
         uiModel.asMap().clear();
-        hospitalService.merge(WSHospital_);
+        WSHospital hospitalOld = hospitalService.findHospital(WSHospital_.getId());
+        
+        hospitalOld.setName(WSHospital_.getName());
+        hospitalOld.setCity(WSHospital_.getCity());
+        hospitalOld.setAddress(WSHospital_.getAddress());
+        hospitalOld.setEmail(WSHospital_.getEmail());
+        hospitalOld.setPhoneNumber(WSHospital_.getPhoneNumber());
+        
+        hospitalService.merge(hospitalOld);
         logger.debug("update() - Hospital details has been updated with success!");
         
-        return "redirect:"+ PATH +"/" + encodeUrlPathSegment(WSHospital_.getId().toString(), httpServletRequest);
+        return "redirect:"+ PATH +"/" + encodeUrlPathSegment(hospitalOld.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = PATH +"/{id}", params = "form", produces = "text/html")

@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:form="http://www.springframework.org/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags" version="2.0">
+
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_com_depich1987_wsih_domain_WSDepartment" modelAttribute="WSDepartment_" path="/wsdepartments" versionField="Version" z="cvT21TUEma453X9CVU67cAnpKN8=">
-        <field:input field="name" id="c_com_depich1987_wsih_domain_WSDepartment_name" z="fHM+D9U/pZWY/orTPxUogMOowzY="/>
-        <field:input field="description" id="c_com_depich1987_wsih_domain_WSDepartment_description" z="rW6tpQGa7l+Uu2QEDlzFDh1YOyw="/>
-        <field:input field="colorIdentifier" id="c_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" z="nd4AXKdMLBPax2niSYA3dBPLdys="/>
-    </form:update>
+    
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    <spring:message code="wsih_entityformlabel" arguments="${department_label}" var="formheader_label"/>
+    <spring:message code="button_save" var="buttonsave_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_description" var="description_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_coloridentifier" var="colorIdentifier_label"/>
+    
+    <spring:url value="/admin/departments/update" var="upatedepartment_url"/>
+    
+   <form:form action="${upatedepartment_url}" method="post" modelAttribute="WSDepartment_">
+	   	<fieldset>
+	    		<legend>
+	    			${formheader_label}
+	    		</legend>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${name_label}</label>
+		    			<form:input path="name" />
+		    		</p>
+	    		</div>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${colorIdentifier_label}</label>
+		    			<form:input path="colorIdentifier" />
+		    		</p>
+	    		</div>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${description_label}</label>
+		    			<form:textarea path="description" />
+		    		</p>
+	    		</div>
+	    		
+	    		<div class="row-fluid">
+	    			<form:hidden path="id" />
+	    			<button class="btn btn-success" type="submit">
+						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+	    			</button>
+	    		</div>
+	   	</fieldset>
+   </form:form>
 </div>

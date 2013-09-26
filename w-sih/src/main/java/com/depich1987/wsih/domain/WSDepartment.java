@@ -5,7 +5,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(table = "WS_DEPARTMENT")
 public class WSDepartment {
 
     /**

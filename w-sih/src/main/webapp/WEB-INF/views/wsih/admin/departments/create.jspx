@@ -9,9 +9,9 @@
     <spring:message code="wsih_entityformlabel" arguments="${department_label}" var="formheader_label"/>
     <spring:message code="button_save" var="buttonsave_label"/>
     
-    <spring:message code="label_com_depich1987_wsih_domain_WSDepartment_name" var="name_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_WSDepartment_description" var="description_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" var="colorIdentifier_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_description" var="description_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_coloridentifier" var="colorIdentifier_label"/>
     
     <spring:url value="/admin/departments/create" var="createdepartment_url"/>
     
