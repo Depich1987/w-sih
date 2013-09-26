@@ -33,6 +33,19 @@
 	        }
 	      }
 	    </style>
+	    
+	    <script type="text/javascript">
+	    	$(document).ready(function(){
+	    		
+
+	    			//enable tabs functions
+	    			$('.ws-tab a').click(function (e) {
+					  e.preventDefault();
+					  $(this).tab('show');
+					});
+	    			$('.ws-tab a:first').tab('show'); // Select first tab
+	    	});
+	    </script>
 	</head>
 	
   	<body class="spring">

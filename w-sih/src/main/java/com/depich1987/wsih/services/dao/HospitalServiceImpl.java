@@ -50,8 +50,8 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public void remove(Long id) {
 
-            WSHospital attached = findHospital(id);
-            this.entityManager.remove(attached);
+        WSHospital attached = findHospital(id);
+        this.entityManager.remove(attached);
     }
     
     @Transactional

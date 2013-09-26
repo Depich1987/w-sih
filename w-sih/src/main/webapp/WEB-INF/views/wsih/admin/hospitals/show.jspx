@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:form="http://www.springframework.org/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_depich1987_wsih_domain_WSHospital" object="${wshospital_}" path="/wshospitals" z="sa8o7r4W0bO4A73ZOAHPfgqNTVg=">
-        <field:display field="name" id="s_com_depich1987_wsih_domain_WSHospital_name" object="${wshospital_}" z="GR6qM4PiXxj2qhz1fh2g7Bgm9gQ="/>
-        <field:display field="email" id="s_com_depich1987_wsih_domain_WSHospital_email" object="${wshospital_}" z="F9AZQf/oqvkd/QkZ7aZ5y+yypEg="/>
-        <field:display field="phoneNumber" id="s_com_depich1987_wsih_domain_WSHospital_phoneNumber" object="${wshospital_}" z="2DicRdWW6/fLXAlTniwofUJOkkY="/>
-        <field:display field="city" id="s_com_depich1987_wsih_domain_WSHospital_city" object="${wshospital_}" z="yfG5hPj5B43sG6WUnHtW6eBK8UM="/>
-        <field:display field="header" id="s_com_depich1987_wsih_domain_WSHospital_header" object="${wshospital_}" z="oBubir+F9cwGgail3oPjui8t6L8="/>
-        <field:display field="footer" id="s_com_depich1987_wsih_domain_WSHospital_footer" object="${wshospital_}" z="IxG0V/VDOmpc2g6n5jQ+n3Gnqy8="/>
-        <field:display field="address" id="s_com_depich1987_wsih_domain_WSHospital_address" object="${wshospital_}" z="TOblqWGoPaR5ReGNw3LASRESsCM="/>
-    </page:show>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital" var="hospital_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${hospital_label}" var="headerdetails_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:url value="/admin/hospital/create?form" var="updatehospital_url"/>
+    <c:if test="${not empty wshospital_}">
+    	<spring:url value="/admin/hospital/${wshospital_.id}?form" var="updatehospital_url"/>
+    </c:if>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_city" var="city_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_email" var="email_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_phonenumber" var="phoneNumber_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_address" var="address_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_header" var="header_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshospital_footer" var="footer_label"/>
+    
+    <div class="row-fluid">
+    	<fieldset>
+    		<legend>
+    			${headerdetails_label}
+    		</legend>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${name_label}</label>
+	    			<strong>${wshospital_.name}</strong>
+	    		</p>
+    		</div>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${city_label}</label>
+	    			<strong>${wshospital_.city}</strong>
+	    		</p>
+    		</div>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${address_label}</label>
+	    			<strong>${wshospital_.address}</strong>
+	    		</p>
+    		</div>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${phoneNumber_label}</label>
+	    			<strong>${wshospital_.phoneNumber}</strong>
+	    		</p>
+    		</div>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${email_label}</label>
+	    			<strong>${wshospital_.email}</strong>
+	    		</p>
+    		</div>
+    		<div class="row-fluid">
+    			<p class="span5">
+    				<a href="${updatehospital_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+    			</p>
+    		</div>
+   		</fieldset>
+    </div>
+    
 </div>

@@ -1,6 +1,7 @@
 package com.depich1987.wsih.web.admin;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -33,14 +34,14 @@ public class AdminHospitalController{
 	private HospitalService hospitalService;
 	
 	@RequestMapping(value = PATH , produces = "text/html")
-	public String index(){
-		long nbr = hospitalService.countHospitals();
+	public String index(HttpServletRequest httpServletRequest){
+		List<WSHospital> hospitals = hospitalService.findAllHospitals();
 		
-		if(nbr > 0) {
-			return "redirect:" +PATH + "/show"; 
-			}	else{ 
-				return "redirect:" +PATH + "/create?form";
-				}
+		if(!hospitals.isEmpty()){
+			return "redirect:" +PATH + "/"+ encodeUrlPathSegment(hospitals.get(0).getId().toString(), httpServletRequest); 
+		}
+		
+		return "redirect:" +PATH + "/create?form";
 	}
 	
 	@RequestMapping( value = PATH + "/create", method = RequestMethod.POST, produces = "text/html")
@@ -51,7 +52,7 @@ public class AdminHospitalController{
         }
         uiModel.asMap().clear();
         hospitalService.persist(hospital);
-        logger.debug("A new Hospital has been created on the dataBase!");
+        logger.debug("create() - A new Hospital has been created on the dataBase!");
         return "redirect:" + PATH + "/" +encodeUrlPathSegment(hospital.getId().toString(), httpServletRequest);
     }
     
@@ -69,15 +70,19 @@ public class AdminHospitalController{
     }
 
     
-    @RequestMapping(value =PATH +"/update", method = RequestMethod.PUT, produces = "text/html")
+    @RequestMapping(value = PATH +"/update", method = RequestMethod.POST, produces = "text/html")
     public String update(@Valid WSHospital WSHospital_, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
+        
+    	if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, WSHospital_);
             return UPDATE_VIEW;
         }
+    	
         uiModel.asMap().clear();
-        WSHospital_.merge();
-        return "redirect:"+PATH +"/" + encodeUrlPathSegment(WSHospital_.getId().toString(), httpServletRequest);
+        hospitalService.merge(WSHospital_);
+        logger.debug("update() - Hospital details has been updated with success!");
+        
+        return "redirect:"+ PATH +"/" + encodeUrlPathSegment(WSHospital_.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = PATH +"/{id}", params = "form", produces = "text/html")
