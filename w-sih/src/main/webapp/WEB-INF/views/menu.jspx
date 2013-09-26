@@ -3,7 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-
         <menu:category id="c_wshospital" z="fdouk2rR8RUzxVOk8KvoBsB05GE=">
             <menu:item id="i_wshospital_new" messageCode="global_menu_new" url="/wshospitals?form" z="K0FNUdjnL04EeZrZA11jfawzOpY="/>
             <menu:item id="i_wshospital_list" messageCode="global_menu_list" url="/wshospitals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bV1ez0XBf83fvm7O/lFRWumxbhQ="/>
@@ -11,6 +10,22 @@
         <menu:category id="c_wsdepartment" z="7mIOz95cUsCe5WpLCoFImcdSNLo=">
             <menu:item id="i_wsdepartment_new" messageCode="global_menu_new" url="/wsdepartments?form" z="aTZLMXFqI46opbzJvHBV9jHOuFk="/>
             <menu:item id="i_wsdepartment_list" messageCode="global_menu_list" url="/wsdepartments?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Synl1Aj5fwC6fC25YSSFmXo8p60="/>
+        </menu:category>
+        <menu:category id="c_wsbudgetaccount" z="SBleQUqhciTKpfpk2gM0MaUfo3g=">
+            <menu:item id="i_wsbudgetaccount_new" messageCode="global_menu_new" url="/wsbudgetaccounts?form" z="QwaZ/opfZonH68qz6xGAM6iJxh4="/>
+            <menu:item id="i_wsbudgetaccount_list" messageCode="global_menu_list" url="/wsbudgetaccounts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="N2uCVuBHbMryix55YfUkf8BDQCo="/>
+        </menu:category>
+        <menu:category id="c_wscashaccount" z="AtDkvSdhp17XJN0SuL9GoGjFNq4=">
+            <menu:item id="i_wscashaccount_new" messageCode="global_menu_new" url="/wscashaccounts?form" z="+sXz9Sde+Sqqk5nuYzfsZnrhFq0="/>
+            <menu:item id="i_wscashaccount_list" messageCode="global_menu_list" url="/wscashaccounts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="BcGQi4dWfzP4x46hhZo3jDIhRjQ="/>
+        </menu:category>
+        <menu:category id="c_wsinsuancecompany" z="/8KmKKQa7Ji4sAqyc6n2D8qKTE8=">
+            <menu:item id="i_wsinsuancecompany_new" messageCode="global_menu_new" url="/wsinsuancecompanys?form" z="KYtb+UBgH2NtZqDuskQhk8a6ils="/>
+            <menu:item id="i_wsinsuancecompany_list" messageCode="global_menu_list" url="/wsinsuancecompanys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JpZg9psfSLkRdl8jH4pdkptELV0="/>
+        </menu:category>
+        <menu:category id="c_wsinsurancecompany" z="R26CA2wGxO54g9hBoJzAIBaYzAE=">
+            <menu:item id="i_wsinsurancecompany_new" messageCode="global_menu_new" url="/wsinsurancecompanys?form" z="eacB5Sb4gqgbVZieSsnvLE0/K30="/>
+            <menu:item id="i_wsinsurancecompany_list" messageCode="global_menu_list" url="/wsinsurancecompanys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Y4RrS6g+dbw3QmW8zaFpkVw9a/I="/>
         </menu:category>
     </menu:menu>
 </div>

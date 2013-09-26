@@ -4,20 +4,38 @@
   <jsp:output omit-xml-declaration="yes" />
   
   <spring:message code="wsih_generalsettings" var="generalsettings_label"/>
+  <spring:message code="wsih_accounting" var="accounting_label"/>
   <spring:message code="menu_category_wshospital_label" var="hospital_label"/>
   <spring:message code="menu_item_wsdepartment_list_label" var="departments_label"/>
+  <spring:message code="menu_item_wsbudgetaccount_list_label" var="budgetaccounts_label"/>
+  <spring:message code="menu_item_wscashaccount_list_label" var="cashaccounts_label"/>
   
   <spring:url value="/admin/hospital" var="hospital_url"/>
   <spring:url value="/admin/departments" var="departments_url"/>
+  <spring:url value="/admin/budgetaccounts" var="budgetaccounts_url"/>
+  <spring:url value="/admin/cashaccounts" var="cashaccounts_url"/>
 
 	<div class="well sidebar-nav">
        <ul class="nav nav-list">
+       
          <li class="nav-header">${generalsettings_label}</li>
+         
          <li class="active">
          	<a href="${hospital_url}">${hospital_label}</a>
          </li>
+         
          <li>
          	<a href="${departments_url}">${departments_label}</a>
+         </li>
+         
+         <li class="nav-header">${accounting_label}</li>
+         
+         <li>
+         	<a href="${budgetaccounts_url}">${budgetaccounts_label}</a>
+         </li>
+         
+         <li>
+         	<a href="${cashaccounts_url}">${cashaccounts_label}</a>
          </li>
        </ul>
      </div><!--/.well -->

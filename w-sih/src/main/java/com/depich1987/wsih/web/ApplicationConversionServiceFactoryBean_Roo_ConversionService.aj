@@ -3,8 +3,11 @@
 
 package com.depich1987.wsih.web;
 
+import com.depich1987.wsih.domain.WSBudgetAccount;
+import com.depich1987.wsih.domain.WSCashAccount;
 import com.depich1987.wsih.domain.WSDepartment;
 import com.depich1987.wsih.domain.WSHospital;
+import com.depich1987.wsih.domain.WSInsuranceCompany;
 import com.depich1987.wsih.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -13,6 +16,54 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<WSBudgetAccount, String> ApplicationConversionServiceFactoryBean.getWSBudgetAccountToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSBudgetAccount, java.lang.String>() {
+            public String convert(WSBudgetAccount wSBudgetAccount) {
+                return new StringBuilder().append(wSBudgetAccount.getName()).append(' ').append(wSBudgetAccount.getAccountNumber()).append(' ').append(wSBudgetAccount.getNature()).append(' ').append(wSBudgetAccount.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSBudgetAccount> ApplicationConversionServiceFactoryBean.getIdToWSBudgetAccountConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSBudgetAccount>() {
+            public com.depich1987.wsih.domain.WSBudgetAccount convert(java.lang.Long id) {
+                return WSBudgetAccount.findWSBudgetAccount(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSBudgetAccount> ApplicationConversionServiceFactoryBean.getStringToWSBudgetAccountConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSBudgetAccount>() {
+            public com.depich1987.wsih.domain.WSBudgetAccount convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSBudgetAccount.class);
+            }
+        };
+    }
+    
+    public Converter<WSCashAccount, String> ApplicationConversionServiceFactoryBean.getWSCashAccountToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSCashAccount, java.lang.String>() {
+            public String convert(WSCashAccount wSCashAccount) {
+                return new StringBuilder().append(wSCashAccount.getName()).append(' ').append(wSCashAccount.getAccountNumber()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSCashAccount> ApplicationConversionServiceFactoryBean.getIdToWSCashAccountConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSCashAccount>() {
+            public com.depich1987.wsih.domain.WSCashAccount convert(java.lang.Long id) {
+                return WSCashAccount.findWSCashAccount(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSCashAccount> ApplicationConversionServiceFactoryBean.getStringToWSCashAccountConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSCashAccount>() {
+            public com.depich1987.wsih.domain.WSCashAccount convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSCashAccount.class);
+            }
+        };
+    }
     
     public Converter<WSDepartment, String> ApplicationConversionServiceFactoryBean.getWSDepartmentToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSDepartment, java.lang.String>() {
@@ -62,13 +113,46 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<WSInsuranceCompany, String> ApplicationConversionServiceFactoryBean.getWSInsuranceCompanyToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSInsuranceCompany, java.lang.String>() {
+            public String convert(WSInsuranceCompany wSInsuranceCompany) {
+                return new StringBuilder().append(wSInsuranceCompany.getCompanyName()).append(' ').append(wSInsuranceCompany.getContact()).append(' ').append(wSInsuranceCompany.getEmail()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSInsuranceCompany> ApplicationConversionServiceFactoryBean.getIdToWSInsuranceCompanyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSInsuranceCompany>() {
+            public com.depich1987.wsih.domain.WSInsuranceCompany convert(java.lang.Long id) {
+                return WSInsuranceCompany.findWSInsuranceCompany(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSInsuranceCompany> ApplicationConversionServiceFactoryBean.getStringToWSInsuranceCompanyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSInsuranceCompany>() {
+            public com.depich1987.wsih.domain.WSInsuranceCompany convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSInsuranceCompany.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getWSBudgetAccountToStringConverter());
+        registry.addConverter(getIdToWSBudgetAccountConverter());
+        registry.addConverter(getStringToWSBudgetAccountConverter());
+        registry.addConverter(getWSCashAccountToStringConverter());
+        registry.addConverter(getIdToWSCashAccountConverter());
+        registry.addConverter(getStringToWSCashAccountConverter());
         registry.addConverter(getWSDepartmentToStringConverter());
         registry.addConverter(getIdToWSDepartmentConverter());
         registry.addConverter(getStringToWSDepartmentConverter());
         registry.addConverter(getWSHospitalToStringConverter());
         registry.addConverter(getIdToWSHospitalConverter());
         registry.addConverter(getStringToWSHospitalConverter());
+        registry.addConverter(getWSInsuranceCompanyToStringConverter());
+        registry.addConverter(getIdToWSInsuranceCompanyConverter());
+        registry.addConverter(getStringToWSInsuranceCompanyConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
