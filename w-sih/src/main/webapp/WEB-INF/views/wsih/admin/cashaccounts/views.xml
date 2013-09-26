@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <definition extends="defaultLayout" name="admin/cashaccounts/list">
+    	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/cashaccounts/list.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/cashaccounts/show">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/cashaccounts/show.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/cashaccounts/create">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/cashaccounts/create.jspx"/>
+    </definition>
+    
+	<definition extends="defaultLayout" name="admin/cashaccounts/update">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/cashaccounts/update.jspx"/>
+    </definition>
+    
+</tiles-definitions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="wscashaccounts/list">
+        <put-attribute name="body" value="/WEB-INF/views/wscashaccounts/list.jspx"/>
+    </definition>
+<definition extends="default" name="wscashaccounts/show">
+        <put-attribute name="body" value="/WEB-INF/views/wscashaccounts/show.jspx"/>
+    </definition>
+<definition extends="default" name="wscashaccounts/create">
+        <put-attribute name="body" value="/WEB-INF/views/wscashaccounts/create.jspx"/>
+    </definition>
+<definition extends="default" name="wscashaccounts/update">
+        <put-attribute name="body" value="/WEB-INF/views/wscashaccounts/update.jspx"/>
+    </definition>
+</tiles-definitions>

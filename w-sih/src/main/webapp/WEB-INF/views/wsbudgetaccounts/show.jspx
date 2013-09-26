@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSBudgetAccount" object="${wsbudgetaccount_}" path="/wsbudgetaccounts" z="BpUjHhNVmppOkCFilNdQmIFzzQQ=">
+        <field:display field="name" id="s_com_depich1987_wsih_domain_WSBudgetAccount_name" object="${wsbudgetaccount_}" z="trYXJMD78zCnGcOGQzUDbmHQ2mM="/>
+        <field:display field="accountNumber" id="s_com_depich1987_wsih_domain_WSBudgetAccount_accountNumber" object="${wsbudgetaccount_}" z="J8Mju9ugcik92J7OH+6sj6oFu30="/>
+        <field:display field="nature" id="s_com_depich1987_wsih_domain_WSBudgetAccount_nature" object="${wsbudgetaccount_}" z="pt9y7H7XpuuM6pBp74UCTNr/c2M="/>
+        <field:display field="description" id="s_com_depich1987_wsih_domain_WSBudgetAccount_description" object="${wsbudgetaccount_}" z="kGBWjjWZaEhc/WMTcJOJQRB5nW8="/>
+    </page:show>
+</div>

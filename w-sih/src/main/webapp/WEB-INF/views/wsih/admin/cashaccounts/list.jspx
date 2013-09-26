@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSCashAccount" items="${wscashaccounts}" z="P/YhTsVNQ+BSdplJNW5+voBJutY=">
+        <table:table data="${wscashaccounts}" id="l_com_depich1987_wsih_domain_WSCashAccount" path="/wscashaccounts" z="pBBxlTyjoXUORBVmyCnfEyMUPy8=">
+            <table:column id="c_com_depich1987_wsih_domain_WSCashAccount_name" property="name" z="tTZgvq31HEpUn74C49nWtdLcYM8="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSCashAccount_accountNumber" property="accountNumber" z="X5sxwK9+IVUyayOf0FFAtYI88uw="/>
+        </table:table>
+    </page:list>
+</div>

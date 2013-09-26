@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_depich1987_wsih_domain_WSBudgetAccount" modelAttribute="WSBudgetAccount_" path="/wsbudgetaccounts" versionField="Version" z="e+mmIZ3sLlpHAfY214qYYUsajf4=">
+        <field:input field="name" id="c_com_depich1987_wsih_domain_WSBudgetAccount_name" z="tYvYT6XwfieM44v5+AZK093OU7I="/>
+        <field:input field="accountNumber" id="c_com_depich1987_wsih_domain_WSBudgetAccount_accountNumber" z="DvCo4IYkz+EUS54AfTlAajo0Pz0="/>
+        <field:input field="nature" id="c_com_depich1987_wsih_domain_WSBudgetAccount_nature" z="RWYhKs10X6bRAgAP7xVZtGiRrNA="/>
+        <field:input field="description" id="c_com_depich1987_wsih_domain_WSBudgetAccount_description" z="YBZiCdRC7b4m8lW15mORfW/R9YI="/>
+    </form:update>
+</div>

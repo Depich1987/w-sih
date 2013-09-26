@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:spring="http://www.springframework.org/tags" 
+	 xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	 version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsbudgetaccount" var="budgetaccount_label"/>
+    <spring:message code="global_menu_list" arguments="${budgetaccount_label}" var="budgetaccountlist_label"/>
+    <spring:message code="global_menu_new" arguments="${budgetaccount_label}" var="createbudgetaccount_label"/>
+    
+    <spring:url value="/admin/budgetaccounts/create?form" var="createbudgetaccount_url"/>
+    
+    <div class="row-fluid">
+    	<fieldset>
+    		<legend>
+    			${budgetaccountlist_label}
+    		</legend>
+    		<div class="row-fluid">
+    			<a href="${createbudgetaccount_url}" class="btn btn-primary">
+    				${createbudgetaccount_label} <span class="icon-white icon-plus-sign"></span>
+    			</a>
+    		</div>
+    	</fieldset>
+       <table:table data="${wsbudgetaccounts}" id="l_com_depich1987_wsih_domain_WSBudgetAccount" path="/admin/budgetaccounts">
+          <table:column id="c_com_depich1987_wsih_domain_WSBudgetAccount_name" property="name"/>
+          <table:column id="c_com_depich1987_wsih_domain_WSBudgetAccount_accountNumber" property="accountNumber"/>
+          <table:column id="c_com_depich1987_wsih_domain_WSBudgetAccount_nature" property="nature"/>
+       </table:table>
+    </div>
+
+</div>

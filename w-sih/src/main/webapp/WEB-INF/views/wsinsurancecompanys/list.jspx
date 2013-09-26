@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSInsuranceCompany" items="${wsinsurancecompanys}" z="BvV+WWlhwR8BPb1Q/tL/Z0n5G6o=">
+        <table:table data="${wsinsurancecompanys}" id="l_com_depich1987_wsih_domain_WSInsuranceCompany" path="/wsinsurancecompanys" z="LAF8LsVSSkvS5vN4GUN4/kx0K/Q=">
+            <table:column id="c_com_depich1987_wsih_domain_WSInsuranceCompany_companyName" property="companyName" z="0c1jqXtUyguEaUB8wH941RZA1tY="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSInsuranceCompany_contact" property="contact" z="E8HqRRfprnl4cGWGnn8WVX0FCc0="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSInsuranceCompany_email" property="email" z="/15bBhDLvhLvcaT4+FZauwL0jT8="/>
+        </table:table>
+    </page:list>
+</div>

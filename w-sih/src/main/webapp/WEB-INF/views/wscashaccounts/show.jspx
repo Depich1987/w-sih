@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSCashAccount" object="${wscashaccount_}" path="/wscashaccounts" z="d0AfGM/9Opkt3ahrVBcURW9iXJU=">
+        <field:display field="name" id="s_com_depich1987_wsih_domain_WSCashAccount_name" object="${wscashaccount_}" z="lzFpIi6ThJ9+amguHCBZs8wkorg="/>
+        <field:display field="accountNumber" id="s_com_depich1987_wsih_domain_WSCashAccount_accountNumber" object="${wscashaccount_}" z="AqLay3+HwfprHurlIGsBLrWnsLQ="/>
+    </page:show>
+</div>
