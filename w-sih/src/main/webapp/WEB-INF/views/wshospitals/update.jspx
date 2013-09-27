@@ -10,5 +10,12 @@
         <field:input field="header" id="c_com_depich1987_wsih_domain_WSHospital_header" z="F7rEyqLCcSPxsHNBv6K7VagXmms="/>
         <field:input field="footer" id="c_com_depich1987_wsih_domain_WSHospital_footer" z="Ig2/DtqubqVYEM6Y7caLUIiItSU="/>
         <field:input field="address" id="c_com_depich1987_wsih_domain_WSHospital_address" z="FpnHWafTQkReHIIVGW0YvlIC4iw="/>
+        <field:input field="accountServiceWithoutFees" id="c_com_depich1987_wsih_domain_WSHospital_accountServiceWithoutFees" z="5CjGLbP8ZbNcCkCwPLjbK/8wZrM="/>
+        <field:input field="accountFeesCollection" id="c_com_depich1987_wsih_domain_WSHospital_accountFeesCollection" z="Y2NuX1xRkvrZYjjdqTjPVB7Er54="/>
+        <field:input field="accountServiceVAT" id="c_com_depich1987_wsih_domain_WSHospital_accountServiceVAT" z="EpvO2XuEyfCYJZQgMX/GA4RwhZg="/>
+        <field:input field="refundInsurer" id="c_com_depich1987_wsih_domain_WSHospital_refundInsurer" z="6DzP8OgSUSFRPbzsoswZ4Jg33Gw="/>
+        <field:input field="repaymentFees" id="c_com_depich1987_wsih_domain_WSHospital_repaymentFees" z="4hefnMbCP8rfQLcKS3tZq101v8o="/>
+        <field:input field="cashAccountUsed" id="c_com_depich1987_wsih_domain_WSHospital_cashAccountUsed" z="mKT+RdUVy+o/R+AnGSMXL6hYMe0="/>
+        <field:input field="defaultCurrency" id="c_com_depich1987_wsih_domain_WSHospital_defaultCurrency" z="LJozf2+OLhcIol6haFULQYltj5w="/>
     </form:update>
 </div>

@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import com.depich1987.wsih.domain.WSBudgetAccount;
+import com.depich1987.wsih.domain.WSCashAccount;
 import com.depich1987.wsih.domain.WSHospital;
+import com.depich1987.wsih.services.dao.BudgetAccountService;
+import com.depich1987.wsih.services.dao.CashAccountService;
 import com.depich1987.wsih.services.dao.HospitalService;
 
 @Controller
@@ -36,6 +40,12 @@ public class AdminHospitalController{
 	
 	@Autowired
 	private HospitalService hospitalService;
+	
+	@Autowired
+	private BudgetAccountService budgetAccountService;
+	
+	@Autowired
+	private CashAccountService cashAccountService;
 	
 	@RequestMapping(value = PATH , produces = "text/html")
 	public String index(HttpServletRequest httpServletRequest){
@@ -63,6 +73,12 @@ public class AdminHospitalController{
     @RequestMapping(value = PATH + "/create", params = "form", produces = "text/html")
     public String createForm(Model uiModel) {
         populateEditForm(uiModel, new WSHospital());
+        
+        List<WSBudgetAccount> budgetAccounts = budgetAccountService.findAllBudgetAccounts();
+        List<WSCashAccount> cashAccounts = cashAccountService.findAllCashAccounts();
+        
+        uiModel.addAttribute("budgetAccounts", budgetAccounts);
+        uiModel.addAttribute("cashAccounts", cashAccounts);
         return CREATE_VIEW;
     }
     
@@ -100,6 +116,13 @@ public class AdminHospitalController{
     @RequestMapping(value = PATH +"/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, hospitalService.findHospital(id));
+        
+        List<WSBudgetAccount> budgetAccounts = budgetAccountService.findAllBudgetAccounts();
+        List<WSCashAccount> cashAccounts = cashAccountService.findAllCashAccounts();
+        
+        uiModel.addAttribute("budgetAccounts", budgetAccounts);
+        uiModel.addAttribute("cashAccounts", cashAccounts);
+        
         return UPDATE_VIEW;
     }
 

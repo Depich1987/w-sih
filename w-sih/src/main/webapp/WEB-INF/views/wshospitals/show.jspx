@@ -10,5 +10,12 @@
         <field:display field="header" id="s_com_depich1987_wsih_domain_WSHospital_header" object="${wshospital_}" z="oBubir+F9cwGgail3oPjui8t6L8="/>
         <field:display field="footer" id="s_com_depich1987_wsih_domain_WSHospital_footer" object="${wshospital_}" z="IxG0V/VDOmpc2g6n5jQ+n3Gnqy8="/>
         <field:display field="address" id="s_com_depich1987_wsih_domain_WSHospital_address" object="${wshospital_}" z="TOblqWGoPaR5ReGNw3LASRESsCM="/>
+        <field:display field="accountServiceWithoutFees" id="s_com_depich1987_wsih_domain_WSHospital_accountServiceWithoutFees" object="${wshospital_}" z="8aKEOg+ADu72fb6qqR4Jik8rDlw="/>
+        <field:display field="accountFeesCollection" id="s_com_depich1987_wsih_domain_WSHospital_accountFeesCollection" object="${wshospital_}" z="WkaFILIDMIsTA5a4oQuTTxEZ6Fg="/>
+        <field:display field="accountServiceVAT" id="s_com_depich1987_wsih_domain_WSHospital_accountServiceVAT" object="${wshospital_}" z="uZYN49Cuu9iHVfY5wJ5f39AgZ0s="/>
+        <field:display field="refundInsurer" id="s_com_depich1987_wsih_domain_WSHospital_refundInsurer" object="${wshospital_}" z="6AvpwLe3V1gs14rWomQFUloWCnk="/>
+        <field:display field="repaymentFees" id="s_com_depich1987_wsih_domain_WSHospital_repaymentFees" object="${wshospital_}" z="ADPMOq0l1EvUogjTMdpyd/7rjMk="/>
+        <field:display field="cashAccountUsed" id="s_com_depich1987_wsih_domain_WSHospital_cashAccountUsed" object="${wshospital_}" z="07IaI1/1Bh4cbHi+6dgAkfEicSU="/>
+        <field:display field="defaultCurrency" id="s_com_depich1987_wsih_domain_WSHospital_defaultCurrency" object="${wshospital_}" z="8mIVAnRaXEZneHBvfoXynv6YZVQ="/>
     </page:show>
 </div>

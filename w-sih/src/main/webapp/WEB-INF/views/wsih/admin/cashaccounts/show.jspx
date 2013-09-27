@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_depich1987_wsih_domain_WSCashAccount" object="${wscashaccount_}" path="/wscashaccounts" z="d0AfGM/9Opkt3ahrVBcURW9iXJU=">
-        <field:display field="name" id="s_com_depich1987_wsih_domain_WSCashAccount_name" object="${wscashaccount_}" z="lzFpIi6ThJ9+amguHCBZs8wkorg="/>
-        <field:display field="accountNumber" id="s_com_depich1987_wsih_domain_WSCashAccount_accountNumber" object="${wscashaccount_}" z="AqLay3+HwfprHurlIGsBLrWnsLQ="/>
-    </page:show>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wscashaccount" var="cashaccount_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${cashaccount_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${cashaccount_label}" var="backtolist_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wscashaccount_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wscashaccount_accountnumber" var="accountnumber_label"/>
+    
+    <spring:url value="/admin/cashaccounts/create" var="createcashaccount_url"/>
+    <spring:url value="/admin/cashaccounts/list?size=10" var="listcashaccount_url"/>
+    
+	   	<fieldset>
+	    		<legend>
+	    			${formheader_label}
+	    		</legend>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${name_label}</label>
+		    			<strong>${wscashaccount_.name}</strong>
+		    		</p>
+	    		</div>
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${accountnumber_label}</label>
+		    			<strong>${wscashaccount_.accountNumber}</strong>
+		    		</p>
+	    		</div>
+		   		<div class="row-fluid">
+		   			<p class="span5">
+		   				<a href="${listcashaccount_url}" class="btn btn-default">${backtolist_label}</a>
+		   				<a href="${upatecashaccount_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+		   			</p>
+		   		</div>
+	 	</fieldset>
+
 </div>

@@ -63,4 +63,60 @@ privileged aspect WSHospital_Roo_JavaBean {
         this.address = address;
     }
     
+    public long WSHospital.getAccountServiceWithoutFees() {
+        return this.accountServiceWithoutFees;
+    }
+    
+    public void WSHospital.setAccountServiceWithoutFees(long accountServiceWithoutFees) {
+        this.accountServiceWithoutFees = accountServiceWithoutFees;
+    }
+    
+    public long WSHospital.getAccountFeesCollection() {
+        return this.accountFeesCollection;
+    }
+    
+    public void WSHospital.setAccountFeesCollection(long accountFeesCollection) {
+        this.accountFeesCollection = accountFeesCollection;
+    }
+    
+    public long WSHospital.getAccountServiceVAT() {
+        return this.accountServiceVAT;
+    }
+    
+    public void WSHospital.setAccountServiceVAT(long accountServiceVAT) {
+        this.accountServiceVAT = accountServiceVAT;
+    }
+    
+    public long WSHospital.getRefundInsurer() {
+        return this.refundInsurer;
+    }
+    
+    public void WSHospital.setRefundInsurer(long refundInsurer) {
+        this.refundInsurer = refundInsurer;
+    }
+    
+    public long WSHospital.getRepaymentFees() {
+        return this.repaymentFees;
+    }
+    
+    public void WSHospital.setRepaymentFees(long repaymentFees) {
+        this.repaymentFees = repaymentFees;
+    }
+    
+    public long WSHospital.getCashAccountUsed() {
+        return this.cashAccountUsed;
+    }
+    
+    public void WSHospital.setCashAccountUsed(long cashAccountUsed) {
+        this.cashAccountUsed = cashAccountUsed;
+    }
+    
+    public String WSHospital.getDefaultCurrency() {
+        return this.defaultCurrency;
+    }
+    
+    public void WSHospital.setDefaultCurrency(String defaultCurrency) {
+        this.defaultCurrency = defaultCurrency;
+    }
+    
 }

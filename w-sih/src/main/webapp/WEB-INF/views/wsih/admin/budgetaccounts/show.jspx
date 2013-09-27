@@ -6,7 +6,8 @@
     
     
     <spring:message code="label_com_depich1987_wsih_domain_wsbudgetaccount" var="budgetaccount_label"/>
-    <spring:message code="wsih_entityformlabel" arguments="${budgetaccount_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${budgetaccount_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${budgetaccount_label}" var="backtolist_label"/>
     <spring:message code="button_update" var="update_label"/>
     
     <spring:message code="label_com_depich1987_wsih_domain_wsbudgetaccount_name" var="name_label"/>
@@ -16,7 +17,8 @@
     
 
    	<spring:url value="/admin/budgetaccounts/${wsbudgetaccount_.id}?form" var="upatebudgetaccount_url"/>
-
+	<spring:url value="/admin/budgetaccounts/list?size=10" var="listbudgetaccount_url"/>
+	
    	<fieldset>
     		<legend>
     			${formheader_label}
@@ -45,6 +47,7 @@
     		
    		<div class="row-fluid">
    			<p class="span5">
+   				<a href="${listbudgetaccount_url}" class="btn btn-default">${backtolist_label}</a>
    				<a href="${upatebudgetaccount_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
    			</p>
    		</div>

@@ -106,7 +106,9 @@ public class AdminCashAccountController {
         }
         uiModel.asMap().clear();
         WSCashAccount cashAccount = cashAccountService.findCashAccount(WSCashAccount_.getId());
-        //cas
+        cashAccount.setName(WSCashAccount_.getName());
+        cashAccount.setAccountNumber(WSCashAccount_.getAccountNumber());
+        
         cashAccountService.merge(cashAccount);
         logger.debug("update() - A Cash Account has been updated!");
         return "redirect:"+ PATH + "/" + encodeUrlPathSegment(WSCashAccount_.getId().toString(), httpServletRequest);

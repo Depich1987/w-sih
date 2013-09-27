@@ -6,23 +6,22 @@ import com.depich1987.wsih.domain.WSInsuranceCompany;
 
 public interface InsuranceCompanyService {
 
-	long countInsuanceCompanys();
+	public long countInsuranceCompanies();
 
-	List<WSInsuranceCompany> findAllInsuanceCompanys();
+	public List<WSInsuranceCompany> findAllInsuranceCompanies();
 
-	WSInsuranceCompany findInsuranceCompany(Long id);
+	public WSInsuranceCompany findInsuranceCompany(Long id);
 
-	List<WSInsuranceCompany> findInsuanceCompanyEntries(int firstResult,
-			int maxResults);
+	public List<WSInsuranceCompany> findInsuranceCompanyEntries(int firstResult,	int maxResults);
 
-	void persist(WSInsuranceCompany insuanceCompany);
+	public void persist(WSInsuranceCompany insuranceCompany);
 
-	void remove(Long id);
+	public void remove(Long id);
 
-	void flush();
+	public void flush();
 
-	void clear();
+	public void clear();
 
-	WSInsuranceCompany merge(WSInsuranceCompany insuanceCompany);
+	public WSInsuranceCompany merge(WSInsuranceCompany insuranceCompany);
 
 }

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:form="http://www.springframework.org/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -15,7 +21,7 @@
     
     <spring:url value="/admin/departments/create" var="createdepartment_url"/>
     
-   <form:form action="${createdepartment_url}" method="post" modelAttribute="WSDepartment_">
+    <form:form action="${createdepartment_url}" method="post" modelAttribute="WSDepartment_">
 	   	<fieldset>
 	    		<legend>
 	    			${formheader_label}
@@ -24,14 +30,14 @@
 	    		<div class="row-fluid">
 	    			<p class="span5">
 		    			<label>${name_label}</label>
-		    			<form:input path="name" />
+		    			<form:input path="name" autocomplete="off"/>
 		    		</p>
 	    		</div>
 	    		
 	    		<div class="row-fluid">
 	    			<p class="span5">
 		    			<label>${colorIdentifier_label}</label>
-		    			<form:input path="colorIdentifier" />
+		    			<form:input path="colorIdentifier" autocomplete="off"/>
 		    		</p>
 	    		</div>
 	    		

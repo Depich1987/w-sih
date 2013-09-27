@@ -7,6 +7,7 @@
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
     <spring:message code="wsih_entitydetailslabel" arguments="${department_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${department_label}" var="backtolist_label"/>
     <spring:message code="button_update" var="update_label"/>
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_name" var="name_label"/>
@@ -15,35 +16,37 @@
     
 
    	<spring:url value="/admin/departments/${wsdepartment_.id}?form" var="upatedepartment_url"/>
-
+	<spring:url value="/admin/departments/list?size=10" var="departmentlist_url"/>
+	
    	<fieldset>
-    		<legend>
-    			${formheader_label}
-    		</legend>
-    		
-    		<div class="row-fluid">
-    			<p class="span5">
-	    			<label>${name_label}</label>
-	    			<strong>${wsdepartment_.name}</strong>
-	    		</p>
-    		</div>
-    		
-    		<div class="row-fluid">
-    			<p class="span5">
-	    			<label>${colorIdentifier_label}</label>
-	    			<strong>${wsdepartment_.colorIdentifier}</strong>
-	    		</p>
-    		</div>
-    		
-    		<div class="row-fluid">
-    			<p class="span5">
-	    			<label>${description_label}</label>
-	    			<strong>${wsdepartment_.description}</strong>
-	    		</p>
-    		</div>
+   		<legend>
+   			${formheader_label}
+   		</legend>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${name_label}</label>
+    			<strong>${wsdepartment_.name}</strong>
+    		</p>
+   		</div>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${colorIdentifier_label}</label>
+    			<strong>${wsdepartment_.colorIdentifier}</strong>
+    		</p>
+   		</div>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${description_label}</label>
+    			<strong>${wsdepartment_.description}</strong>
+    		</p>
+   		</div>
     		
    		<div class="row-fluid">
    			<p class="span5">
+   				<a href="${departmentlist_url}" class="btn btn-default">${backtolist_label}</a>
    				<a href="${upatedepartment_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
    			</p>
    		</div>

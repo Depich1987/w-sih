@@ -73,4 +73,6 @@
     <bean id="departmentService" class="com.depich1987.wsih.services.dao.DepartmentServiceImpl"/>
     <bean id="budgetAccountService" class="com.depich1987.wsih.services.dao.BudgetAccountServiceImpl" />
     <bean id="cashAccountService" class="com.depich1987.wsih.services.dao.CashAccountServiceImpl" />
+    <bean id="insuranceCompanyService" class="com.depich1987.wsih.services.dao.InsuranceCompanyServiceImpl" />
+    
 </beans>

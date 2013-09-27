@@ -30,14 +30,14 @@
 	    		<div class="row-fluid">
 	    			<p class="span5">
 		    			<label>${name_label}</label>
-		    			<form:input path="name" />
+		    			<form:input path="name" autocomplete="off"/>
 		    		</p>
 	    		</div>
 	    		
 	    		<div class="row-fluid">
 	    			<p class="span5">
 		    			<label>${accountnumber_label}</label>
-		    			<form:input path="accountNumber" />
+		    			<form:input path="accountNumber" autocomplete="off"/>
 		    		</p>
 	    		</div>
 	    		

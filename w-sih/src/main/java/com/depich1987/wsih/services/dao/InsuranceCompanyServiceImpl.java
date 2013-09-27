@@ -19,13 +19,13 @@ public class InsuranceCompanyServiceImpl implements InsuranceCompanyService{
 	}
 	
 	@Override
-	public long countInsuanceCompanys() {
-        return entityManager.createQuery("SELECT COUNT(o) FROM WSInsuanceCompany o", Long.class).getSingleResult();
+	public long countInsuranceCompanies() {
+        return entityManager.createQuery("SELECT COUNT(o) FROM WSInsuranceCompany o", Long.class).getSingleResult();
     }
     
 	@Override
-    public List<WSInsuranceCompany> findAllInsuanceCompanys() {
-        return entityManager.createQuery("SELECT o FROM WSInsuanceCompany o", WSInsuranceCompany.class).getResultList();
+    public List<WSInsuranceCompany> findAllInsuranceCompanies() {
+        return entityManager.createQuery("SELECT o FROM WSInsuranceCompany o", WSInsuranceCompany.class).getResultList();
     }
     
     @Override
@@ -35,8 +35,8 @@ public class InsuranceCompanyServiceImpl implements InsuranceCompanyService{
     }
     
     @Override
-    public List<WSInsuranceCompany> findInsuanceCompanyEntries(int firstResult, int maxResults) {
-        return entityManager.createQuery("SELECT o FROM WSInsuanceCompany o", WSInsuranceCompany.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public List<WSInsuranceCompany> findInsuranceCompanyEntries(int firstResult, int maxResults) {
+        return entityManager.createQuery("SELECT o FROM WSInsuranceCompany o", WSInsuranceCompany.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

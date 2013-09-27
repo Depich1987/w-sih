@@ -9,12 +9,14 @@
   <spring:message code="menu_item_wsdepartment_list_label" var="departments_label"/>
   <spring:message code="menu_item_wsbudgetaccount_list_label" var="budgetaccounts_label"/>
   <spring:message code="menu_item_wscashaccount_list_label" var="cashaccounts_label"/>
+  <spring:message code="menu_item_wsinsurancecompany_list_label" var="wsinsurancecompany_label"/>
   
   <spring:url value="/admin/hospital" var="hospital_url"/>
   <spring:url value="/admin/departments" var="departments_url"/>
   <spring:url value="/admin/budgetaccounts" var="budgetaccounts_url"/>
   <spring:url value="/admin/cashaccounts" var="cashaccounts_url"/>
-
+  <spring:url value="/admin/insurancecompanies" var="insurancecompanies_url"/>
+  
 	<div class="well sidebar-nav">
        <ul class="nav nav-list">
        
@@ -26,6 +28,10 @@
          
          <li>
          	<a href="${departments_url}">${departments_label}</a>
+         </li>
+         
+       	 <li>
+         	<a href="${insurancecompanies_url}">${wsinsurancecompany_label}</a>
          </li>
          
          <li class="nav-header">${accounting_label}</li>

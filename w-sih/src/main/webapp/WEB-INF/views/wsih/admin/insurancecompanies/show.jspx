@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_depich1987_wsih_domain_WSInsuranceCompany" object="${wsinsurancecompany_}" path="/wsinsurancecompanys" z="XRuRAgFb3mRkiV1z2XH9ZUODbI4=">
-        <field:display field="companyName" id="s_com_depich1987_wsih_domain_WSInsuranceCompany_companyName" object="${wsinsurancecompany_}" z="hW57HQPSERQlOuQ+UOeymixpyXw="/>
-        <field:display field="contact" id="s_com_depich1987_wsih_domain_WSInsuranceCompany_contact" object="${wsinsurancecompany_}" z="4Oc3m7rCf/WmM4WmTZECTb65bfQ="/>
-        <field:display field="email" id="s_com_depich1987_wsih_domain_WSInsuranceCompany_email" object="${wsinsurancecompany_}" z="2HKr3hXwFyKyvAIQvR0n0uLDazk="/>
-    </page:show>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsinsurancecompany" var="insurancecompany_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${insurancecompany_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${insurancecompany_label}" var="backtolist_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsinsurancecompany_companyname" var="companyname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsinsurancecompany_contact" var="contact_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsinsurancecompany_email" var="email_label"/>
+    
+    <spring:url value="/admin/insurancecompanies/${WSInsuranceCompany_.id}?form" var="updateinsurancecompany_url"/>
+    <spring:url value="/admin/insurancecompanies/list?size=10" var="insurancecompanylist_url"/>
+    
+
+   	<fieldset>
+   		<legend>
+   			${formheader_label}
+   		</legend>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${companyname_label}</label>
+    			<strong>${wsinsurancecompany_.companyName}</strong>
+    		</p>
+   		</div>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${contact_label}</label>
+    			<strong>${wsinsurancecompany_.contact}</strong>
+    		</p>
+   		</div>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+    			<label>${email_label}</label>
+    			<strong>${wsinsurancecompany_.email}</strong>
+    		</p>
+   		</div>
+   		
+   		<div class="row-fluid">
+   			<p class="span5">
+   				<a href="${insurancecompanylist_url}" class="btn btn-default">${backtolist_label}</a>
+   				<a href="${updateinsurancecompany_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+   			</p>
+   		</div>
+   		
+    </fieldset>
+
 </div>

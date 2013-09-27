@@ -35,4 +35,32 @@ public class WSHospital {
     /**
      */
     private String address;
+
+    /**
+     */
+    private long accountServiceWithoutFees;
+
+    /**
+     */
+    private long accountFeesCollection;
+
+    /**
+     */
+    private long accountServiceVAT;
+
+    /**
+     */
+    private long refundInsurer;
+
+    /**
+     */
+    private long repaymentFees;
+
+    /**
+     */
+    private long cashAccountUsed;
+
+    /**
+     */
+    private String defaultCurrency;
 }
