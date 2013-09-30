@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSMedecineType" items="${wsmedecinetypes}" z="dvsDeM/eW4yUT+Fn2mV7+waDL0M=">
+        <table:table data="${wsmedecinetypes}" id="l_com_depich1987_wsih_domain_WSMedecineType" path="/wsmedecinetypes" z="mAhd88Vrwx5tPZ7NljqL1BDJItU=">
+            <table:column id="c_com_depich1987_wsih_domain_WSMedecineType_name" property="name" z="3Yb4s1p3rj2pfK1US7sd8hW4/hQ="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSMedecineType_description" property="description" z="VZFmLTuzzv9JkGi13mWukrJclgs="/>
+        </table:table>
+    </page:list>
+</div>
