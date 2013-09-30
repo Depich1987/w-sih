@@ -27,5 +27,13 @@
             <menu:item id="i_wsinsurancecompany_new" messageCode="global_menu_new" url="/wsinsurancecompanys?form" z="eacB5Sb4gqgbVZieSsnvLE0/K30="/>
             <menu:item id="i_wsinsurancecompany_list" messageCode="global_menu_list" url="/wsinsurancecompanys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Y4RrS6g+dbw3QmW8zaFpkVw9a/I="/>
         </menu:category>
+        <menu:category id="c_wsmedecinetype" z="NpKvptHfJg1xlcgwbxtIlK8RAJ4=">
+            <menu:item id="i_wsmedecinetype_new" messageCode="global_menu_new" url="/wsmedecinetypes?form" z="52usB9WI6PmoiIWLZwVzPDrVLIk="/>
+            <menu:item id="i_wsmedecinetype_list" messageCode="global_menu_list" url="/wsmedecinetypes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HPP5NB6kRuolPWQq51u9UKhDyn8="/>
+        </menu:category>
+        <menu:category id="c_wsmedecine" z="ujmLyRzA6YmoOw8tZ05gWwScAQQ=">
+            <menu:item id="i_wsmedecine_new" messageCode="global_menu_new" url="/wsmedecines?form" z="i7DqdYRBmyQkM3ITMaWMhkPLGKg="/>
+            <menu:item id="i_wsmedecine_list" messageCode="global_menu_list" url="/wsmedecines?page=1&amp;size=${empty param.size ? 10 : param.size}" z="okAulqyhx/CoxR3ROgyT5pMdcTM="/>
+        </menu:category>
     </menu:menu>
 </div>

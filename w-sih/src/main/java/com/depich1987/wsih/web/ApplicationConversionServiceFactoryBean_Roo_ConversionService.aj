@@ -8,6 +8,8 @@ import com.depich1987.wsih.domain.WSCashAccount;
 import com.depich1987.wsih.domain.WSDepartment;
 import com.depich1987.wsih.domain.WSHospital;
 import com.depich1987.wsih.domain.WSInsuranceCompany;
+import com.depich1987.wsih.domain.WSMedecine;
+import com.depich1987.wsih.domain.WSMedecineType;
 import com.depich1987.wsih.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -137,6 +139,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<WSMedecine, String> ApplicationConversionServiceFactoryBean.getWSMedecineToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSMedecine, java.lang.String>() {
+            public String convert(WSMedecine wSMedecine) {
+                return new StringBuilder().append(wSMedecine.getName()).append(' ').append(wSMedecine.getLowerQuantity()).append(' ').append(wSMedecine.getCreatedBy()).append(' ').append(wSMedecine.getCreationDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSMedecine> ApplicationConversionServiceFactoryBean.getIdToWSMedecineConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSMedecine>() {
+            public com.depich1987.wsih.domain.WSMedecine convert(java.lang.Long id) {
+                return WSMedecine.findWSMedecine(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSMedecine> ApplicationConversionServiceFactoryBean.getStringToWSMedecineConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSMedecine>() {
+            public com.depich1987.wsih.domain.WSMedecine convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSMedecine.class);
+            }
+        };
+    }
+    
+    public Converter<WSMedecineType, String> ApplicationConversionServiceFactoryBean.getWSMedecineTypeToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSMedecineType, java.lang.String>() {
+            public String convert(WSMedecineType wSMedecineType) {
+                return new StringBuilder().append(wSMedecineType.getName()).append(' ').append(wSMedecineType.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSMedecineType> ApplicationConversionServiceFactoryBean.getIdToWSMedecineTypeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSMedecineType>() {
+            public com.depich1987.wsih.domain.WSMedecineType convert(java.lang.Long id) {
+                return WSMedecineType.findWSMedecineType(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSMedecineType> ApplicationConversionServiceFactoryBean.getStringToWSMedecineTypeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSMedecineType>() {
+            public com.depich1987.wsih.domain.WSMedecineType convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSMedecineType.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getWSBudgetAccountToStringConverter());
         registry.addConverter(getIdToWSBudgetAccountConverter());
@@ -153,6 +203,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getWSInsuranceCompanyToStringConverter());
         registry.addConverter(getIdToWSInsuranceCompanyConverter());
         registry.addConverter(getStringToWSInsuranceCompanyConverter());
+        registry.addConverter(getWSMedecineToStringConverter());
+        registry.addConverter(getIdToWSMedecineConverter());
+        registry.addConverter(getStringToWSMedecineConverter());
+        registry.addConverter(getWSMedecineTypeToStringConverter());
+        registry.addConverter(getIdToWSMedecineTypeConverter());
+        registry.addConverter(getStringToWSMedecineTypeConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
