@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSStockPile" object="${wsstockpile_}" path="/wsstockpiles" z="31CQ0Ljh6JPhGDV3onlA8H4VdC4=">
+        <field:display field="description" id="s_com_depich1987_wsih_domain_WSStockPile_description" object="${wsstockpile_}" z="n8UUjiBn05+iHRk58d3bD2CCum8="/>
+        <field:display field="quantity" id="s_com_depich1987_wsih_domain_WSStockPile_quantity" object="${wsstockpile_}" z="gzyGY6jMl0Xo3X45a66rv77cZ3Y="/>
+        <field:display date="true" dateTimePattern="${WSStockPile__creationdate_date_format}" field="creationDate" id="s_com_depich1987_wsih_domain_WSStockPile_creationDate" object="${wsstockpile_}" z="G5gGe+yY4j5+6J5rHJGogj/8GKg="/>
+        <field:display field="createdBy" id="s_com_depich1987_wsih_domain_WSStockPile_createdBy" object="${wsstockpile_}" z="6CRYEzFo+6JcT8IXO53OK+4nY48="/>
+        <field:display field="medecine" id="s_com_depich1987_wsih_domain_WSStockPile_medecine" object="${wsstockpile_}" z="6hyBFR7kUJPz/v2dbeTJc7bsSO0="/>
+    </page:show>
+</div>
