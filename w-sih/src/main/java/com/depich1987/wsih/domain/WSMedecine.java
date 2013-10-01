@@ -1,16 +1,18 @@
 package com.depich1987.wsih.domain;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.ManyToOne;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToMany;
 
 @RooJavaBean
 @RooToString
@@ -27,6 +29,11 @@ public class WSMedecine {
 
     /**
      */
+    private long currentStock;
+    
+    
+    /**
+     */
     private String createdBy;
 
     /**
@@ -40,12 +47,9 @@ public class WSMedecine {
     @ManyToOne
     private WSMedecineType medecineType;
 
-    /**
-     */
-    private long currentStock;
 
     /**
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<WSStockPile> stockPiles = new ArrayList<WSStockPile>();
 }

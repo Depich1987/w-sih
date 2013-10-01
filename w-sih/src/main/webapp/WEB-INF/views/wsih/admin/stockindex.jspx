@@ -9,15 +9,25 @@
   <spring:message code="menu_item_wsmedecinetype_list_label" var="medecinetype_label"/>
   <spring:message code="menu_item_wsmedecine_list_label" var="medecine_label"/>
   
-  <spring:url value="/admin/stockmanager/medecinetypes" var="medecinetypes_url"/>
-  <spring:url value="/admin/stockmanager/medecines" var="medecines_url"/>
-	
+  <spring:message code="label_com_depich1987_wsih_domain_wsstockpile" var="stockpile_label"/>
+  <spring:message code="global_menu_new" arguments="${stockpile_label}" var="createstockpile_label"/>
+  
+  
+  <spring:url value="/admin/stockmanager/medecinetypes?size=10" var="medecinetypes_url"/>
+  <spring:url value="/admin/stockmanager/medecines?size=10" var="medecines_url"/>
+  <spring:url value="/admin/stockmanager/stockpiles/create?form" var="createstockpile_url"/>
+  	
 	<div class="row-fluid">
 	
     	<fieldset>
     		<legend>
     			${medicalsupplies_label}
     		</legend>
+    		
+    		<p class="row-fluid">
+    			<a href="${createstockpile_url}" class="btn btn-primary">${createstockpile_label} <span class="icon-white icon-plus-sign"></span></a>
+    		</p>
+    		
 			<div class="row-fluid">
 				<div class="span6">
 					<div class="well well-small">
@@ -30,6 +40,7 @@
 					</div>
 				</div>
 			</div>
+			
     	</fieldset>
 	</div>
 </div>

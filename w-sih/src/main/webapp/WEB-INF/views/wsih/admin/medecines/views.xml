@@ -22,4 +22,10 @@
         <put-attribute name="body" value="/WEB-INF/views/wsih/admin/medecines/update.jspx"/>
     </definition>
     
+   	<definition extends="defaultLayout" name="admin/stockmanager/medecines/createstockpile">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/medecines/createstock.jspx"/>
+    </definition>
+    
+    
 </tiles-definitions>

@@ -35,5 +35,9 @@
             <menu:item id="i_wsmedecine_new" messageCode="global_menu_new" url="/wsmedecines?form" z="i7DqdYRBmyQkM3ITMaWMhkPLGKg="/>
             <menu:item id="i_wsmedecine_list" messageCode="global_menu_list" url="/wsmedecines?page=1&amp;size=${empty param.size ? 10 : param.size}" z="okAulqyhx/CoxR3ROgyT5pMdcTM="/>
         </menu:category>
+        <menu:category id="c_wsstockpile" z="/q0xuFMyhFMfmS/HTZy2LJtdF8Y=">
+            <menu:item id="i_wsstockpile_new" messageCode="global_menu_new" url="/wsstockpiles?form" z="VFobE5NWduY+1LL0/REwORzEmRM="/>
+            <menu:item id="i_wsstockpile_list" messageCode="global_menu_list" url="/wsstockpiles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="E2Z/v84Huba5JCndTMlbYkewEnE="/>
+        </menu:category>
     </menu:menu>
 </div>

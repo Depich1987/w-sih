@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:jsp="http://java.sun.com/JSP/Page" 
 	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
-	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
-	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"   
 	 xmlns:form="http://www.springframework.org/tags/form" 
 	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
 	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
@@ -22,7 +21,7 @@
     <spring:message code="label_com_depich1987_wsih_domain_wsmedecinetype_description" var="description_label"/>
     
   	<spring:url value="/admin/stockmanager/medecinetypes/${wsmedecinetype_.id}?form" var="upatemedecinetype_url"/>
-	<spring:url value="/admin/stockmanager/medecinetypes/list?size=10" var="medecinetypelist_url"/>
+	<spring:url value="/admin/stockmanager/medecinetypes?size=10" var="medecinetypelist_url"/>
     
     
     <fieldset>
@@ -44,12 +43,10 @@
     		</p>
    		</div>
    		<div class="row-fluid">
-   			<p class="span5">
-   				<div class="btn-group">
-   					<a href="${medecinetypelist_url}" class="btn btn-default">${backtolist_label}</a>
-   					<a href="${upatemedecinetype_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
-   				</div>
-   			</p>
+			<div class="btn-group">
+				<a href="${medecinetypelist_url}" class="btn btn-default">${backtolist_label}</a>
+				<a href="${upatemedecinetype_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+			</div>
    		</div>
    	</fieldset>
 

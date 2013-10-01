@@ -9,6 +9,6 @@
         <field:datetime dateTimePattern="${WSMedecine__creationdate_date_format}" field="creationDate" id="c_com_depich1987_wsih_domain_WSMedecine_creationDate" z="ZZnJh84XWf77lgJgYANeCAY22/w="/>
         <field:select field="medecineType" id="c_com_depich1987_wsih_domain_WSMedecine_medecineType" itemValue="id" items="${wsmedecinetypes}" path="/wsmedecinetypes" z="1pGphSN2JvzVn2w8d7C8hkcO8B8="/>
         <field:input field="currentStock" id="c_com_depich1987_wsih_domain_WSMedecine_currentStock" z="YgQotAViH2DjWnr5FwTo1oxMTn8="/>
-        <field:select field="stockPiles" id="c_com_depich1987_wsih_domain_WSMedecine_stockPiles" itemValue="id" items="${wsstockpiles}" multiple="true" path="/wsstockpiles" z="tZOoyiHNA5B84z7ai9CRNqJrEJc="/>
+        <field:simple field="stockPiles" id="c_com_depich1987_wsih_domain_WSMedecine_stockPiles" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Stock Pile" z="t6CO0jbkUZl4UWvm0RRB9O+f3XU="/>
     </form:update>
 </div>

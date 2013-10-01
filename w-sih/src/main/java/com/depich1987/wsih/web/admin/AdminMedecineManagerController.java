@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,9 +43,10 @@ public class AdminMedecineManagerController {
 	private static final String SHOW_MEDECINE_VIEW = "admin/stockmanager/medecines/show";
 	private static final String LIST_MEDECINE_VIEW = "admin/stockmanager/medecines/list";
 	private static final String UPDATE_MEDECINE_VIEW = "admin/stockmanager/medecines/update";
+	private static final String CREATE_STOCK_MEDECINE_VIEW = "admin/stockmanager/medecines/createstockpile";
 	
-	private static final String CREATE_STOCK_VIEW = "admin/stockmanager/stockpile/create";
-	private static final String CREATE_STOCK_MEDECINE_VIEW = "admin/stockmanager/medecine/createstockpile";
+	private static final String CREATE_STOCK_VIEW = "admin/stockmanager/stockpiles/create";
+	private static final String SHOW_STOCK_VIEW = "admin/stockmanager/stockpiles/show";
 	
 	@Autowired
 	private MedecineTypeService medecineTypeService;
@@ -164,17 +167,18 @@ public class AdminMedecineManagerController {
         WSMedecine_.setCreationDate(new Date());
         if(WSMedecine_.getCurrentStock() > 0){
         	
-        	medecineService.persist(WSMedecine_);
+        	//medecineService.persist(WSMedecine_);
         	WSStockPile stockPile =  new WSStockPile();
         	
         	stockPile.setCreationDate(new Date());
         	stockPile.setQuantity(WSMedecine_.getCurrentStock());
         	stockPile.setMedecine(WSMedecine_);
-        	medecineService.persist(stockPile);
+        	WSMedecine_.getStockPiles().add(stockPile);
+        	medecineService.merge(WSMedecine_);
         }else{
         	medecineService.persist(WSMedecine_);
         }
-        return "redirect:"+ PATH +"/medecines/" + encodeUrlPathSegment(WSMedecine_.getId().toString(), httpServletRequest);
+        return "redirect:"+ PATH +"/medecines?size=10";
     }
     
     
@@ -189,7 +193,10 @@ public class AdminMedecineManagerController {
     
     @RequestMapping(value = PATH + "/medecines/{id}", produces = "text/html")
     public String showMedecine(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("wsmedecine_", medecineService.findMedecine(id));
+    	 WSMedecine medecine= medecineService.findMedecine(id);
+        uiModel.addAttribute("wsmedecine_",medecine);
+        uiModel.addAttribute("wstockpiles", medecine.getStockPiles());
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("itemId", id);
         return SHOW_MEDECINE_VIEW;
     }
@@ -221,8 +228,8 @@ public class AdminMedecineManagerController {
             return UPDATE_MEDECINE_VIEW;
         }
         uiModel.asMap().clear();
-        
-       
+        medecineService.updateMedecine(WSMedecine_);
+       logger.debug("updateMedecine()- a medecine has been updated");
         return "redirect:"+ PATH +"/medecines/" + encodeUrlPathSegment(WSMedecine_.getId().toString(), httpServletRequest);
     }
     
@@ -232,13 +239,81 @@ public class AdminMedecineManagerController {
         return UPDATE_MEDECINE_VIEW;
     }
     
-    void populateMedecineEditForm(Model uiModel, WSMedecine WSMedecine_) {
-        uiModel.addAttribute("WSMedecine_", WSMedecine_);
-        uiModel.addAttribute("wsmedecinetypes", medecineTypeService.findAllMedecineTypes());
-        uiModel.addAttribute("wsstockpiles", WSStockPile.findAllWSStockPiles());
+    @RequestMapping(value = PATH +"/stockpiles/create", method = RequestMethod.POST, produces = "text/html")
+    public String createStockPile(@Valid WSStockPile WSStockPile_, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+        	populateStockPileEditForm(uiModel, WSStockPile_);
+            return CREATE_MEDECINE_VIEW;
+        }
+        uiModel.asMap().clear();
+        WSStockPile_.setCreationDate(new Date());
+
+        WSMedecine medecine =  WSStockPile_.getMedecine();
+        medecine.getStockPiles().add(WSStockPile_);
+        medecine.setCurrentStock(medecine.getCurrentStock() + WSStockPile_.getQuantity());
+        medecineService.merge(medecine);
+        
+        logger.debug("createStockPile() - A new stock pile has been added to medecine ["+medecine.getId()+"]");
+        
+        return "redirect:" + PATH + "/medecines/" + encodeUrlPathSegment(WSStockPile_.getMedecine().getId().toString(), httpServletRequest);
     }
     
     
+    @RequestMapping(value = PATH +"/medecines/createstock", method = RequestMethod.POST, produces = "text/html")
+    public String createStockPileInMedecine(@Valid WSStockPile WSStockPile_, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+        	populateStockPileEditForm(uiModel, WSStockPile_);
+            return CREATE_STOCK_MEDECINE_VIEW;
+        }
+        uiModel.asMap().clear();
+        WSStockPile_.setCreationDate(new Date());
+
+        WSMedecine medecine =  WSStockPile_.getMedecine();
+        medecine.getStockPiles().add(WSStockPile_);
+        medecine.setCurrentStock(medecine.getCurrentStock() + WSStockPile_.getQuantity());
+        medecineService.merge(medecine);
+        
+        logger.debug("createStockPile() - A new stock pile has been added to medecine ["+medecine.getId()+"]");
+        
+        return "redirect:" + PATH + "/medecines/" + encodeUrlPathSegment(WSStockPile_.getMedecine().getId().toString(), httpServletRequest);
+    }
+    
+    @RequestMapping(value = PATH +"/stockpiles/create", params = "form", produces = "text/html")
+    public String createStockPileForm(Model uiModel) {
+    	populateStockPileEditForm(uiModel, new WSStockPile());
+        return CREATE_STOCK_VIEW;
+    }
+    
+    @RequestMapping(value = PATH +"/medecines/createstock/{medecineId}", params = "form", produces = "text/html")
+    public String createStockPileInMedecineForm(@PathVariable("medecineId")Long medecineId, Model uiModel) {
+    	WSStockPile stockPile = new WSStockPile();
+    	stockPile.setMedecine(medecineService.findMedecine(medecineId));
+    	
+		uiModel.addAttribute("WSStockPile_", stockPile );
+        return CREATE_STOCK_MEDECINE_VIEW;
+    }
+    
+    @RequestMapping(value = PATH +"/stockpiles/{id}", produces = "text/html")
+    public String showStockPile(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("wsstockpile_", medecineService.findStockPile(id));
+        uiModel.addAttribute("itemId", id);
+        return SHOW_STOCK_VIEW;
+    }
+    
+    
+    void populateMedecineEditForm(Model uiModel, WSMedecine WSMedecine_) {
+        uiModel.addAttribute("WSMedecine_", WSMedecine_);
+        uiModel.addAttribute("wsmedecinetypes", medecineTypeService.findAllMedecineTypes());
+    }
+    
+    void populateStockPileEditForm(Model uiModel, WSStockPile WSStockPile_) {
+        uiModel.addAttribute("WSStockPile_", WSStockPile_);
+        uiModel.addAttribute("wsmedecines", medecineService.findAllMedecines());
+    }
+    
+    void addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("WSStockPile__creationdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();

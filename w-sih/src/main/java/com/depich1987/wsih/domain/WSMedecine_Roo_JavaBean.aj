@@ -27,6 +27,14 @@ privileged aspect WSMedecine_Roo_JavaBean {
         this.lowerQuantity = lowerQuantity;
     }
     
+    public long WSMedecine.getCurrentStock() {
+        return this.currentStock;
+    }
+    
+    public void WSMedecine.setCurrentStock(long currentStock) {
+        this.currentStock = currentStock;
+    }
+    
     public String WSMedecine.getCreatedBy() {
         return this.createdBy;
     }
@@ -49,14 +57,6 @@ privileged aspect WSMedecine_Roo_JavaBean {
     
     public void WSMedecine.setMedecineType(WSMedecineType medecineType) {
         this.medecineType = medecineType;
-    }
-    
-    public long WSMedecine.getCurrentStock() {
-        return this.currentStock;
-    }
-    
-    public void WSMedecine.setCurrentStock(long currentStock) {
-        this.currentStock = currentStock;
     }
     
     public List<WSStockPile> WSMedecine.getStockPiles() {

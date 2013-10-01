@@ -10,6 +10,7 @@ import com.depich1987.wsih.domain.WSHospital;
 import com.depich1987.wsih.domain.WSInsuranceCompany;
 import com.depich1987.wsih.domain.WSMedecine;
 import com.depich1987.wsih.domain.WSMedecineType;
+import com.depich1987.wsih.domain.WSStockPile;
 import com.depich1987.wsih.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -142,7 +143,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<WSMedecine, String> ApplicationConversionServiceFactoryBean.getWSMedecineToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSMedecine, java.lang.String>() {
             public String convert(WSMedecine wSMedecine) {
-                return new StringBuilder().append(wSMedecine.getName()).append(' ').append(wSMedecine.getLowerQuantity()).append(' ').append(wSMedecine.getCreatedBy()).append(' ').append(wSMedecine.getCreationDate()).toString();
+                return new StringBuilder().append(wSMedecine.getName()).append(' ').append(wSMedecine.getLowerQuantity()).append(' ').append(wSMedecine.getCurrentStock()).append(' ').append(wSMedecine.getCreatedBy()).toString();
             }
         };
     }
@@ -187,6 +188,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<WSStockPile, String> ApplicationConversionServiceFactoryBean.getWSStockPileToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSStockPile, java.lang.String>() {
+            public String convert(WSStockPile wSStockPile) {
+                return new StringBuilder().append(wSStockPile.getDescription()).append(' ').append(wSStockPile.getQuantity()).append(' ').append(wSStockPile.getCreationDate()).append(' ').append(wSStockPile.getCreatedBy()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSStockPile> ApplicationConversionServiceFactoryBean.getIdToWSStockPileConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSStockPile>() {
+            public com.depich1987.wsih.domain.WSStockPile convert(java.lang.Long id) {
+                return WSStockPile.findWSStockPile(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSStockPile> ApplicationConversionServiceFactoryBean.getStringToWSStockPileConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSStockPile>() {
+            public com.depich1987.wsih.domain.WSStockPile convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSStockPile.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getWSBudgetAccountToStringConverter());
         registry.addConverter(getIdToWSBudgetAccountConverter());
@@ -209,6 +234,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getWSMedecineTypeToStringConverter());
         registry.addConverter(getIdToWSMedecineTypeConverter());
         registry.addConverter(getStringToWSMedecineTypeConverter());
+        registry.addConverter(getWSStockPileToStringConverter());
+        registry.addConverter(getIdToWSStockPileConverter());
+        registry.addConverter(getStringToWSStockPileConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

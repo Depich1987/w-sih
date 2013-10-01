@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_depich1987_wsih_domain_WSMedecine" object="${wsmedecine_}" path="/wsmedecines" z="9GHTUvaP2mLfLrPIlekS2mJeuLg=">
-        <field:display field="name" id="s_com_depich1987_wsih_domain_WSMedecine_name" object="${wsmedecine_}" z="OpjnArTr9YIkrTOEicnmsCI9ZjI="/>
-        <field:display field="lowerQuantity" id="s_com_depich1987_wsih_domain_WSMedecine_lowerQuantity" object="${wsmedecine_}" z="Bz9XhtgAD54nYYh+wJQDj4l5msA="/>
-        <field:display field="createdBy" id="s_com_depich1987_wsih_domain_WSMedecine_createdBy" object="${wsmedecine_}" z="Gux+XRxHqt/6G2ZcPzd5ErQNmbo="/>
-        <field:display date="true" dateTimePattern="${WSMedecine__creationdate_date_format}" field="creationDate" id="s_com_depich1987_wsih_domain_WSMedecine_creationDate" object="${wsmedecine_}" z="j384cFcZDi5G5XaPglKYzcw5f1E="/>
-        <field:display field="medecineType" id="s_com_depich1987_wsih_domain_WSMedecine_medecineType" object="${wsmedecine_}" z="ZuArUdifFFI5Df7VkL3IjCXAiAE="/>
-        <field:display field="currentStock" id="s_com_depich1987_wsih_domain_WSMedecine_currentStock" object="${wsmedecine_}" z="M1cydMLpldYb/TdI2DKnMlf5o+M="/>
-        <field:display field="stockPiles" id="s_com_depich1987_wsih_domain_WSMedecine_stockPiles" object="${wsmedecine_}" z="UjMg3yh54yDrHobtSm5urDvPlUc="/>
-    </page:show>
+    
+    <spring:message code="wsih_medicalsupplies" var="medicalsupplies_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmedecine" var="medecines_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsstockpile" var="stockpile_label"/>
+    <spring:message code="global_menu_new" arguments="${stockpile_label}" var="createnewstock_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${stockpile_label}" var="backtolist_label"/>
+ 	<spring:message code="wsih_entitydetailslabel" arguments="${medecines_label}" var="formheader_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsmedecine_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmedecine_lowerquantity" var="lowerquantity_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmedecine_currentstock" var="currentstock_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmedecine_medecinetype" var="medecinetype_label"/>
+    
+    <spring:url value="/admin/stockmanager/medecines/${wsmedecine_.id}?form" var="upatemedecine_url"/>
+	<spring:url value="/admin/stockmanager/medecines?size=10" var="medecinelist_url"/>
+	<spring:url value="/admin/stockmanager/medecines/createstock/${wsmedecine_.id}?form" var="medecinecreatestock_url"/>
+   	<fieldset>
+   	
+   		<legend>
+   			${formheader_label}
+   		</legend>
+   		
+   		<div class="row-fluid">
+   		
+	   		<div class="span5">
+		   		<div class="row-fluid">
+		   			<label>${name_label}</label>
+		   			<strong>${wsmedecine_.name}</strong>
+		   		</div>
+		   		
+		   		<div class="row-fluid">
+		   			<label>${lowerquantity_label}</label>
+		   			<strong>${wsmedecine_.lowerQuantity}</strong>
+		   		</div>
+		   		
+		   		<div class="row-fluid">
+		   			<label>${currentstock_label}</label>
+		   			<strong>${wsmedecine_.currentStock}</strong>
+		   		</div>
+		   		
+		   		<div class="row-fluid">
+		   			<label>${medecinetype_label}</label>
+		   			<strong>${wsmedecine_.medecineType.name}</strong>
+		   		</div>
+		   		
+	   		</div>
+	   		
+	   		<div class="span7">
+	   			<div class="row-fluid">
+	   				<a href="${medecinecreatestock_url}" class="btn btn-info">${createnewstock_label} <span class="icon-white icon-plus-sign"></span></a>
+	   			</div>
+	   			<p class="row-fluid">
+			        <table:table data="${wstockpiles}" id="l_com_depich1987_wsih_domain_WSStockPile" path="/admin/medecines/stockpiles">
+			            <table:column id="c_com_depich1987_wsih_domain_WSStockPile_quantity" property="quantity"/>
+			            <table:column date="true" dateTimePattern="${WSStockPile__creationdate_date_format}" id="c_com_depich1987_wsih_domain_WSStockPile_creationDate" property="creationDate"/>
+			        </table:table>
+		        </p>
+	   		</div>
+	   		
+   		</div>
+   		<p class="row-fluid">
+			<div class="btn-group">
+				<a href="${medecinelist_url}" class="btn btn-default">${backtolist_label}</a>
+				<a href="${upatemedecine_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+			</div>
+   		</p>
+   	</fieldset>
 </div>
