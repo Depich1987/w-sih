@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"    
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare" var="healthcare_label"/>
+    <spring:message code="wsih_entityformlabel" arguments="${healthcare_label}" var="formheader_label"/>
+    <spring:message code="button_save" var="buttonsave_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare_healthcaretype" var="healthcaretype_label"/>
+    
+    <spring:url value="/admin/healthcaremanagement/healthcares/update" var="updatehealthcare_url"/>
+    
+       <form:form action="${updatehealthcare_url}" method="post" modelAttribute="WSHealthCare_">
+	   	<fieldset>
+	    		<legend>
+	    			${formheader_label}
+	    		</legend>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${name_label}</label>
+		    			<form:input path="name" autocomplete="off"/>
+		    		</p>
+	    		</div>
+	    		
+	    		<div class="row-fluid">
+	    			<p class="span5">
+		    			<label>${healthcaretype_label}</label>
+		    			<form:select path="healthCareType">
+		    				<form:options items="${wshealthcaretypes}" itemLabel="name" itemValue="id" />
+		    			</form:select>
+		    		</p>
+	    		</div>
+	    		<div class="row-fluid">
+	    			<form:hidden path="id" />
+	    			<button class="btn btn-success" type="submit">
+						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+	    			</button>
+	    		</div>
+	    </fieldset>
+    </form:form>
+</div>

@@ -11,6 +11,7 @@
   <spring:message code="menu_item_wscashaccount_list_label" var="cashaccounts_label"/>
   <spring:message code="menu_item_wsinsurancecompany_list_label" var="wsinsurancecompany_label"/>
   <spring:message code="wsih_medicalsupplies" var="medicalsupplies_label"/>
+  <spring:message code="wsih_healthcare_settings" var="healthcaresettings_label"/>
   
   <spring:url value="/admin/hospital" var="hospital_url"/>
   <spring:url value="/admin/departments" var="departments_url"/>
@@ -18,6 +19,8 @@
   <spring:url value="/admin/cashaccounts" var="cashaccounts_url"/>
   <spring:url value="/admin/insurancecompanies" var="insurancecompanies_url"/>
   <spring:url value="/admin/stockmanager" var="stockmanager_url"/>
+  <spring:url value="/admin/healthcaremanagement" var="healthcaremanagement_url"/>
+  
 	<div class="well sidebar-nav">
        <ul class="nav nav-list">
        
@@ -33,6 +36,10 @@
          
        	 <li>
          	<a href="${insurancecompanies_url}">${wsinsurancecompany_label}</a>
+         </li>
+         
+         <li>
+         	<a href="${healthcaremanagement_url}">${healthcaresettings_label}</a>
          </li>
          
          <li>

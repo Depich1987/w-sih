@@ -1,0 +1,38 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+
+  <spring:message code="wsih_healthcare_settings" var="healthcaresettings_label"/>
+
+  <spring:message code="label_com_depich1987_wsih_domain_wshealthcaretype_plural" var="healthcaretypes_label"/>
+  <spring:message code="label_com_depich1987_wsih_domain_wshealthcare_plural" var="healthcare_label"/>
+  
+  <spring:url value="/admin/healthcaremanagement/healthcaretypes?size=10" var="healthcaretypes_url"/>
+  <spring:url value="/admin/healthcaremanagement/healthcares?size=10" var="healthcares_url"/>
+  	
+	<div class="row-fluid">
+	
+    	<fieldset>
+    		<legend>
+    			${healthcaresettings_label}
+    		</legend>
+    		
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${healthcaretypes_url}" class="btn btn-default">${healthcaretypes_label}</a>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${healthcares_url}" class="btn btn-default">${healthcare_label}</a>
+					</div>
+				</div>
+			</div>
+			
+    	</fieldset>
+	</div>
+</div>

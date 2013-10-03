@@ -4,6 +4,12 @@
 	
 <tiles-definitions>
 
+  <definition extends="defaultLayout" name="admin/healthcaremanagement/index">
+   	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+    <put-attribute name="body" value="/WEB-INF/views/wsih/admin/healthcareindex.jspx"/>
+   </definition>
+	
+
   <definition name="admin/stockmanager/stockindex" extends="defaultLayout">
   	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
     <put-attribute name="body" value="/WEB-INF/views/wsih/admin/stockindex.jspx" />

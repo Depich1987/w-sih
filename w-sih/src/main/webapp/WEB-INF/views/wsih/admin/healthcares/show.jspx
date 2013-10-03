@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare" var="healthcare_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${healthcare_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${healthcare_label}" var="backtolist_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare_name" var="name_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare_healthcaretype" var="healthcaretype_label"/>
+    
+   	<spring:url value="/admin/healthcaremanagement/healthcares/${wshealthcare_.id}?form" var="upatehealthcare_url"/>
+	<spring:url value="/admin/healthcaremanagement/healthcares?size=10" var="healthcarelist_url"/>
+	
+	   	<fieldset>
+    		<legend>
+    			${formheader_label}
+    		</legend>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${name_label}</label>
+	    			<strong>${wshealthcare_.name}</strong>
+	    		</p>
+    		</div>
+    		
+    		<div class="row-fluid">
+    			<p class="span5">
+	    			<label>${healthcaretype_label}</label>
+	    			<strong>${wshealthcare_.healthCareType.name}</strong>
+	    		</p>
+    		</div>
+   		<div class="row-fluid">
+   			<div class="btn-group">
+   				<a href="${healthcarelist_url}" class="btn btn-default">${backtolist_label}</a>
+   				<a href="${upatehealthcare_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+   			</div>
+   		</div>
+    </fieldset>
+</div>

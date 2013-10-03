@@ -116,7 +116,8 @@ public class MedecineServiceImpl implements MedecineService {
     	.setParameter("id", medecine.getId())
     	.setParameter("name", medecine.getName())
     	.setParameter("medecineType",medecine.getMedecineType())
-    	.setParameter("lowerQuantity", medecine.getLowerQuantity());
+    	.setParameter("lowerQuantity", medecine.getLowerQuantity())
+    	.executeUpdate();
     }
     
     public void setEntityManager(EntityManager entityManager){

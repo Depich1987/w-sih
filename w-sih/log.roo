@@ -1,3 +1,139 @@
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-24 21:29:25
 project --topLevelPackage com.depich1987.wsih --projectName w-sih --java 6 --packaging JAR
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-24 21:29:33
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-24 21:53:13
+jpa setup --database MYSQL --provider ECLIPSELINK 
+entity jpa --class com.depich1987.wsih.domain.WSHostpital
+field string --fieldName name
+field string --fieldName email 
+field string --fieldName phoneNumber
+field string --fieldName city
+field string --fieldName header
+field string --fieldName footer
+field string --fieldName address
+web mvc setup 
+web mvc scaffold ~.web.HostpitalController
+focus --class ~.domain.WSHospital
+web mvc scaffold --class ~.web.HospitalController
+entity jpa --class ~.domain.WSDepartment
+field string --fieldName name
+field string --fieldName description
+field string --fieldName colorIdentifier
+web mvc scaffold --class ~.web.Department
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-25 02:24:34
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-25 04:13:34
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-26 01:00:39
+logging setup --level INFO 
+logging setup --level DEBUG 
+addon search french
+addon search i18n-french
+addon search french
+osgi start --url http://code.google.com/p/fr-test/source/browse/repo/org/springframework/roo/addon/i18n/french/org.springframework.roo.addon.i18n.french/0.1.0.RELEASE/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+osgi start --url https://code.google.com/p/fr-test/source/browse/repo/org/springframework/roo/addon/i18n/french/org.springframework.roo.addon.i18n.french/0.1.0.RELEASE/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+addon list 
+osgi start --url file://C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+osgi start --url C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+osgi start --url http://code.google.com/p/fr-test/source/browse/repo/org/springframework/roo/addon/i18n/french/org.springframework.roo.addon.i18n.french/0.1.0.RELEASE/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+osgi start --url file:///C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+addon list 
+osgi start --url file:///C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+addon search french
+osgi start --url file:///C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+hint nt
+hint
+osgi start --url file:///C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+// [failed] web mvc install language --code fr 
+osgi start --url file:///C:/Users/Admin/Downloads/org.springframework.roo.addon.i18n.french-0.1.0.RELEASE.jar
+addon list 
+addon search fr
+addon search french
+entity jpa --class ~.domain.WSBudgetAccount --table WS_BUDGET_ACCOUNT
+field string name
+field string --fieldName accountNumber
+field number --fieldName nature --type int
+field string --fieldName description
+web mvc scaffold --class ~.web.BudgetAccountController
+entity jpa --class ~.domain.WSCashAccount --table WS_CASH_ACCOUNT
+field string --fieldName name
+field string --fieldName accountNumber
+web mvc scaffold --class ~.web.CashAccountController
+entity jpa --class ~.domain.WSInsuanceCompany --table WS_INSURANCE_COMPANY --testAutomatically true
+field string --fieldName companyName
+field string --fieldName contact
+field string --fieldName email
+web mvc scaffold --class ~.web.InsuranceCompanyController
+focus --class ~.domain.WSHospital
+// [failed] perform tests
+focus --class ~.domain.WSBudgetAccount
+finder list 
+finder add --finderName findWSBudgetAccountsByAccountNumberEquals
+finder add --finderName findWSBudgetAccountsByNature
+focus --class ~.domain.WSInsuranceCompany
+web mvc scaffold --class ~.web.InsuranceCompanyController
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-26 10:47:08
+exit
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-26 11:53:01
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-09-26 13:09:36
+focus --class ~.domain.WSHospital
+field number --fieldName accountServiceWithoutFees --type long
+field number --fieldName accountFeesCollection --type long
+field number --fieldName accountServiceVAT --type long
+field number --fieldName refundInsurer --type long
+field number --fieldName repaymentFees --type long
+field number --fieldName cashAccountUsed --type long
+field string --fieldName defaultCurrency
+entity jpa --class ~.domain.WSMedecineType --table WS_MEDECINE_TYPE --testAutomatically 
+field string --fieldName name
+field string --fieldName description
+web mvc scaffold --class ~.web.MedecineTypeController
+entity jpa --class ~.domain.WSMedecine --table WS_MEDECINE --testAutomatically true
+field string --fieldName name
+field number --fieldName lowerQuantity --type long
+field string --fieldName createdBy
+field date --fieldName creationDate --type java.util.Date
+field reference --fieldName medecineType --type ~.domain.WSMedecineType
+focus --class ~.domain.WSMedecineType
+field list --fieldName medecines --type ~.domain.WSMedecine --cardinality ONE_TO_MANY 
+focus --class ~.domain.WSMedecine
+web mvc scaffold --class ~.web.MedecineController
+field number --fieldName currentStock --type long
+entity jpa --class ~.domain.WSStockPile --table WS_STOCK_PILE --testAutomatically true
+field string --fieldName description
+field number --fieldName quantity --type long
+field date --fieldName creationDate --type java.util.Date
+field string --fieldName createdBy
+field reference --fieldName medecine --type ~.domain.WSMedecine --cardinality MANY_TO_ONE 
+focus --class ~.domain.WSMedecine
+field list --fieldName stockPiles --type ~.domain.WSStockPile
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-09-27 05:49:38
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-01 01:40:52
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-01 02:15:27
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-01 02:16:19
+focus --class ~.domain.WSStockPile
+web mvc scaffold --class ~.web.StockPileController
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-01 04:25:26
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-01 22:12:32
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-01 22:19:29
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-02 17:59:34
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-02 18:19:10
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-03 06:37:32
+entity jpa --class ~.domain.WSHealthCareTypes
+field string --fieldName name
+field string --fieldName description
+entity jpa --class ~.domain.WSHealthCare
+field string --fieldName name
+field number --fieldName globalPrice --type long
+field number --fieldName hospitalPart --type long
+field number --fieldName doctorPart --type long
+field reference --fieldName healthCareType --type ~.domain.WSHealthCareType --cardinality MANY_TO_ONE 
+// [failed] focus --class ~.domain.WSHealthCareTypes
+focus --class ~.domain.WSHealthCareType
+field set --fieldName healthCare --type ~.domain.WSHealthCare --cardinality ONE_TO_MANY 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-03 08:04:04
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-03 10:45:58
+focus --class ~.domain.WSHealthCareType
+web mvc scaffold --class ~.web.HealthCareTypeController
+focus --class ~.domain.WSHealthCare
+web mvc scaffold --class ~.web.HealthCareController
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2013-10-03 10:56:44
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2013-10-03 16:32:06

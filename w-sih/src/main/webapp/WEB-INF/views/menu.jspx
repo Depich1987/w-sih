@@ -39,5 +39,13 @@
             <menu:item id="i_wsstockpile_new" messageCode="global_menu_new" url="/wsstockpiles?form" z="VFobE5NWduY+1LL0/REwORzEmRM="/>
             <menu:item id="i_wsstockpile_list" messageCode="global_menu_list" url="/wsstockpiles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="E2Z/v84Huba5JCndTMlbYkewEnE="/>
         </menu:category>
+        <menu:category id="c_wshealthcaretype" z="6qc06Z/urzW/96cf1k1+u0pSCl0=">
+            <menu:item id="i_wshealthcaretype_new" messageCode="global_menu_new" url="/wshealthcaretypes?form" z="0TBOkjPLXAy8eMbOWjCEX5Qi+Sc="/>
+            <menu:item id="i_wshealthcaretype_list" messageCode="global_menu_list" url="/wshealthcaretypes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fGZjEvphXbeICP74hqymeWFtwnc="/>
+        </menu:category>
+        <menu:category id="c_wshealthcare" z="R9Kp4ITPKm45phylB/EyfJOYFAs=">
+            <menu:item id="i_wshealthcare_new" messageCode="global_menu_new" url="/wshealthcares?form" z="Ytfh2wltxPoGuDHFLXR9Ggl1Qrk="/>
+            <menu:item id="i_wshealthcare_list" messageCode="global_menu_list" url="/wshealthcares?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yguRcgsX6mWPVJ9jHH7j7njYNSE="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    
+    <definition extends="defaultLayout" name="admin/healthcaremanagement/healthcares/list">
+    	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/healthcares/list.jspx"/>
+    </definition>
+	
+	<definition extends="defaultLayout" name="admin/healthcaremanagement/healthcares/show">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/healthcares/show.jspx"/>
+    </definition>
+	
+	<definition extends="defaultLayout" name="admin/healthcaremanagement/healthcares/create">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/healthcares/create.jspx"/>
+    </definition>
+	
+	<definition extends="defaultLayout" name="admin/healthcaremanagement/healthcares/update">
+		<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+        <put-attribute name="body" value="/WEB-INF/views/wsih/admin/healthcares/update.jspx"/>
+    </definition>
+    
+</tiles-definitions>

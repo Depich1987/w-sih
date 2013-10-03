@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	 xmlns:spring="http://www.springframework.org/tags" 
+	 xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcaretype" var="healthcaretype_label"/>
+    <spring:message code="global_menu_list" arguments="${healthcaretype_label}" var="healthcaretypelist_label"/>
+    <spring:message code="global_menu_new" arguments="${healthcaretype_label}" var="createhealthcaretype_label"/>
+    
+     <spring:url value="/admin/healthcaremanagement/healthcaretypes/create?form" var="createhealthcaretypes_url"/>
+     
+     <div class="row-fluid">
+    	<fieldset>
+    		<legend>
+    			${healthcaretypelist_label}
+    		</legend>
+    		<div class="row-fluid">
+    			<a href="${createhealthcaretypes_url}" class="btn btn-primary">
+    				${createhealthcaretype_label} <span class="icon-white icon-plus-sign"></span>
+    			</a>
+    		</div>
+	        <table:table data="${wshealthcaretypes}" id="l_com_depich1987_wsih_domain_WSHealthCareType" path="/admin/healthcaremanagement/healthcaretypes">
+	            <table:column id="c_com_depich1987_wsih_domain_WSHealthCareType_name" property="name"/>
+	            <table:column id="c_com_depich1987_wsih_domain_WSHealthCareType_description" property="description"/>
+	        </table:table>
+    	</fieldset>
+	</div>
+</div>

@@ -6,6 +6,8 @@ package com.depich1987.wsih.web;
 import com.depich1987.wsih.domain.WSBudgetAccount;
 import com.depich1987.wsih.domain.WSCashAccount;
 import com.depich1987.wsih.domain.WSDepartment;
+import com.depich1987.wsih.domain.WSHealthCare;
+import com.depich1987.wsih.domain.WSHealthCareType;
 import com.depich1987.wsih.domain.WSHospital;
 import com.depich1987.wsih.domain.WSInsuranceCompany;
 import com.depich1987.wsih.domain.WSMedecine;
@@ -88,6 +90,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSDepartment>() {
             public com.depich1987.wsih.domain.WSDepartment convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), WSDepartment.class);
+            }
+        };
+    }
+    
+    public Converter<WSHealthCare, String> ApplicationConversionServiceFactoryBean.getWSHealthCareToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSHealthCare, java.lang.String>() {
+            public String convert(WSHealthCare wSHealthCare) {
+                return new StringBuilder().append(wSHealthCare.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSHealthCare> ApplicationConversionServiceFactoryBean.getIdToWSHealthCareConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSHealthCare>() {
+            public com.depich1987.wsih.domain.WSHealthCare convert(java.lang.Long id) {
+                return WSHealthCare.findWSHealthCare(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSHealthCare> ApplicationConversionServiceFactoryBean.getStringToWSHealthCareConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSHealthCare>() {
+            public com.depich1987.wsih.domain.WSHealthCare convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSHealthCare.class);
+            }
+        };
+    }
+    
+    public Converter<WSHealthCareType, String> ApplicationConversionServiceFactoryBean.getWSHealthCareTypeToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSHealthCareType, java.lang.String>() {
+            public String convert(WSHealthCareType wSHealthCareType) {
+                return new StringBuilder().append(wSHealthCareType.getName()).append(' ').append(wSHealthCareType.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSHealthCareType> ApplicationConversionServiceFactoryBean.getIdToWSHealthCareTypeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSHealthCareType>() {
+            public com.depich1987.wsih.domain.WSHealthCareType convert(java.lang.Long id) {
+                return WSHealthCareType.findWSHealthCareType(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSHealthCareType> ApplicationConversionServiceFactoryBean.getStringToWSHealthCareTypeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSHealthCareType>() {
+            public com.depich1987.wsih.domain.WSHealthCareType convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSHealthCareType.class);
             }
         };
     }
@@ -222,6 +272,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getWSDepartmentToStringConverter());
         registry.addConverter(getIdToWSDepartmentConverter());
         registry.addConverter(getStringToWSDepartmentConverter());
+        registry.addConverter(getWSHealthCareToStringConverter());
+        registry.addConverter(getIdToWSHealthCareConverter());
+        registry.addConverter(getStringToWSHealthCareConverter());
+        registry.addConverter(getWSHealthCareTypeToStringConverter());
+        registry.addConverter(getIdToWSHealthCareTypeConverter());
+        registry.addConverter(getStringToWSHealthCareTypeConverter());
         registry.addConverter(getWSHospitalToStringConverter());
         registry.addConverter(getIdToWSHospitalConverter());
         registry.addConverter(getStringToWSHospitalConverter());
