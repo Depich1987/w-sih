@@ -2,7 +2,7 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" 
 	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
 	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
-	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"  
 	 xmlns:form="http://www.springframework.org/tags/form" 
 	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
 	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
@@ -12,49 +12,59 @@
     
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsjob" var="job_label"/>
+    <spring:message code="global_menu_new" arguments="${job_label}" var="createnewjob_label"/>
     <spring:message code="wsih_entitydetailslabel" arguments="${department_label}" var="formheader_label"/>
     <spring:message code="wsih_entitybacktolist" arguments="${department_label}" var="backtolist_label"/>
     <spring:message code="button_update" var="update_label"/>
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_name" var="name_label"/>
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_description" var="description_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_coloridentifier" var="colorIdentifier_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_departmenttype" var="departmenttype_label"/>
     
 
    	<spring:url value="/admin/departments/${wsdepartment_.id}?form" var="upatedepartment_url"/>
 	<spring:url value="/admin/departments/list?size=10" var="departmentlist_url"/>
+	<spring:url value="/admin/departments/createjob/${wsdepartment_.id}?form" var="createjob_url"/>
 	
    	<fieldset>
    		<legend>
    			${formheader_label}
    		</legend>
-   		
    		<div class="row-fluid">
-   			<p class="span5">
+   		<div class="span5">
+	   		<div class="row-fluid">
     			<label>${name_label}</label>
     			<strong>${wsdepartment_.name}</strong>
-    		</p>
-   		</div>
-   		
-   		<div class="row-fluid">
-   			<p class="span5">
-    			<label>${colorIdentifier_label}</label>
-    			<strong>${wsdepartment_.colorIdentifier}</strong>
-    		</p>
-   		</div>
-   		
-   		<div class="row-fluid">
-   			<p class="span5">
+	   		</div>
+	   		
+	   		<div class="row-fluid">
+    			<label>${departmenttype_label}</label>
+    			<strong>${wsdepartment_.departmentType}</strong>
+	   		</div>
+	   		
+	   		<div class="row-fluid">
     			<label>${description_label}</label>
     			<strong>${wsdepartment_.description}</strong>
-    		</p>
-   		</div>
-    		
-   		<div class="row-fluid">
-   			<p class="span5">
+	   		</div>
+    	</div>
+    	<div class="span7">
+   			<div class="row-fluid">
+   				<a href="${createjob_url}" class="btn btn-info">${createnewjob_label} <span class="icon-white icon-plus-sign"></span></a>
+   			</div>			
+   			<p class="row-fluid">
+				<table:table data="${wsjobs}" id="l_com_depich1987_wsih_domain_WSJob" path="/admin/departments/jobs" create="false">
+	            	<table:column id="c_com_depich1987_wsih_domain_WSJob_name" property="name"/>
+	            	<table:column id="c_com_depich1987_wsih_domain_WSJob_description" property="description"/>
+	        	</table:table>
+			</p>
+   		</div>	
+   		<p class="row-fluid">
+   			<div class="btn-group">
    				<a href="${departmentlist_url}" class="btn btn-default">${backtolist_label}</a>
    				<a href="${upatedepartment_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
-   			</p>
+   			</div>
+   		</p>
    		</div>
    	</fieldset>
 </div>

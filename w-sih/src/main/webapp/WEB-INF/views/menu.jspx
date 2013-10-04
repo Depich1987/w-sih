@@ -47,5 +47,9 @@
             <menu:item id="i_wshealthcare_new" messageCode="global_menu_new" url="/wshealthcares?form" z="Ytfh2wltxPoGuDHFLXR9Ggl1Qrk="/>
             <menu:item id="i_wshealthcare_list" messageCode="global_menu_list" url="/wshealthcares?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yguRcgsX6mWPVJ9jHH7j7njYNSE="/>
         </menu:category>
+        <menu:category id="c_wsjob" z="SM5VZrxWxHybIaPwuRp/xxXqhX4=">
+            <menu:item id="i_wsjob_new" messageCode="global_menu_new" url="/wsjobs?form" z="I/hd3gn1uTTrO28V7nPbRPHm4B8="/>
+            <menu:item id="i_wsjob_list" messageCode="global_menu_list" url="/wsjobs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="D4eJWEAV5mVGrg1h0pD+TewZb6g="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(table = "WS_HEALTHCARETYPE")
 public class WSHealthCareType {
 
     /**

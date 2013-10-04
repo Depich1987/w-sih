@@ -11,7 +11,7 @@
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_name" var="name_label"/>
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_description" var="description_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_coloridentifier" var="colorIdentifier_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment_departmenttype" var="departmenttype_label"/>
     
     <spring:url value="/admin/departments/update" var="upatedepartment_url"/>
     
@@ -30,8 +30,21 @@
 	    		
 	    		<div class="row-fluid">
 	    			<p class="span5">
-		    			<label>${colorIdentifier_label}</label>
-		    			<form:input path="colorIdentifier" />
+		    			<label>${departmenttype_label}</label>
+		    			<form:select path="departmentType">
+		    				<c:if test="${departmentTypes.medical eq WSDepartment_.departmentType}">
+		    					<form:option value="${departmentTypes.medical}" label="${departmentTypes.medical}" selected="selected"/>
+		    				</c:if>
+		    				<c:if test="${departmentTypes.medical != WSDepartment_.departmentType}">
+		    					<form:option value="${departmentTypes.medical}" label="${departmentTypes.medical}"/>
+		    				</c:if>
+		    				<c:if test="${departmentTypes.management != WSDepartment_.departmentType}">
+    							<form:option value="${departmentTypes.management}" label="${departmentTypes.management}"/>
+    						</c:if>
+		    				<c:if test="${departmentTypes.management eq WSDepartment_.departmentType}">
+    							<form:option value="${departmentTypes.management}" label="${departmentTypes.management}" selected="selected"/>
+    						</c:if>
+		    			</form:select>
 		    		</p>
 	    		</div>
 	    		
@@ -48,6 +61,7 @@
 						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
 	    			</button>
 	    		</div>
+	    		
 	   	</fieldset>
    </form:form>
 </div>

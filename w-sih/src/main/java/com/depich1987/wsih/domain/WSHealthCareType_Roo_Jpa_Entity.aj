@@ -9,11 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 privileged aspect WSHealthCareType_Roo_Jpa_Entity {
     
     declare @type: WSHealthCareType: @Entity;
+    
+    declare @type: WSHealthCareType: @Table(name = "WS_HEALTHCARETYPE");
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

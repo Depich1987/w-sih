@@ -17,7 +17,7 @@
     <spring:message code="label_com_depich1987_wsih_domain_wsstockpile_description" var="description_label"/>
     <spring:message code="label_com_depich1987_wsih_domain_wsstockpile_quantity" var="quantity_label"/>
     
-    <spring:url value="/admin/stockmanager/createstock" var="createmedecinestockpile_url"/>
+    <spring:url value="/admin/stockmanager/medecines/createstock" var="createmedecinestockpile_url"/>
     
     <form:form modelAttribute="WSStockPile_" method="post" action="${createmedecinestockpile_url}">
     	<fieldset>

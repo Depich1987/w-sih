@@ -5,5 +5,6 @@
     <form:update id="fu_com_depich1987_wsih_domain_WSHealthCare" modelAttribute="WSHealthCare_" path="/wshealthcares" versionField="Version" z="EQyvp5njtmMGODgiflUjCNMIpUY=">
         <field:input field="name" id="c_com_depich1987_wsih_domain_WSHealthCare_name" z="E5V08y9dOGzk03j59f4dSMhb2ic="/>
         <field:select field="healthCareType" id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareType" itemValue="id" items="${wshealthcaretypes}" path="/wshealthcaretypes" z="/vWxMMofr0ktNBplxBNjutBKEbw="/>
+        <field:simple field="insuranceProducts" id="c_com_depich1987_wsih_domain_WSHealthCare_insuranceProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Inurance Product" z="/JXyYF2Oxk+Pyq33ZKnkuExnvxc="/>
     </form:update>
 </div>

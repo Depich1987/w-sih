@@ -5,6 +5,7 @@ package com.depich1987.wsih.web;
 
 import com.depich1987.wsih.domain.WSHealthCare;
 import com.depich1987.wsih.domain.WSHealthCareType;
+import com.depich1987.wsih.domain.WSInuranceProduct;
 import com.depich1987.wsih.web.HealthCareController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -88,6 +89,7 @@ privileged aspect HealthCareController_Roo_Controller {
     void HealthCareController.populateEditForm(Model uiModel, WSHealthCare WSHealthCare_) {
         uiModel.addAttribute("WSHealthCare_", WSHealthCare_);
         uiModel.addAttribute("wshealthcaretypes", WSHealthCareType.findAllWSHealthCareTypes());
+        uiModel.addAttribute("wsinuranceproducts", WSInuranceProduct.findAllWSInuranceProducts());
     }
     
     String HealthCareController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

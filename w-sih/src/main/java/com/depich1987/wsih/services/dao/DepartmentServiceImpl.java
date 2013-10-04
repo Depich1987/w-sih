@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.depich1987.wsih.domain.WSDepartment;
+import com.depich1987.wsih.domain.WSJob;
 
 public class DepartmentServiceImpl implements DepartmentService {
 	
@@ -39,10 +40,32 @@ public class DepartmentServiceImpl implements DepartmentService {
         return entityManager.createQuery("SELECT o FROM WSDepartment o", WSDepartment.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
+    @Override
+    public List<WSJob> findAllJobs() {
+        return entityManager.createQuery("SELECT o FROM WSJob o", WSJob.class).getResultList();
+    }
+    
+    @Override
+    public WSJob findJob(Long id) {
+        if (id == null) return null;
+        return entityManager.find(WSJob.class, id);
+    }
+    
+    @Override
+    public List<WSJob> findJobEntries(int firstResult, int maxResults) {
+        return entityManager.createQuery("SELECT o FROM WSJob o", WSJob.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
     @Transactional
     @Override
     public void persist(WSDepartment department) {
         this.entityManager.persist(department);
+    }
+    
+    @Transactional
+    @Override
+    public void persist(WSJob job) {
+    	this.entityManager.persist(job);    	
     }
     
     @Transactional
@@ -71,6 +94,25 @@ public class DepartmentServiceImpl implements DepartmentService {
         WSDepartment merged = this.entityManager.merge(department);
         this.entityManager.flush();
         return merged;
+    }
+    
+    @Transactional
+    @Override
+    public WSJob merge(WSJob job) {
+    	WSJob merged = this.entityManager.merge(job);
+        this.entityManager.flush();
+        return merged;
+    }
+    
+    @Transactional
+    @Override
+    public void update(WSJob job){
+    	this.entityManager.createQuery("UPDATE WSJob SET name = :name, description= :description, department = :department WHERE id= :id")
+    	.setParameter("name", job.getName())
+    	.setParameter("description", job.getDescription())
+    	.setParameter("department", job.getDepartment())
+    	.setParameter("id", job.getId())
+    	.executeUpdate();
     }
     
     public void setEntityManager(EntityManager entityManager){

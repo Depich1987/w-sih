@@ -6,6 +6,7 @@
         <field:input field="companyName" id="c_com_depich1987_wsih_domain_WSInsuranceCompany_companyName" z="YrrcTl1jjcRC8rTCfDg/eUlq1Pw="/>
         <field:input field="contact" id="c_com_depich1987_wsih_domain_WSInsuranceCompany_contact" z="MzY/k5/kSeAjnQYPT2PPo6dVuA4="/>
         <field:input field="email" id="c_com_depich1987_wsih_domain_WSInsuranceCompany_email" validationMessageCode="field_invalid_email" z="SDGot4O1bBUSj1UOfK+Olx3Px6k="/>
+        <field:simple field="insuranceProducts" id="c_com_depich1987_wsih_domain_WSInsuranceCompany_insuranceProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Inurance Product" z="+J+uxwNrbpnoVKEa6SHNLtFQzc4="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_depich1987_wsih_domain_WSInsuranceCompany" render="${not empty dependencies}" z="/PR7DjRn6o1mFBlCITCJBPICX4E="/>
 </div>

@@ -5,6 +5,7 @@
     <page:show id="ps_com_depich1987_wsih_domain_WSDepartment" object="${wsdepartment_}" path="/wsdepartments" z="w3/qNTuO9S/C3Lud65+sxPnN47I=">
         <field:display field="name" id="s_com_depich1987_wsih_domain_WSDepartment_name" object="${wsdepartment_}" z="NqtgsBKEqgbqKu2UJAl3lzEOxeA="/>
         <field:display field="description" id="s_com_depich1987_wsih_domain_WSDepartment_description" object="${wsdepartment_}" z="3MDiEJP5VMEe7Ee0qBjrq/EITDE="/>
-        <field:display field="colorIdentifier" id="s_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" object="${wsdepartment_}" z="sN41O+U6JPSZ4aECp1pChYnbAi8="/>
+        <field:display field="departmentType" id="s_com_depich1987_wsih_domain_WSDepartment_departmentType" object="${wsdepartment_}" z="FPvSCcsxvDJGnykTHz8w9uLE6RA="/>
+        <field:display field="job" id="s_com_depich1987_wsih_domain_WSDepartment_job" object="${wsdepartment_}" z="ZiSDWPwcuVnK/tyKF9Z/glsZc6k="/>
     </page:show>
 </div>

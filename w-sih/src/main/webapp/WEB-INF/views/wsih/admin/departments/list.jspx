@@ -9,10 +9,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     
     <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsjob" var="job_label"/>
     <spring:message code="global_menu_list" arguments="${department_label}" var="departmentlist_label"/>
     <spring:message code="global_menu_new" arguments="${department_label}" var="createdepartment_label"/>
-    
+    <spring:message code="global_menu_new" arguments="${job_label}" var="createnewjob_label"/>
     <spring:url value="/admin/departments/create?form" var="createdepartments_url"/>
+    <spring:url value="/admin/departments/jobs/create?form" var="createjob_url"/>
     
     <div class="row-fluid">
     	<fieldset>
@@ -23,11 +25,12 @@
     			<a href="${createdepartments_url}" class="btn btn-primary">
     				${createdepartment_label} <span class="icon-white icon-plus-sign"></span>
     			</a>
+    			<a href="${createjob_url}" class="btn pull-right">${createnewjob_label} <span class="icon icon-plus-sign"></span></a>
     		</div>
     	</fieldset>
        <table:table data="${wsdepartments}" id="l_com_depich1987_wsih_domain_WSDepartment" path="/admin/departments" delete="false">
            <table:column id="c_com_depich1987_wsih_domain_WSDepartment_name" property="name"/>
-           <table:column id="c_com_depich1987_wsih_domain_WSDepartment_colorIdentifier" property="colorIdentifier"/>
+           <table:column id="c_com_depich1987_wsih_domain_WSDepartment_departmentType" property="departmentType"/>
        </table:table>
     </div>
 

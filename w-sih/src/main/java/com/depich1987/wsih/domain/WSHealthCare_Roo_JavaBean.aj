@@ -5,6 +5,8 @@ package com.depich1987.wsih.domain;
 
 import com.depich1987.wsih.domain.WSHealthCare;
 import com.depich1987.wsih.domain.WSHealthCareType;
+import com.depich1987.wsih.domain.WSInuranceProduct;
+import java.util.Set;
 
 privileged aspect WSHealthCare_Roo_JavaBean {
     
@@ -22,6 +24,14 @@ privileged aspect WSHealthCare_Roo_JavaBean {
     
     public void WSHealthCare.setHealthCareType(WSHealthCareType healthCareType) {
         this.healthCareType = healthCareType;
+    }
+    
+    public Set<WSInuranceProduct> WSHealthCare.getInsuranceProducts() {
+        return this.insuranceProducts;
+    }
+    
+    public void WSHealthCare.setInsuranceProducts(Set<WSInuranceProduct> insuranceProducts) {
+        this.insuranceProducts = insuranceProducts;
     }
     
 }

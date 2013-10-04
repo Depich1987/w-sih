@@ -39,10 +39,10 @@
 		    		</p>
 	    		</div>
 		   		<div class="row-fluid">
-		   			<p class="span5">
+		   			<div class="btn-group">
 		   				<a href="${listcashaccount_url}" class="btn btn-default">${backtolist_label}</a>
 		   				<a href="${upatecashaccount_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
-		   			</p>
+		   			</div>
 		   		</div>
 	 	</fieldset>
 

@@ -10,6 +10,7 @@ import com.depich1987.wsih.domain.WSHealthCare;
 import com.depich1987.wsih.domain.WSHealthCareType;
 import com.depich1987.wsih.domain.WSHospital;
 import com.depich1987.wsih.domain.WSInsuranceCompany;
+import com.depich1987.wsih.domain.WSJob;
 import com.depich1987.wsih.domain.WSMedecine;
 import com.depich1987.wsih.domain.WSMedecineType;
 import com.depich1987.wsih.domain.WSStockPile;
@@ -73,7 +74,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<WSDepartment, String> ApplicationConversionServiceFactoryBean.getWSDepartmentToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSDepartment, java.lang.String>() {
             public String convert(WSDepartment wSDepartment) {
-                return new StringBuilder().append(wSDepartment.getName()).append(' ').append(wSDepartment.getDescription()).append(' ').append(wSDepartment.getColorIdentifier()).toString();
+                return new StringBuilder().append(wSDepartment.getName()).append(' ').append(wSDepartment.getDescription()).append(' ').append(wSDepartment.getDepartmentType()).toString();
             }
         };
     }
@@ -190,6 +191,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<WSJob, String> ApplicationConversionServiceFactoryBean.getWSJobToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSJob, java.lang.String>() {
+            public String convert(WSJob wSJob) {
+                return new StringBuilder().append(wSJob.getName()).append(' ').append(wSJob.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSJob> ApplicationConversionServiceFactoryBean.getIdToWSJobConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSJob>() {
+            public com.depich1987.wsih.domain.WSJob convert(java.lang.Long id) {
+                return WSJob.findWSJob(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSJob> ApplicationConversionServiceFactoryBean.getStringToWSJobConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSJob>() {
+            public com.depich1987.wsih.domain.WSJob convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSJob.class);
+            }
+        };
+    }
+    
     public Converter<WSMedecine, String> ApplicationConversionServiceFactoryBean.getWSMedecineToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSMedecine, java.lang.String>() {
             public String convert(WSMedecine wSMedecine) {
@@ -284,6 +309,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getWSInsuranceCompanyToStringConverter());
         registry.addConverter(getIdToWSInsuranceCompanyConverter());
         registry.addConverter(getStringToWSInsuranceCompanyConverter());
+        registry.addConverter(getWSJobToStringConverter());
+        registry.addConverter(getIdToWSJobConverter());
+        registry.addConverter(getStringToWSJobConverter());
         registry.addConverter(getWSMedecineToStringConverter());
         registry.addConverter(getIdToWSMedecineConverter());
         registry.addConverter(getStringToWSMedecineConverter());
