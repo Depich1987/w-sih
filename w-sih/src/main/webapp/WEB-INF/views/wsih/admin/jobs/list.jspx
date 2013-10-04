@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSJob" items="${wsjobs}" z="sB5gbInuWof5OL8f7HIqzBMApa4=">
+        <table:table data="${wsjobs}" id="l_com_depich1987_wsih_domain_WSJob" path="/wsjobs" z="cpVwh7F4+LXnw05lIUlCX8grnhc=">
+            <table:column id="c_com_depich1987_wsih_domain_WSJob_name" property="name" z="L80HHtxMpVUj+0ontjWJUmhkN5Y="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSJob_department" property="department" z="01Px2ND2+hfJfNa7/t8YhZvWaUg="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSJob_description" property="description" z="J8JwSR7ugRPm9jxE+h05vJ8SEOE="/>
+        </table:table>
+    </page:list>
+</div>
