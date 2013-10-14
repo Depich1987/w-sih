@@ -7,7 +7,6 @@
             <table:column id="c_com_depich1987_wsih_domain_WSDepartment_name" property="name" z="9crpkCcwIWat10Zu/Y7hycF9RQg="/>
             <table:column id="c_com_depich1987_wsih_domain_WSDepartment_description" property="description" z="pNFKPRqmrUS+bTYSHmrhKfVjriE="/>
             <table:column id="c_com_depich1987_wsih_domain_WSDepartment_departmentType" property="departmentType" z="chnrpp1OIPuRiTjlmR0FSid0bR0="/>
-            <table:column id="c_com_depich1987_wsih_domain_WSDepartment_job" property="job" z="kU9XVLhI0QiVjKi2T40B+qDdMAk="/>
         </table:table>
     </page:list>
 </div>

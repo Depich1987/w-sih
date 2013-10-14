@@ -21,44 +21,44 @@
     
     <spring:url value="/admin/budgetaccounts/create" var="createbudgetaccount_url"/>
     
-    <form:form action="${createbudgetaccount_url}" method="post" modelAttribute="WSBudgetAccount_">
+    <form:form action="${createbudgetaccount_url}" method="post" modelAttribute="WSBudgetAccount_" cssClass="form-horizontal">
 	   	<fieldset>
 	    		<legend>
 	    			${formheader_label}
 	    		</legend>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${name_label}</label>
-		    			<form:input path="name" autocomplete="off"/>
-		    		</p>
+	    		<div class="control-group">
+	    			<label class="control-label" for="name">${name_label}</label>
+	    			<div class="controls">
+		    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${accountnumber_label}</label>
-		    			<form:input path="accountNumber" autocomplete="off"/>
-		    		</p>
+	    		<div class="control-group">
+	    			<label class="control-label" for="accountNumber">${accountnumber_label}</label>
+		    		<div class="controls">
+		    			<form:input path="accountNumber" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${nature_label}</label>
-		    			<form:select path="nature">
+	    		<div class="control-group">
+	    			<label class="control-label" for="nature">${nature_label}</label>
+		    		<div class="controls">
+		    			<form:select path="nature" cssClass="input-xlarge">
     						<form:option value="${accountTypes.income}" label="${accountTypes.income}"/>
     						<form:option value="${accountTypes.spent}" label="${accountTypes.spent}"/>
 		    			</form:select>
-		    		</p>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${description_label}</label>
-		    			<form:textarea path="description"/>
-		    		</p>
+	    		<div class="control-group">
+	    			<label class="control-label" for="description">${description_label}</label>
+		    		<div class="controls">
+		    			<form:textarea path="description" cssClass="input-xlarge"/>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
+	    		<div class="form-actions">
 	    			<button class="btn btn-success" type="submit">
 						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
 	    			</button>
@@ -66,4 +66,30 @@
 	   	</fieldset>
    </form:form>
 
+	<SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSBudgetAccount_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+    			      
+    			      accountNumber: {
+    			    	  minlength: 2,
+    			    	  required:true
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

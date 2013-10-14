@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSMeeting" object="${wsmeeting_}" path="/wsmeetings" z="lOKt3khR6evT1h+fJvzT4Fhi7tk=">
+        <field:display field="description" id="s_com_depich1987_wsih_domain_WSMeeting_description" object="${wsmeeting_}" z="TOdS/LBN8W223QgZPCpcZG7Hxh0="/>
+        <field:display date="true" dateTimePattern="${WSMeeting__creationdate_date_format}" field="creationDate" id="s_com_depich1987_wsih_domain_WSMeeting_creationDate" object="${wsmeeting_}" z="6AXEfy5xfLxr5FuQhCwpAC/xu08="/>
+        <field:display field="createdBy" id="s_com_depich1987_wsih_domain_WSMeeting_createdBy" object="${wsmeeting_}" z="wZZNPOQH+uaAvXploaKZTS7zGg4="/>
+        <field:display field="patient" id="s_com_depich1987_wsih_domain_WSMeeting_patient" object="${wsmeeting_}" z="A9qrzOLnZRSPBi7zSBnf0TpvK1o="/>
+        <field:display field="status" id="s_com_depich1987_wsih_domain_WSMeeting_status" object="${wsmeeting_}" z="IXOYr/0uCC3KYi8cJfFuDYqfpOg="/>
+        <field:display date="true" dateTimePattern="${WSMeeting__meetingdate_date_format}" field="meetingDate" id="s_com_depich1987_wsih_domain_WSMeeting_meetingDate" object="${wsmeeting_}" z="jQZ4t2BkM1x+zc42eQulwDE86g8="/>
+    </page:show>
+</div>

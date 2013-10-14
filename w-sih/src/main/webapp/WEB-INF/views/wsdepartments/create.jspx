@@ -5,10 +5,8 @@
     <form:create id="fc_com_depich1987_wsih_domain_WSDepartment" modelAttribute="WSDepartment_" path="/wsdepartments" render="${empty dependencies}" z="mj8zEIJePQadhTDQwsKB29cBCuY=">
         <field:input field="name" id="c_com_depich1987_wsih_domain_WSDepartment_name" z="fHM+D9U/pZWY/orTPxUogMOowzY="/>
         <field:input field="description" id="c_com_depich1987_wsih_domain_WSDepartment_description" z="rW6tpQGa7l+Uu2QEDlzFDh1YOyw="/>
-        <field:simple field="meetings" id="c_com_depich1987_wsih_domain_WSDepartment_meetings" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Meeting" z="ViWkwfMFLf2bvbBJe5niWFoecXE="/>
         <field:input field="departmentType" id="c_com_depich1987_wsih_domain_WSDepartment_departmentType" z="bxpY2bfPtTTN21aX4F3GfdjyyJI="/>
         <field:simple field="jobs" id="c_com_depich1987_wsih_domain_WSDepartment_jobs" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Job" z="CjWf/zoh7rBKeVrtR48/A/4lvuo="/>
-        <field:select field="job" id="c_com_depich1987_wsih_domain_WSDepartment_job" itemValue="id" items="${wsjobs}" path="/wsjobs" z="qMwjlucQxExNKh7Jy6NDV0QbTQ4="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_depich1987_wsih_domain_WSDepartment" render="${not empty dependencies}" z="aKwJDPmCxkohBjfLYvbMGMHACIU="/>
 </div>

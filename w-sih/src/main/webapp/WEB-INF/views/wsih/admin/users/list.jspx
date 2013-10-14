@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	 xmlns:spring="http://www.springframework.org/tags"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser" var="user_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_plural" var="users_label"/>
+    
+    <spring:message code="global_menu_list" arguments="${users_label}" var="userlist_label"/>
+    <spring:message code="global_menu_new" arguments="${user_label}" var="createuser_label"/>
+    
+    <spring:url value="/admin/users/create?form" var="createuser_url"/>
+    
+    <div class="row-fluid">
+    	<fieldset>
+    		<legend>
+    			${userlist_label}
+    		</legend>
+    		<div class="row-fluid">
+    			<a href="${createuser_url}" class="btn btn-primary">
+    				${createuser_label} <span class="icon-white icon-plus-sign"></span>
+    			</a>
+    		</div>
+    	</fieldset>
+      	<table:table data="${wsusers}" id="l_com_depich1987_wsih_domain_WSUser" path="/admin/users" create="false">
+           <table:column id="c_com_depich1987_wsih_domain_WSUser_civility" property="civility"/>
+           <table:column id="c_com_depich1987_wsih_domain_WSUser_firstName" property="firstName"/>
+           <table:column id="c_com_depich1987_wsih_domain_WSUser_lastName" property="lastName"/>
+           <table:column id="c_com_depich1987_wsih_domain_WSUser_userName" property="userName"/>
+       	</table:table>
+    </div>
+
+</div>

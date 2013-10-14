@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting" var="meeting_label"/>
+    <spring:message code="wsih_entityformlabel" arguments="${meeting_label}" var="formheader_label"/>
+    
+    <spring:message code="button_save" var="buttonsave_label"/>
+    <spring:message code="button_cancel" var="cancel_label"/>
+    
+    <spring:url value="/workbench/patients/createAjax" var="createpatientajax_url"/>
+    <spring:url value="/workbench/patients/autocomplete" var="autocompletePatientPath"/>
+    <spring:url value="/workbench/meetings/create" var="createmeeting_url"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_description" var="description_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_meetingdate" var="meetingdate_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_status" var="status_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_patient" var="patient_label"/>
+    <spring:message code="wsih_workbench_patientdetails" var="patientdetails_label"/>
+    <spring:message code="wsih_workbench_meetingdetails" var="meetingdetails_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wspatient_firstname" var="firstname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wspatient_lastname" var="lastname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wspatient_mobilephone" var="mobilephone_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wspatient_registrationcni" var="registrationcni_label"/>
+    <spring:message code="wsih_workbench_newpatient" var="newpatient_label"/>
+    
+    <form:form action="${createmeeting_url}" method="post" modelAttribute="WSMeeting_" cssClass="form-horizontal">
+  	
+	  	<fieldset>
+	  		<legend>
+	  			${formheader_label}
+	  		</legend>
+	  		
+			<div class="row-fluid">
+				<div class="alert alert-success">
+					<strong>${meetingdetails_label}</strong>
+				</div>
+			</div>
+			
+			<div class="control-group">
+    			<label class="control-label" for="description">${description_label}</label>
+	    		<div class="controls">
+	    			<form:textarea path="description" cssClass="input-xlarge" />
+	    		</div>
+    		</div>
+    		
+    					
+			<div class="control-group">
+    			<label class="control-label" for="meetingDate">${meetingdate_label}</label>
+	    		<div class="controls">
+	    			<form:input path="meetingDate" autocomplete="off" />
+	    		</div>
+    		</div>
+
+			<div class="row-fluid">
+				<div class="alert alert-success">
+					<strong>${patientdetails_label}</strong>
+				</div>
+			</div>
+  		
+	  		<div class="control-group">
+	  			<label class="control-label" for="myTest">
+	  				${newpatient_label}
+	  			</label>
+	  			<div class="controls">
+	  				<label class="checkbox">
+	  					<form:checkbox path="newPatient" checked="true" />
+	  					Yes
+	  				</label>
+	  			</div>
+	  		</div>
+	  		<hr />
+		  		<div class="control-group">
+	    			<label class="control-label" for="patientId">${patient_label}</label>
+	    			<div class="controls">
+		    			<form:select path="patientId" cssClass="input-xlarge">
+		    				<c:forEach items="${wspatients}" var="patient">
+		    					<form:option value="${patient.id}">
+		    						${patient.firstName} ${patient.lastName}
+		    					</form:option>
+		    				</c:forEach>
+		    			</form:select>
+		    		</div>
+	    		</div>
+	  		<hr />
+	  		<div class="control-group">
+    			<label class="control-label" for="firstName">${firstname_label}</label>
+    			<div class="controls">
+	    			<form:input path="firstName" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="lastName">${lastname_label}</label>
+	    		<div class="controls">
+	    			<form:input path="lastName" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+	  		
+	  		<div class="form-actions">
+    			<button class="btn btn-success" type="submit">
+					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+    			</button>
+	  		</div>
+	  		
+	  	</fieldset>
+  	
+  </form:form>
+    <SCRIPT type="text/javascript">
+    
+     	$(document).ready(function(){
+     		
+     		$('#patientId').attr('disabled',true);
+     		
+     		
+     		$('input[name="newPatient"]').change(function(){
+     			var currentValue = $(this);
+     			
+     			if(!currentValue.is(':checked')){
+     				$('#firstName').attr('disabled',true).removeAttr('required');
+     				$('#lastName').attr('disabled',true).removeAttr('required');
+     				
+     				$('#patientId').removeAttr('disabled').attr('required',true);
+     			}else{
+     				$('#firstName').removeAttr('disabled').attr('required',true);
+     				$('#lastName').removeAttr('disabled').attr('required',true);
+     				$('#patientId').attr('disabled',true).removeAttr('required');
+     			}
+     		});
+     		
+    		
+    		$('#meetingDate').datepicker();
+    		
+    		$('#WSMeeting_').validate({
+    			rules: {
+    				description :{
+    					required:true
+    				},
+    				department:{
+    					required:true
+    				}
+    				,
+    				meetingDate:{
+    					required:true,
+    					date:true
+    				}
+    				,
+    				patient: {
+    			    	  required:false
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    		
+    		$('#sender').live('click',function(){
+     			var currentForm = $('#as-modal-dialog').find('form');
+    			var data = currentForm.serialize();
+    			var path = currentForm.attr('action');
+    			
+    			$.ajax({
+    				url:path,
+    				data:data,
+    				dataType:'json',
+    				type:'post',
+    				async:false,
+    				success:function(myCallback){
+					alert(myCallback.firstName);
+        				$('#patient').append($('<option />',{value:myCallback.id,text: myCallback.firstName}));
+    				},error:function(e,arg,t){
+    				console.log(e.statut);
+    			}
+    			});
+    			$('#as-modal-dialog').modal('hide').remove();
+    		});
+    		$('#cancelModal').live('click',function(){
+    			$('#as-modal-dialog').modal('hide').remove();
+    		});
+    	   	$('#wsPatientForm').validate({
+    			rules: {
+    				firstName :{
+    					required:true
+    				},
+    				lastName: {
+    			    	  required:true
+    			      },
+    		highlight: function(element) {
+    			$(element).closest('.control-group').removeClass('success').addClass('error');
+    		},
+    		success: function(element) {
+    			element
+    			.text('OK!').addClass('valid')
+    			.closest('.control-group').removeClass('error').addClass('success');
+    		}
+    			}
+    		});
+    	}); 
+    </SCRIPT>
+</div>

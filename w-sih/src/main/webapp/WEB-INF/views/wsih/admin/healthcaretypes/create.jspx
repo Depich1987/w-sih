@@ -18,30 +18,52 @@
     
     <spring:url value="/admin/healthcaremanagement/healthcaretypes/create" var="createhealthcaretype_url"/>
     
-    <form:form action="${createhealthcaretype_url}" method="post" modelAttribute="WSHealthCareType_">
+    <form:form action="${createhealthcaretype_url}" method="post" modelAttribute="WSHealthCareType_" cssClass="form-horizontal">
 	   	<fieldset>
 	    		<legend>
 	    			${formheader_label}
 	    		</legend>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${name_label}</label>
-		    			<form:input path="name" autocomplete="off"/>
-		    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="name">${name_label}</label>
+	    		<div class="controls">
+	    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
 	    		</div>
+    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${description_label}</label>
-		    			<form:textarea path="description" />
-		    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="description">${description_label}</label>
+	    		<div class="controls">
+	    			<form:textarea path="description" cssClass="input-xlarge" autocomplete="off" />
 	    		</div>
-	    		<div class="row-fluid">
-	    			<button class="btn btn-success" type="submit">
-						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
-	    			</button>
-	    		</div>
+    		</div>
+    		
+    		<div class="form-actions">
+    			<button class="btn btn-success" type="submit">
+					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+    			</button>
+    		</div>
 	    </fieldset>
     </form:form>
+   	<SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSHealthCareType_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

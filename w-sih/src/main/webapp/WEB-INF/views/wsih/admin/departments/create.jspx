@@ -20,41 +20,66 @@
     
     <spring:url value="/admin/departments/create" var="createdepartment_url"/>
     
-    <form:form action="${createdepartment_url}" method="post" modelAttribute="WSDepartment_">
+    <form:form action="${createdepartment_url}" method="post" modelAttribute="WSDepartment_" cssClass="form-horizontal">
 	   	<fieldset>
 	    		<legend>
 	    			${formheader_label}
 	    		</legend>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${name_label}</label>
-		    			<form:input path="name" autocomplete="off"/>
-		    		</p>
+	    		<div class="control-group">
+	    			<label class="control-label" for="name">${name_label}</label>
+		    		<div class="controls">
+		    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${departmenttype_label}</label>
-		    			<form:select path="departmentType">
+	    		<div class="control-group">
+	    			<label class="control-label" for="departmentType">${departmenttype_label}</label>
+		    		<div class="controls">
+		    			<form:select path="departmentType" cssClass="input-xlarge">
     						<form:option value="${departmentTypes.medical}" label="${departmentTypes.medical}"/>
     						<form:option value="${departmentTypes.management}" label="${departmentTypes.management}"/>
 		    			</form:select>
-		    		</p>
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${description_label}</label>
-		    			<form:textarea path="description" />
-		    		</p>
+	    		<div class="control-group">
+	    			<label class="control-label" for="description">${description_label}</label>
+		    		<div class="controls">
+		    			<form:textarea path="description" cssClass="input-xlarge" />
+		    		</div>
 	    		</div>
 	    		
-	    		<div class="row-fluid">
+	    		<div class="form-actions">
 	    			<button class="btn btn-success" type="submit">
 						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
 	    			</button>
 	    		</div>
 	   	</fieldset>
    </form:form>
+   	<SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSDepartment_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+    			      
+    			      departmentType: {
+    			    	  required:true
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

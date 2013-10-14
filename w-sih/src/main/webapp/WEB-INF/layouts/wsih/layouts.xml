@@ -10,6 +10,11 @@
     <put-attribute name="navigation" value="" />
     <put-attribute name="footer" value="/WEB-INF/views/wsih/footer.jspx" />
   </definition>
+  
+  <definition name="simpleLayout" template="/WEB-INF/layouts/wsih/default.jspx">
+    <put-attribute name="header" value="/WEB-INF/views/wsih/header.jspx" />
+    <put-attribute name="footer" value="/WEB-INF/views/wsih/footer.jspx" />
+  </definition>
 
   <definition name="public" template="/WEB-INF/layouts/default.jspx">
     <put-attribute name="header" value="/WEB-INF/views/header.jspx" />

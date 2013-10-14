@@ -12,6 +12,8 @@
   <spring:message code="menu_item_wsinsurancecompany_list_label" var="wsinsurancecompany_label"/>
   <spring:message code="wsih_medicalsupplies" var="medicalsupplies_label"/>
   <spring:message code="wsih_healthcare_settings" var="healthcaresettings_label"/>
+  <spring:message code="wsih_security_useraccounts" var="security_label"/>
+  <spring:message code="label_com_depich1987_wsih_domain_wsuser_plural" var="users_label"/>
   
   <spring:url value="/admin/hospital" var="hospital_url"/>
   <spring:url value="/admin/departments" var="departments_url"/>
@@ -20,42 +22,49 @@
   <spring:url value="/admin/insurancecompanies" var="insurancecompanies_url"/>
   <spring:url value="/admin/stockmanager" var="stockmanager_url"/>
   <spring:url value="/admin/healthcaremanagement" var="healthcaremanagement_url"/>
-  
+  <spring:url value="/admin/users" var="users_url"/>
 	<div class="well sidebar-nav">
        <ul class="nav nav-list">
        
          <li class="nav-header">${generalsettings_label}</li>
          
-         <li class="active">
+         <li id="hospital_activeNav">
          	<a href="${hospital_url}">${hospital_label}</a>
          </li>
          
-         <li>
+         <li id="departments_activeNav">
          	<a href="${departments_url}">${departments_label}</a>
          </li>
          
-       	 <li>
+       	 <li id="insurances_activeNav">
          	<a href="${insurancecompanies_url}">${wsinsurancecompany_label}</a>
          </li>
          
-         <li>
+         <li id="healthcare_activeNav">
          	<a href="${healthcaremanagement_url}">${healthcaresettings_label}</a>
          </li>
          
-         <li>
+         <li id="stocks_activeNav">
          	<a href="${stockmanager_url}">${medicalsupplies_label}</a>
          </li>
          
          <li class="nav-header">${accounting_label}</li>
          
-         <li>
+         <li id="budgetaccounts_activeNav">
          	<a href="${budgetaccounts_url}">${budgetaccounts_label}</a>
          </li>
          
-         <li>
+         <li id="cashaccounts_activeNav">
          	<a href="${cashaccounts_url}">${cashaccounts_label}</a>
+         </li>
+         
+         <li class="nav-header">${security_label}</li>
+         
+         <li id="users_activeNav">
+         	<a href="${users_url}">${users_label}</a>
          </li>
          
        </ul>
      </div><!--/.well -->
+
 </div>

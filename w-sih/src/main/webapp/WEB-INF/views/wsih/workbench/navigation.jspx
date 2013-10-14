@@ -1,0 +1,53 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  
+  <spring:message code="wsih_workbench_entries" var="workbenchentries_label"/>
+  <spring:message code="wsih_accounting" var="accounting_label"/>
+  <spring:message code="wsih_workbench_meetingmanagement" var="meetingmanagement_label"/>
+  <spring:message code="wsih_workbench_billing" var="billing_label"/>
+  <spring:message code="wsih_workbench_accountingreports" var="accountingreports_label"/>
+  <spring:message code="wsih_workbench_agendaglobal" var="agendaglobal_label"/>
+  <spring:message code="wsih_workbench_agendapersonal" var="agendapersonal_label"/>
+  <spring:message code="wsih_workbench_patientregistry" var="patientregistry_label"/>
+  
+  <spring:url value="/workbench/patients" var="patients_url"/>
+  <spring:url value="/workbench/meetings" var="meetings_url"/>
+  <spring:url value="/workbench/agenda/global" var="agendaglobal_url"/>
+  <spring:url value="/workbench/agenda/personal" var="agendapersonal_url"/>
+
+
+	<div class="well sidebar-nav">
+       <ul class="nav nav-list">
+       
+         <li class="nav-header">${workbenchentries_label}</li>
+         
+         <li id="meetingmanagement_activeNav">
+         	<a href="${meetings_url}">${meetingmanagement_label}</a>
+         </li>
+         
+         <li id="agendaglobal_activeNav">
+         	<a href="${agendaglobal_url}">${agendaglobal_label}</a>
+         </li>
+                  
+         <li id="gendapersonal_activeNav">
+         	<a href="${agendapersonal_url}">${agendapersonal_label}</a>
+         </li>
+         
+         <li id="patientRegistry_activeNav">
+         	<a href="${patients_url}">${patientregistry_label}</a>
+         </li>
+         
+         <li id="billing_activeNav">
+         	<a href="${departments_url}">${billing_label}</a>
+         </li>
+         
+         <li class="nav-header">${accounting_label}</li>
+         
+         <li id="accountingreports_activeNav">
+         	<a href="${budgetaccounts_url}">${accountingreports_label}</a>
+         </li>
+       </ul>
+     </div><!--/.well -->
+</div>

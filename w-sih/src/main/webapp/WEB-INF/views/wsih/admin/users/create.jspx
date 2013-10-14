@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"    
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser" var="user_label"/>
+    <spring:message code="wsih_entityformlabel" arguments="${user_label}" var="formheader_label"/>
+    <spring:message code="button_save" var="buttonsave_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_username" var="username_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_civility" var="civility_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_firstname" var="firstname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_lastname" var="lastname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_password" var="password_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_confirmpassword" var="confirmpassword_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_usertype" var="usertype_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_job" var="job_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    
+    <spring:url value="/admin/users/create" var="createuser_url"/>
+    <spring:url value="/admin/jobs/getJobJSON" var="getJobsJSON_url"/>
+    
+    <form:form action="${createuser_url}" method="post" modelAttribute="WSUser_" cssClass="form-horizontal">
+	   	<fieldset>
+    		<legend>
+    			${formheader_label}
+    		</legend>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="userName">${username_label}</label>
+	    		<div class="controls">
+	    			<form:input path="userName" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="password">${password_label}</label>
+	    		<div class="controls">
+	    			<form:password path="password" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="confirmPassword">${confirmpassword_label}</label>
+	    		<div class="controls">
+	    			<form:password path="confirmPassword" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="department">${department_label}</label>
+	    		<div class="controls">
+	    			<form:select path="department" cssClass="input-xlarge">
+	    				<form:options items="${wsdepartments}" itemLabel="name" itemValue="id" />
+	    			</form:select>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+	    			<label class="control-label" for="job">${job_label}</label>
+	    		<div class="controls">
+	    			<form:select path="job" cssClass="input-xlarge">
+	    				<form:options items="${wsjobs}" itemLabel="name" itemValue="id" />
+	    			</form:select>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="userType">${usertype_label}</label>
+	    		<div class="controls">
+	    			<form:select path="userType" cssClass="input-xlarge">
+	    				<form:option value="${userType.doctor}" label="${userType.doctor}"/>
+	    				<form:option value="${userType.simple}" label="${userType.simple}"/>
+	    			</form:select>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="firstName">${firstname_label}</label>
+    			<div class="controls">
+	    			<form:input path="firstName" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="control-group">
+    			<label class="control-label" for="lastName">${lastname_label}</label>
+	    		<div class="controls">
+	    			<form:input path="lastName" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
+    		</div>
+    		
+    		<div class="form-actions">
+    			<button class="btn btn-success" type="submit">
+					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+    			</button>
+    		</div>
+    		
+    	</fieldset>
+    </form:form>
+    
+    <SCRIPT type="text/javascript">
+    
+    function getJobs(departmentId,selectTarget){
+    	$.ajax({
+    		url:'${getJobsJSON_url}',
+    		type:'post',
+    		data:{departmentId:departmentId},
+    		dataType:'json',
+    		async:false,
+    		success:function(callback){
+    			selectTarget.empty();
+    			if(callback.length > 0){
+        			$.each(callback, function(k,item){
+        				selectTarget.append('<option value="'+item.id+'">'+ item.name +'</option>');
+        			});
+    			}
+
+    		},error:function(err,xhr,status){
+    			console.log(status.text);
+    		}
+    	});
+    	
+    }
+    	$(document).ready(function(){
+    		
+    		getJobs($('#department').val(),$('#job'));
+    		
+    		$('#department').on('change',function(){
+    				var currentDepartment = $(this).val();
+    				getJobs(currentDepartment,$('#job'));
+    		});
+    		
+    		$('#WSUser_').validate({
+    			rules: {
+    				userName :{
+    					required:true
+    				},
+    				department: {
+    			    	  required:true
+    			      },
+    			      job: {
+    			    	  required:true
+    			      },
+    			      password: {
+    			    	  required:true
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
+</div>

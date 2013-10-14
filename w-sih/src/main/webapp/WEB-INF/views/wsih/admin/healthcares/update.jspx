@@ -18,33 +18,58 @@
     
     <spring:url value="/admin/healthcaremanagement/healthcares/update" var="updatehealthcare_url"/>
     
-       <form:form action="${updatehealthcare_url}" method="post" modelAttribute="WSHealthCare_">
+       <form:form action="${updatehealthcare_url}" method="post" modelAttribute="WSHealthCare_" cssClass="form-horizontal">
 	   	<fieldset>
-	    		<legend>
-	    			${formheader_label}
-	    		</legend>
+    		<legend>
+    			${formheader_label}
+    		</legend>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${name_label}</label>
-		    			<form:input path="name" autocomplete="off"/>
-		    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="name">${name_label}</label>
+	    		<div class="controls">
+	    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
 	    		</div>
+    		</div>
 	    		
-	    		<div class="row-fluid">
-	    			<p class="span5">
-		    			<label>${healthcaretype_label}</label>
-		    			<form:select path="healthCareType">
-		    				<form:options items="${wshealthcaretypes}" itemLabel="name" itemValue="id" />
-		    			</form:select>
-		    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="healthCareType">${healthcaretype_label}</label>
+    			<div class="controls">
+	    			<form:select path="healthCareType" cssClass="input-xlarge">
+	    				<form:options items="${wshealthcaretypes}" itemLabel="name" itemValue="id" />
+	    			</form:select>
 	    		</div>
-	    		<div class="row-fluid">
-	    			<form:hidden path="id" />
-	    			<button class="btn btn-success" type="submit">
-						${buttonsave_label} <span class="icon-white icon-ok"></span>    			
-	    			</button>
-	    		</div>
+    		</div>
+	    		
+    		<div class="form-actions">
+    			<form:hidden path="id" />
+    			<button class="btn btn-success" type="submit">
+					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
+    			</button>
+    		</div>
 	    </fieldset>
     </form:form>
+   	<SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSHealthCare_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+    			      healthCareType:{
+    			    	  required: true 
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

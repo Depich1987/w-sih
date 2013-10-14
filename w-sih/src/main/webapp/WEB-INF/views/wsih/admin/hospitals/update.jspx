@@ -27,110 +27,108 @@
     
     <spring:url value="/admin/hospital/update" var="updatehospital_url"/>
     
-    <form:form modelAttribute="WSHospital_" method="post" action="${updatehospital_url}">
+    <form:form modelAttribute="WSHospital_" method="post" action="${updatehospital_url}"  cssClass="form-horizontal">
     	<fieldset>
     		<legend>
     			${formheader_label}
     		</legend>
     		
     		<div class="row-fluid">
-    		
-    			<ul class="nav nav-tabs ws-tab">
-    				<li><a href="#general" data-toggle="tab">${identificationcenter_label}</a></li>
-    				<li><a href="#headerFooter" data-toggle="tab">Header and Footer</a></li>
-    				<li><a href="#accountSettings" data-toggle="tab">${accountsettings_label}</a></li>
-    			</ul>
-    			
-    			<div class="tab-content">
-    				
-    				<div class="tab-pane active" id="general">
-    					<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${name_label}</label>
-				    			<form:input path="name" />
-				    		</p>
-			    		</div>
-			    		
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${city_label}</label>
-				    			<form:input path="city" />
-				    		</p>
-			    		</div>
-			    		
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${address_label}</label>
-				    			<form:input path="address" />
-				    		</p>
-			    		</div>
-			    		
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${phoneNumber_label}</label>
-				    			<form:input path="phoneNumber" />
-				    		</p>
-			    		</div>
-			    		
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${email_label}</label>
-				    			<form:input path="email" />
-				    		</p>
-			    		</div>
-			    		
-    				</div>
-    				
-    				<div class="tab-pane" id="headerFooter">
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${header_label}</label>
-				    			<form:textarea path="header" />
-				    		</p>
-			    		</div>
-			    		
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${footer_label}</label>
-				    			<form:textarea path="footer" />
-				    		</p>
-			    		</div>
-    				</div>
-    				<div class="tab-pane" id="accountSettings">
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${accountservicewithoutfees_label}</label>
-				    			<form:select path="accountServiceWithoutFees" items="${budgetAccounts}" itemLabel="name" itemValue="id"/>
-				    		</p>
-			    		</div>
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${accountfeescollection_label}</label>
-				    			<form:select path="accountFeesCollection" items="${budgetAccounts}" itemLabel="name" itemValue="id"/>
-				    		</p>
-			    		</div>
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${accountservicevat_label}</label>
-				    			<form:select path="accountServiceVAT" items="${budgetAccounts}" itemLabel="name" itemValue="id"/>
-				    		</p>
-			    		</div>
-			    		<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${cashaccountused_label}</label>
-				    			<form:select path="cashAccountUsed" items="${cashAccounts}" itemLabel="name" itemValue="id"/>
-				    		</p>
-			    		</div>
-		    			<div class="row-fluid">
-				    		<p class="span5">
-				    			<label>${defaultcurrency_label}</label>
-				    			<form:input path="defaultCurrency" />
-				    		</p>
-    					</div>
-    				</div>
-    			</div>
+
+	    		<div class="alert alert-success">
+		    		<strong>${identificationcenter_label}</strong>
+		    	</div>
+  					
+				<div class="control-group">
+    				<label class="control-label" for="name">${name_label}</label>
+	    			<div class="controls">
+		    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+				<div class="control-group">
+	    			<label class="control-label" for="city">${city_label}</label>
+	    			<div class="controls">
+		    			<form:input path="city" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+				<div class="control-group">
+	    			<label class="control-label" for="address">${address_label}</label>
+		    		<div class="controls">
+		    			<form:input path="address" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+				<div class="control-group">
+	    			<label class="control-label" for="phoneNumber">${phoneNumber_label}</label>
+		    		<div class="controls">
+		    			<form:input path="phoneNumber" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+				<div class="control-group">
+	    			<label class="control-label" for="email">${email_label}</label>
+		    		<div class="controls">
+		    			<form:input path="email" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+	    					    		<div class="control-group">
+	    			<label class="control-label" for="header">${header_label}</label>
+	    			<div class="controls">
+		    			<form:textarea path="header" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+	    		
+	    		<div class="control-group">
+	    			<label class="control-label" for="footer">${footer_label}</label>
+		    		<div class="controls">
+		    			<form:textarea path="footer" cssClass="input-xlarge" autocomplete="off"/>
+		    		</div>
+	    		</div>
+
+	    		<div class="alert alert-success">
+		    		<strong>${accountsettings_label}</strong>
+		    	</div>
+		    	
+	    		<div class="control-group">
+	    			<label class="control-label" for="accountServiceWithoutFees">${accountservicewithoutfees_label}</label>
+		    		<div class="controls">
+		    			<form:select path="accountServiceWithoutFees" items="${budgetAccounts}" itemLabel="name" itemValue="id"  cssClass="input-xlarge"/>
+		    		</div>
+	    		</div>
+	    		
+	    		<div class="control-group">
+	    			<label class="control-label" for="accountFeesCollection">${accountfeescollection_label}</label>
+		    		<div class="controls">
+		    			<form:select path="accountFeesCollection" items="${budgetAccounts}" itemLabel="name" itemValue="id"  cssClass="input-xlarge"/>
+		    		</div>
+	    		</div>
+	    		
+	    		<div class="control-group">
+	    			<label class="control-label" for="accountServiceVAT">${accountservicevat_label}</label>
+		    		<div class="controls">
+		    			<form:select path="accountServiceVAT" items="${budgetAccounts}" itemLabel="name" itemValue="id"  cssClass="input-xlarge"/>
+		    		</div>
+	    		</div>
+	    		
+	    		<div class="control-group">
+	    			<label class="control-label" for="cashAccountUsed">${cashaccountused_label}</label>
+		    		<div class="controls">
+		    			<form:select path="cashAccountUsed" items="${cashAccounts}" itemLabel="name" itemValue="id"  cssClass="input-xlarge"/>
+		    		</div>
+	    		</div>
+	    		
+	    		<div class="control-group">
+	    			<label class="control-label" for="defaultCurrency">${defaultcurrency_label}</label>
+		    		<div class="controls">
+		    			<form:input path="defaultCurrency"  cssClass="input-xlarge" autocomplete="off" />
+		    		</div>
+  					</div>
+
     		</div>
-    		<div class="row-fluid">
+    		<div class="form-actions">
     			<form:hidden path="id" />
     			<button class="btn btn-success" type="submit">
 					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
@@ -140,5 +138,33 @@
     	</fieldset>
     </form:form>
     
-    
+      <SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSHospital_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+    			      city: {
+    			    	  required:true
+    			      }
+    			      ,
+    			      email:{
+    			    	  email:true,
+    			    	 required:false 
+    			      },
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

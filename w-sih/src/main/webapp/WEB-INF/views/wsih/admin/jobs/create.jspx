@@ -19,35 +19,35 @@
      
     <spring:url value="/admin/departments/jobs/create" var="createdepartmentjob_url"/>
     
-    <form:form modelAttribute="WSJob_" method="post" action="${createdepartmentjob_url}">
+    <form:form modelAttribute="WSJob_" method="post" action="${createdepartmentjob_url}" cssClass="form-horizontal">
     	<fieldset>
     	
     		<legend>
     			 ${formheader_label}
     		</legend>
     		
-    		<div class="row-fluid">
-	   			<p class="span5">
-	    			<label>${name_label}</label>
-	    			<form:input path="name" autocomplete="off" />
-	    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="name">${name_label}</label>
+	    		<div class="controls">
+	    			<form:input path="name" cssClass="input-xlarge" autocomplete="off"/>
+	    		</div>
     		</div>
     		
-    		<div class="row-fluid">
-	   			<p class="span5">
-	    			<label>${department_label}</label>
-	    			<form:select path="department" autocomplete="off" items="${wsdepartments}" itemLabel="name" itemValue="id" />
-	    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="department">${department_label}</label>
+	    		<div class="controls">
+	    			<form:select path="department" cssClass="input-xlarge" autocomplete="off" items="${wsdepartments}" itemLabel="name" itemValue="id" />
+	    		</div>
     		</div>
     		
-    		<div class="row-fluid">
-	   			<p class="span5">
-	    			<label>${description_label}</label>
-	    			<form:textarea path="description" autocomplete="off" />
-	    		</p>
+    		<div class="control-group">
+    			<label class="control-label" for="description">${description_label}</label>
+	    		<div class="controls">
+	    			<form:textarea path="description" cssClass="input-xlarge" autocomplete="off" />
+	    		</div>
     		</div>
     		
-    		<div class="row-fluid">
+    		<div class="form-actions">
     			<button class="btn btn-success" type="submit">
 					${buttonsave_label} <span class="icon-white icon-ok"></span>    			
     			</button>
@@ -55,4 +55,28 @@
     		
     	</fieldset>
     </form:form>
+   	<SCRIPT type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		$('#WSJob_').validate({
+    			rules: {
+    				name: {
+    			        minlength: 2,
+    			        required: true
+    			      },
+    			      department : {
+    			    	  required: true  
+    			      }, 
+			highlight: function(element) {
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			success: function(element) {
+				element
+				.text('OK!').addClass('valid')
+				.closest('.control-group').removeClass('error').addClass('success');
+			}
+    			}
+    		});
+    	});
+    </SCRIPT>
 </div>

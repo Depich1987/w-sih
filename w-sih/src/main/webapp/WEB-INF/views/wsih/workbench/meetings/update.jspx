@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_depich1987_wsih_domain_WSMeeting" modelAttribute="WSMeeting_" path="/wsmeetings" versionField="Version" z="KBj5MU+EydhIsAzbdrSrMaeT9qg=">
+        <field:input field="description" id="c_com_depich1987_wsih_domain_WSMeeting_description" z="IkK3Ud2yBotA3VlHwYNmgAmrhF0="/>
+        <field:datetime dateTimePattern="${WSMeeting__creationdate_date_format}" field="creationDate" id="c_com_depich1987_wsih_domain_WSMeeting_creationDate" z="2vwW95Yt4/lU9NUPjMwmAgrOtQM="/>
+        <field:input field="createdBy" id="c_com_depich1987_wsih_domain_WSMeeting_createdBy" z="PhWt+fnfkOQHjZRtEoKSJOCGd3w="/>
+        <field:select field="patient" id="c_com_depich1987_wsih_domain_WSMeeting_patient" itemValue="id" items="${wspatients}" path="/wspatients" z="GutbHTuGyhr1u8ZIABpiyvVPRds="/>
+    </form:update>
+</div>

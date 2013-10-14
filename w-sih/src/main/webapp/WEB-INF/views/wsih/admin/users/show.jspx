@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page"
+	 xmlns:spring="http://www.springframework.org/tags" 
+	 xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser" var="user_label"/>
+    <spring:message code="wsih_entitydetailslabel" arguments="${user_label}" var="formheader_label"/>
+    <spring:message code="wsih_entitybacktolist" arguments="${user_label}" var="backtolist_label"/>
+    <spring:message code="button_update" var="update_label"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_username" var="username_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_civility" var="civility_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_firstname" var="firstname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_lastname" var="lastname_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_password" var="password_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_confirmpassword" var="confirmpassword_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_usertype" var="usertype_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsuser_job" var="job_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsdepartment" var="department_label"/>
+    
+  	<spring:url value="/admin/users/${wsuser_.id}?form" var="updateuser_url"/>
+	<spring:url value="/admin/users?size=10" var="listusers_url"/>
+    
+   	<fieldset>
+   		<legend>
+   			${formheader_label}
+   		</legend>
+   		<div class="row-fluid"> 
+   		
+   			<div class="span5">
+	   			<div class="row-fluid">
+	    			<label>${username_label}</label>
+	    			<strong>${wsuser_.userName}</strong>
+	   			</div>
+
+		   		<div class="row-fluid">
+		   			<label>${department_label}</label>
+		   			<strong>${wsuser_.job.department.name}</strong>
+		   		</div>
+		   		
+		   		<div class="row-fluid">
+		   			<label>${job_label}</label>
+		   			<strong>${wsuser_.job.name}</strong>
+		   		</div>
+   		
+		   		<div class="row-fluid">
+		   			<label>${usertype_label}</label>
+		   			<strong>${wsuser_.userType}</strong>
+		   		</div>
+   			</div>
+   			<div class="span5">
+   			
+   				<div class="row-fluid">
+	    			<label>${firstname_label}</label>
+	    			<strong>${wsuser_.firstName}</strong>
+    			</div>
+    			
+		   		<div class="row-fluid">
+	    			<label>${lastname_label}</label>
+	    			<strong>${wsuser_.lastName}</strong>
+		   		</div>
+		   		
+    		</div>
+   		</div>
+   		<div class="row-fluid">
+   			<div class="btn-group">
+   				<a href="${listusers_url}" class="btn btn-default">${backtolist_label}</a>
+   				<a href="${updateuser_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
+   			</div>
+   		</div>
+   		
+   	</fieldset>
+</div>

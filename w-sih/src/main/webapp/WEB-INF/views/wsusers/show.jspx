@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSUser" object="${wsuser_}" path="/wsusers" z="V0UcR82D1b4r3LmgBQNJ9GkRTAY=">
+        <field:display field="civility" id="s_com_depich1987_wsih_domain_WSUser_civility" object="${wsuser_}" z="3hrJFNWI5ehMWP4hVrPDwIc2AxU="/>
+        <field:display field="firstName" id="s_com_depich1987_wsih_domain_WSUser_firstName" object="${wsuser_}" z="Jzvq13zrOEC2wBkA/qHNa9R7JYY="/>
+        <field:display field="lastName" id="s_com_depich1987_wsih_domain_WSUser_lastName" object="${wsuser_}" z="7C7jIOCOK/omUyH+eMoFF8SJSpc="/>
+        <field:display field="userName" id="s_com_depich1987_wsih_domain_WSUser_userName" object="${wsuser_}" z="j39xGv7beZeoUkoBcHc3t4w5NOI="/>
+        <field:display field="password" id="s_com_depich1987_wsih_domain_WSUser_password" object="${wsuser_}" z="kGGvzhat2EbqBV3oTxVNIvdHi60="/>
+        <field:display field="confirmPassword" id="s_com_depich1987_wsih_domain_WSUser_confirmPassword" object="${wsuser_}" z="ngHt8TEn6Xu8JAviomRhEm5Dhmk="/>
+        <field:display field="userType" id="s_com_depich1987_wsih_domain_WSUser_userType" object="${wsuser_}" z="Mk3Hmn++ewKXnPdx4BPcGQxCxWA="/>
+        <field:display field="job" id="s_com_depich1987_wsih_domain_WSUser_job" object="${wsuser_}" z="XGLH6MYjR57eCCAexND3nZ7CnWk="/>
+        <field:display field="pictureName" id="s_com_depich1987_wsih_domain_WSUser_pictureName" object="${wsuser_}" z="HZcXHIusQ52Kw+jzy0p/e2wL/VQ="/>
+    </page:show>
+</div>

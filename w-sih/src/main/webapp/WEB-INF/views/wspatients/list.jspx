@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSPatient" items="${wspatients}" z="FL6achtuTvEGXUWGX9pkk6qPBi0=">
+        <table:table data="${wspatients}" id="l_com_depich1987_wsih_domain_WSPatient" path="/wspatients" z="GDWjBcppTCZxgMaWNvVJUb8Hu2U=">
+            <table:column id="c_com_depich1987_wsih_domain_WSPatient_folderRegistrationId" property="folderRegistrationId" z="hp6e5Lpt6iAexX2MO62WNkPwmjU="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSPatient_civility" property="civility" z="Rx83B8/b9D+IJ8EEg/LmAuTGwuE="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSPatient_firstName" property="firstName" z="T5NNxtCFaNieOWevtkC/DkS/QJk="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSPatient_lastName" property="lastName" z="bw+UGFVoa75/hwsMHEswD6b+kjc="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSPatient_gender" property="gender" z="oeQ3nGc/mIBz0d+NyrY3Gk5BWp0="/>
+            <table:column date="true" dateTimePattern="${WSPatient__birthdate_date_format}" id="c_com_depich1987_wsih_domain_WSPatient_birthDate" property="birthDate" z="RGubxLABomMPWohnZoGHPgdciRc="/>
+        </table:table>
+    </page:list>
+</div>

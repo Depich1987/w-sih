@@ -6,6 +6,5 @@
         <field:display field="name" id="s_com_depich1987_wsih_domain_WSDepartment_name" object="${wsdepartment_}" z="NqtgsBKEqgbqKu2UJAl3lzEOxeA="/>
         <field:display field="description" id="s_com_depich1987_wsih_domain_WSDepartment_description" object="${wsdepartment_}" z="3MDiEJP5VMEe7Ee0qBjrq/EITDE="/>
         <field:display field="departmentType" id="s_com_depich1987_wsih_domain_WSDepartment_departmentType" object="${wsdepartment_}" z="FPvSCcsxvDJGnykTHz8w9uLE6RA="/>
-        <field:display field="job" id="s_com_depich1987_wsih_domain_WSDepartment_job" object="${wsdepartment_}" z="ZiSDWPwcuVnK/tyKF9Z/glsZc6k="/>
     </page:show>
 </div>

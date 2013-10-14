@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_depich1987_wsih_domain_WSUser" modelAttribute="WSUser_" path="/wsusers" versionField="Version" z="ve+uYB+EeYriNRfbb7SIcjzKR+Q=">
+        <field:input field="civility" id="c_com_depich1987_wsih_domain_WSUser_civility" z="ez23vtpU3+YUeI2Dfxp614S+xuk="/>
+        <field:input field="firstName" id="c_com_depich1987_wsih_domain_WSUser_firstName" z="WeXyd4LxmZ5kC3In7MTuzidGJwk="/>
+        <field:input field="lastName" id="c_com_depich1987_wsih_domain_WSUser_lastName" z="/GHbcIYOlhlxufSSW3CgXGJMBZw="/>
+        <field:input field="userName" id="c_com_depich1987_wsih_domain_WSUser_userName" z="EwH+bHPaEL8ACxOQE41/8iTfYrg="/>
+        <field:input field="password" id="c_com_depich1987_wsih_domain_WSUser_password" z="W6S3JNLe7Q1BlHzp98/152V8bgM="/>
+        <field:input field="confirmPassword" id="c_com_depich1987_wsih_domain_WSUser_confirmPassword" z="oyOn3qdtQNhzAHT/N2bIAIlCYNs="/>
+        <field:input field="userType" id="c_com_depich1987_wsih_domain_WSUser_userType" z="sNVMR2UpkqP7OTEqPq5sVWn/mxc="/>
+        <field:select field="job" id="c_com_depich1987_wsih_domain_WSUser_job" itemValue="id" items="${wsjobs}" path="/wsjobs" z="OiVwhyr3rXkbYoMqPKly2HHD5h4="/>
+        <field:input field="pictureName" id="c_com_depich1987_wsih_domain_WSUser_pictureName" z="qtbA+f/ILwIzVMYsEWpZszW3dFA="/>
+    </form:update>
+</div>

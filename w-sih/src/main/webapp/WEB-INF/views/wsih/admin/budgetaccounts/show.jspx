@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  xmlns:form="http://www.springframework.org/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"  
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"  
+	 xmlns:form="http://www.springframework.org/tags/form" 
+	 xmlns:fn="http://java.sun.com/jsp/jstl/functions"  
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -46,10 +52,10 @@
     		</div>
     		
    		<div class="row-fluid">
-   			<p class="span5">
+   			<div class="btn-group">
    				<a href="${listbudgetaccount_url}" class="btn btn-default">${backtolist_label}</a>
    				<a href="${upatebudgetaccount_url}" class="btn btn-primary">${update_label} <span class="icon-white icon-pencil"></span></a>
-   			</p>
+   			</div>
    		</div>
    	</fieldset>
 </div>

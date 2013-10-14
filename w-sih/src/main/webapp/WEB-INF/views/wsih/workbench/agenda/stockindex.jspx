@@ -1,0 +1,46 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+	 xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+
+  <spring:message code="wsih_medicalsupplies" var="medicalsupplies_label"/>
+  <spring:message code="menu_item_wsmedecinetype_list_label" var="medecinetype_label"/>
+  <spring:message code="menu_item_wsmedecine_list_label" var="medecine_label"/>
+  
+  <spring:message code="label_com_depich1987_wsih_domain_wsstockpile" var="stockpile_label"/>
+  <spring:message code="global_menu_new" arguments="${stockpile_label}" var="createstockpile_label"/>
+  
+  
+  <spring:url value="/admin/stockmanager/medecinetypes?size=10" var="medecinetypes_url"/>
+  <spring:url value="/admin/stockmanager/medecines?size=10" var="medecines_url"/>
+  <spring:url value="/admin/stockmanager/stockpiles/create?form" var="createstockpile_url"/>
+  	
+	<div class="row-fluid">
+	
+    	<fieldset>
+    		<legend>
+    			${medicalsupplies_label}
+    		</legend>
+    		
+    		<p class="row-fluid">
+    			<a href="${createstockpile_url}" class="btn btn-primary">${createstockpile_label} <span class="icon-white icon-plus-sign"></span></a>
+    		</p>
+    		
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${medecinetypes_url}" class="btn btn-default">${medecinetype_label}</a>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${medecines_url}" class="btn btn-default">${medecine_label}</a>
+					</div>
+				</div>
+			</div>
+			
+    	</fieldset>
+	</div>
+</div>

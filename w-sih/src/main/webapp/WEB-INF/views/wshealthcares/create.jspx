@@ -6,6 +6,7 @@
         <field:input field="name" id="c_com_depich1987_wsih_domain_WSHealthCare_name" z="E5V08y9dOGzk03j59f4dSMhb2ic="/>
         <field:select field="healthCareType" id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareType" itemValue="id" items="${wshealthcaretypes}" path="/wshealthcaretypes" z="/vWxMMofr0ktNBplxBNjutBKEbw="/>
         <field:simple field="insuranceProducts" id="c_com_depich1987_wsih_domain_WSHealthCare_insuranceProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Inurance Product" z="/JXyYF2Oxk+Pyq33ZKnkuExnvxc="/>
+        <field:simple field="healthCareInMeeting" id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareInMeeting" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Health Care In Meeting" z="4yDIfO5ZAglKyVhdjSjzWXiASEU="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_depich1987_wsih_domain_WSHealthCare" render="${not empty dependencies}" z="BkyNYJ05Mb0AiXGbI1NksoNHDOg="/>
 </div>

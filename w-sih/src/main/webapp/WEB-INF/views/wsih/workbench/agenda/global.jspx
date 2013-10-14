@@ -1,0 +1,80 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+
+  <spring:message code="wsih_workbench_entries" var="workbenchentries_label"/>
+  <spring:message code="label_com_depich1987_wsih_domain_wsmeeting" var="meeting_label"/>
+  <spring:message code="global_menu_new" arguments="${meeting_label}" var="createmeeting_label"/>
+  
+  <spring:message code="label_com_depich1987_wsih_domain_wsstockpile" var="stockpile_label"/>
+
+  <spring:url value="/workbench/meetings/create?form" var="createmeeting_url"/>
+  	
+	<div class="row-fluid">
+	
+    	<fieldset>
+    		<legend>
+    			${workbenchentries_label}
+    		</legend>
+    		
+    		<div class="row-fluid">
+ 
+	    		<div class="span5">
+	    			<select id="departmentFilter">
+	    				<option value="all">All Departments</option>
+	    				<c:forEach items="${wsdepartments}" var="department">
+	    					<option value="${department.id}">
+	    						${department.name}
+	    					</option>
+	    				</c:forEach>
+	    			</select>
+	    		</div>
+	  			<div class="span7">
+    				<a href="${createmeeting_url}" class="btn btn-primary" style="float:right;">
+	    				${createmeeting_label} <span class="icon-white icon-plus-sign"></span>
+	    			</a>
+    			</div>
+    			
+    		</div>
+    		<hr />
+			<p class="row-fluid">
+				<div id="agendaArea"></div>
+			</p>
+    	</fieldset>
+	</div>
+	
+	<script type="text/javascript">
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+	
+		$(document).ready(function(){
+			
+			var eventObject = {
+					title: 'Franck Agah Events',// use the element's text as the event title
+					start: new Date(y, m, d+1)
+					,allDay: false
+				};
+			
+			$('#agendaArea').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: false,
+				droppable: false
+			});
+			$('#agendaArea').fullCalendar('renderEvent', {title: 'Franck Agah Events Today',start: new Date(y, m, d),allDay: false}, true);
+			$('#departmentFilter').change(function(){
+				$('#agendaArea').fullCalendar('renderEvent', eventObject, true);
+				
+			});
+		});
+	</script>
+	
+</div>

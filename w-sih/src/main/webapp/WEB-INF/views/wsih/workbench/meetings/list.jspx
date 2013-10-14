@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	 xmlns:spring="http://www.springframework.org/tags"  
+	 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+	 xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting" var="meeting_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_plural" var="meetings_label"/>
+    
+    <spring:message code="global_menu_list" arguments="${meetings_label}" var="meetinglist_label"/>
+    <spring:message code="global_menu_new" arguments="${meeting_label}" var="createmeeting_label"/>
+    
+    <spring:url value="/workbench/meetings/create?form" var="createmeeting_url"/>
+    <spring:url value="/workbench/agenda" var="agenda_url"/>
+    
+    <div class="row-fluid">
+    	<fieldset>
+    		<legend>
+    			${meetinglist_label}
+    		</legend>
+    		<div class="row-fluid">
+    			<a href="${createmeeting_url}" class="btn btn-primary">
+    				${createmeeting_label} <span class="icon-white icon-plus-sign"></span>
+    			</a>
+    		</div>
+    		<p class="row-fluid">
+    			<table:table data="${wsmeetings}" id="l_com_depich1987_wsih_domain_WSMeeting" path="/workbench/meetings" create="false" update="false" delete="false">
+		            <table:column id="c_com_depich1987_wsih_domain_WSMeeting_description" property="description"/>
+		            <table:column id="c_com_depich1987_wsih_domain_WSMeeting_patient" property="patient"/>
+		            <table:column date="true" dateTimePattern="${WSMeeting__creationdate_date_format}" id="c_com_depich1987_wsih_domain_WSMeeting_creationDate" property="creationDate"/>
+		            
+		        </table:table>
+    		</p>
+    	</fieldset>
+    </div>
+</div>

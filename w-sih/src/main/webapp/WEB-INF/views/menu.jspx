@@ -51,5 +51,17 @@
             <menu:item id="i_wsjob_new" messageCode="global_menu_new" url="/wsjobs?form" z="I/hd3gn1uTTrO28V7nPbRPHm4B8="/>
             <menu:item id="i_wsjob_list" messageCode="global_menu_list" url="/wsjobs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="D4eJWEAV5mVGrg1h0pD+TewZb6g="/>
         </menu:category>
+        <menu:category id="c_wsuser" z="ZUVzWL4aCGwz1sr1xsONaP9nlr0=">
+            <menu:item id="i_wsuser_new" messageCode="global_menu_new" url="/wsusers?form" z="klgq2rMQ4QlDtCvCsTmQULT1oC4="/>
+            <menu:item id="i_wsuser_list" messageCode="global_menu_list" url="/wsusers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="wTjPFQ2b6X93sh64q/OdZ98ua7A="/>
+        </menu:category>
+        <menu:category id="c_wsmeeting" z="puyWEr/FUEq8kg9lltjydKxYOFg=">
+            <menu:item id="i_wsmeeting_new" messageCode="global_menu_new" url="/wsmeetings?form" z="8o2MWvk+oUhrUu5N+EO8i/tFo5k="/>
+            <menu:item id="i_wsmeeting_list" messageCode="global_menu_list" url="/wsmeetings?page=1&amp;size=${empty param.size ? 10 : param.size}" z="KlKoABDRsNYcps7eyRhmZI9rBQo="/>
+        </menu:category>
+        <menu:category id="c_wspatient" z="ojUHzqJxs053MIJxt01O1E7qVvY=">
+            <menu:item id="i_wspatient_new" messageCode="global_menu_new" url="/wspatients?form" z="B1QPhHHACeCtqH681hoQn7Dy9z8="/>
+            <menu:item id="i_wspatient_list" messageCode="global_menu_list" url="/wspatients?page=1&amp;size=${empty param.size ? 10 : param.size}" z="WAQQkl3fOqz/wUZHEPB4xCvuBMU="/>
+        </menu:category>
     </menu:menu>
 </div>

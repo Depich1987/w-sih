@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_depich1987_wsih_domain_WSUser" items="${wsusers}" z="fUi5Nq9BFDjUnUhszixMbFAhVnw=">
+        <table:table data="${wsusers}" id="l_com_depich1987_wsih_domain_WSUser" path="/wsusers" z="QO9Tk2dMBIxxTYYyWoN4mqHVNSk=">
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_civility" property="civility" z="yT/3TLSRBl3gFp8OhfwE3Aue1x0="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_firstName" property="firstName" z="D7Ns6bHrdrtmg9REOYkWR5PL5Pw="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_lastName" property="lastName" z="FlQZpLzuY1obkEj9SwFICr5VNDk="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_userName" property="userName" z="WZuofieHzTkqNRoK6BN4SXCFBR4="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_password" property="password" z="nNOBY24+K4fz2bREimMGTZebBRc="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSUser_pictureName" property="pictureName" z="gkx43iy5G0NhNLTMaZHMq6jxZTg="/>
+        </table:table>
+    </page:list>
+</div>

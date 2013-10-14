@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSPatient" object="${wspatient_}" path="/wspatients" z="1/suqBqxUBu8h+j9cpolw02+j7o=">
+        <field:display field="folderRegistrationId" id="s_com_depich1987_wsih_domain_WSPatient_folderRegistrationId" object="${wspatient_}" z="QFxfp19IonUew1wnoa2YG3DJ0JQ="/>
+        <field:display field="civility" id="s_com_depich1987_wsih_domain_WSPatient_civility" object="${wspatient_}" z="DMvyyYqhcUAOM629uRZFxPX8bYo="/>
+        <field:display field="firstName" id="s_com_depich1987_wsih_domain_WSPatient_firstName" object="${wspatient_}" z="6KN8OB+lw823qdhr3WDtuM48sZw="/>
+        <field:display field="lastName" id="s_com_depich1987_wsih_domain_WSPatient_lastName" object="${wspatient_}" z="BGq9HU5KjIaRDcujQjKo2sAlCmc="/>
+        <field:display field="gender" id="s_com_depich1987_wsih_domain_WSPatient_gender" object="${wspatient_}" z="Mj1GL/4xZxIjyopzH4Hlx4EhOkw="/>
+        <field:display date="true" dateTimePattern="${WSPatient__birthdate_date_format}" field="birthDate" id="s_com_depich1987_wsih_domain_WSPatient_birthDate" object="${wspatient_}" z="JsaoJ1/VZ/+cdIpQZ0ZWWLJ5pg8="/>
+        <field:display field="country" id="s_com_depich1987_wsih_domain_WSPatient_country" object="${wspatient_}" z="uTf9kyCjcaPuvyHcCFuRnPnf6Lw="/>
+        <field:display field="job" id="s_com_depich1987_wsih_domain_WSPatient_job" object="${wspatient_}" z="uaseAXdLlaQZtn2Lh0QjaVrXjcE="/>
+        <field:display field="address" id="s_com_depich1987_wsih_domain_WSPatient_address" object="${wspatient_}" z="rsPcMT0kGnRcKojWOjuC9Bn2AlE="/>
+        <field:display field="city" id="s_com_depich1987_wsih_domain_WSPatient_city" object="${wspatient_}" z="mum4FSYVkv2Yu/HGCcWUZkdzJ9Y="/>
+        <field:display field="longitude" id="s_com_depich1987_wsih_domain_WSPatient_longitude" object="${wspatient_}" z="OO4m663+T3mgn53cD3pZxqQDrd8="/>
+        <field:display field="latitude" id="s_com_depich1987_wsih_domain_WSPatient_latitude" object="${wspatient_}" z="vk6uGs9CgFqMnL80SW33m1qCUw8="/>
+        <field:display field="phoneHome" id="s_com_depich1987_wsih_domain_WSPatient_phoneHome" object="${wspatient_}" z="xZA0GXjpGvnccJOpn50O091PyAU="/>
+        <field:display field="mobilePhone" id="s_com_depich1987_wsih_domain_WSPatient_mobilePhone" object="${wspatient_}" z="bJQh8vmY5ai88LGVdMa4jIlfKXc="/>
+        <field:display field="email" id="s_com_depich1987_wsih_domain_WSPatient_email" object="${wspatient_}" z="mUrD06JfrnLqc3cZvtBG7tbg0cw="/>
+        <field:display field="insured" id="s_com_depich1987_wsih_domain_WSPatient_insured" object="${wspatient_}" z="T8iadDp3/VuhpkjzafA7RzU+nD8="/>
+        <field:display field="insuredRegistrationId" id="s_com_depich1987_wsih_domain_WSPatient_insuredRegistrationId" object="${wspatient_}" z="nmz7WgVJgzU23x7JVF+Am2K83IA="/>
+        <field:display field="insuredCardId" id="s_com_depich1987_wsih_domain_WSPatient_insuredCardId" object="${wspatient_}" z="HFdRZxBnNQ9KF09V3NzoS/6FnLg="/>
+        <field:display field="principalInsuredRegistrationId" id="s_com_depich1987_wsih_domain_WSPatient_principalInsuredRegistrationId" object="${wspatient_}" z="t/VMJV3t/HEJfv9B2NXCg48c06Y="/>
+        <field:display field="insuredFullName" id="s_com_depich1987_wsih_domain_WSPatient_insuredFullName" object="${wspatient_}" z="wAlJrIlYqfEc2R+Z6FkZtU2i3Ys="/>
+        <field:display field="pitcureName" id="s_com_depich1987_wsih_domain_WSPatient_pitcureName" object="${wspatient_}" z="DEas8BUbYCu+n4OeyCS+meFloC8="/>
+        <field:display date="true" dateTimePattern="${WSPatient__creationdate_date_format}" field="creationDate" id="s_com_depich1987_wsih_domain_WSPatient_creationDate" object="${wspatient_}" z="5oYCFgmWV9GsBAWqoK0LMPA07/4="/>
+        <field:display field="createdBy" id="s_com_depich1987_wsih_domain_WSPatient_createdBy" object="${wspatient_}" z="NPrneycuAxLsPwb5/FS3V6CZwlk="/>
+        <field:display field="assignedDoctor" id="s_com_depich1987_wsih_domain_WSPatient_assignedDoctor" object="${wspatient_}" z="fJBfudM0KZ59SuG9w8T7gCBm0DI="/>
+        <field:display field="securedFolder" id="s_com_depich1987_wsih_domain_WSPatient_securedFolder" object="${wspatient_}" z="4q5rP0NCtWRK/bP7UoIL5icf0Ws="/>
+        <field:display field="password" id="s_com_depich1987_wsih_domain_WSPatient_password" object="${wspatient_}" z="DsXhqWpr9YLybYBtIg3hN66OGdQ="/>
+        <field:display field="confirmPassword" id="s_com_depich1987_wsih_domain_WSPatient_confirmPassword" object="${wspatient_}" z="NotOdVcABnyKgCRJDpOpWfNczbo="/>
+        <field:display field="birthPlace" id="s_com_depich1987_wsih_domain_WSPatient_birthPlace" object="${wspatient_}" z="XgTt1kHWgfjV3cM9sMjlddtKXcU="/>
+        <field:display field="registrationCNI" id="s_com_depich1987_wsih_domain_WSPatient_registrationCNI" object="${wspatient_}" z="tn5GvRdE7FgKATftFfgyLP1F1Mk="/>
+    </page:show>
+</div>

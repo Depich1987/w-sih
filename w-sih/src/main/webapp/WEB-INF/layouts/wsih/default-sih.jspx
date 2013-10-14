@@ -37,6 +37,9 @@
 	    <script type="text/javascript">
 	    	$(document).ready(function(){
 	    		
+	    		//get current navigation
+	    		var targetNavig='${currentNav}'+'_activeNav';
+	    		if(targetNavig !="_activeNav"){	$('#'+targetNavig).addClass('active');}
 
 	    			//enable tabs functions
 	    			$('.ws-tab a').click(function (e) {
