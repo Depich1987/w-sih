@@ -3,19 +3,13 @@
 
 package com.depich1987.wsih.domain;
 
-import com.depich1987.wsih.domain.WSDepartment;
+import com.depich1987.wsih.domain.WSHealthCareInMeeting;
 import com.depich1987.wsih.domain.WSMeeting;
+import com.depich1987.wsih.domain.WSPatient;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect WSMeeting_Roo_JavaBean {
-    
-    public Date WSMeeting.getMeetingDate() {
-        return this.meetingDate;
-    }
-    
-    public void WSMeeting.setMeetingDate(Date meetingDate) {
-        this.meetingDate = meetingDate;
-    }
     
     public String WSMeeting.getDescription() {
         return this.description;
@@ -25,28 +19,28 @@ privileged aspect WSMeeting_Roo_JavaBean {
         this.description = description;
     }
     
-    public WSDepartment WSMeeting.getDepartment() {
-        return this.department;
+    public Date WSMeeting.getMeetingDate() {
+        return this.meetingDate;
     }
     
-    public void WSMeeting.setDepartment(WSDepartment department) {
-        this.department = department;
+    public void WSMeeting.setMeetingDate(Date meetingDate) {
+        this.meetingDate = meetingDate;
     }
     
-    public Date WSMeeting.getStartTime() {
-        return this.startTime;
+    public Date WSMeeting.getCreationDate() {
+        return this.creationDate;
     }
     
-    public void WSMeeting.setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void WSMeeting.setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
     
-    public Date WSMeeting.getEndTime() {
-        return this.endTime;
+    public String WSMeeting.getCreatedBy() {
+        return this.createdBy;
     }
     
-    public void WSMeeting.setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void WSMeeting.setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
     
     public Boolean WSMeeting.getStatus() {
@@ -55,6 +49,22 @@ privileged aspect WSMeeting_Roo_JavaBean {
     
     public void WSMeeting.setStatus(Boolean status) {
         this.status = status;
+    }
+    
+    public WSPatient WSMeeting.getPatient() {
+        return this.patient;
+    }
+    
+    public void WSMeeting.setPatient(WSPatient patient) {
+        this.patient = patient;
+    }
+    
+    public Set<WSHealthCareInMeeting> WSMeeting.getHealthCareInMeeting() {
+        return this.healthCareInMeeting;
+    }
+    
+    public void WSMeeting.setHealthCareInMeeting(Set<WSHealthCareInMeeting> healthCareInMeeting) {
+        this.healthCareInMeeting = healthCareInMeeting;
     }
     
 }

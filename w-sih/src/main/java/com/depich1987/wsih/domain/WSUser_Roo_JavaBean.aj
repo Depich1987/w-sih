@@ -3,6 +3,7 @@
 
 package com.depich1987.wsih.domain;
 
+import com.depich1987.wsih.domain.WSJob;
 import com.depich1987.wsih.domain.WSUser;
 
 privileged aspect WSUser_Roo_JavaBean {
@@ -39,6 +40,14 @@ privileged aspect WSUser_Roo_JavaBean {
         this.userName = userName;
     }
     
+    public String WSUser.getPictureName() {
+        return this.pictureName;
+    }
+    
+    public void WSUser.setPictureName(String pictureName) {
+        this.pictureName = pictureName;
+    }
+    
     public String WSUser.getPassword() {
         return this.password;
     }
@@ -61,6 +70,14 @@ privileged aspect WSUser_Roo_JavaBean {
     
     public void WSUser.setUserType(String userType) {
         this.userType = userType;
+    }
+    
+    public WSJob WSUser.getJob() {
+        return this.job;
+    }
+    
+    public void WSUser.setJob(WSJob job) {
+        this.job = job;
     }
     
 }

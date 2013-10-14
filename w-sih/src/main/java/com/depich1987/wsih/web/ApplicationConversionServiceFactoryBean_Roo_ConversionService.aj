@@ -13,7 +13,10 @@ import com.depich1987.wsih.domain.WSInsuranceCompany;
 import com.depich1987.wsih.domain.WSJob;
 import com.depich1987.wsih.domain.WSMedecine;
 import com.depich1987.wsih.domain.WSMedecineType;
+import com.depich1987.wsih.domain.WSMeeting;
+import com.depich1987.wsih.domain.WSPatient;
 import com.depich1987.wsih.domain.WSStockPile;
+import com.depich1987.wsih.domain.WSUser;
 import com.depich1987.wsih.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -263,6 +266,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<WSMeeting, String> ApplicationConversionServiceFactoryBean.getWSMeetingToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSMeeting, java.lang.String>() {
+            public String convert(WSMeeting wSMeeting) {
+                return new StringBuilder().append(wSMeeting.getDescription()).append(' ').append(wSMeeting.getMeetingDate()).append(' ').append(wSMeeting.getCreationDate()).append(' ').append(wSMeeting.getCreatedBy()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSMeeting> ApplicationConversionServiceFactoryBean.getIdToWSMeetingConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSMeeting>() {
+            public com.depich1987.wsih.domain.WSMeeting convert(java.lang.Long id) {
+                return WSMeeting.findWSMeeting(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSMeeting> ApplicationConversionServiceFactoryBean.getStringToWSMeetingConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSMeeting>() {
+            public com.depich1987.wsih.domain.WSMeeting convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSMeeting.class);
+            }
+        };
+    }
+    
+    public Converter<WSPatient, String> ApplicationConversionServiceFactoryBean.getWSPatientToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSPatient, java.lang.String>() {
+            public String convert(WSPatient wSPatient) {
+                return new StringBuilder().append(wSPatient.getFolderRegistrationId()).append(' ').append(wSPatient.getCivility()).append(' ').append(wSPatient.getFirstName()).append(' ').append(wSPatient.getLastName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSPatient> ApplicationConversionServiceFactoryBean.getIdToWSPatientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSPatient>() {
+            public com.depich1987.wsih.domain.WSPatient convert(java.lang.Long id) {
+                return WSPatient.findWSPatient(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSPatient> ApplicationConversionServiceFactoryBean.getStringToWSPatientConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSPatient>() {
+            public com.depich1987.wsih.domain.WSPatient convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSPatient.class);
+            }
+        };
+    }
+    
     public Converter<WSStockPile, String> ApplicationConversionServiceFactoryBean.getWSStockPileToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSStockPile, java.lang.String>() {
             public String convert(WSStockPile wSStockPile) {
@@ -283,6 +334,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSStockPile>() {
             public com.depich1987.wsih.domain.WSStockPile convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), WSStockPile.class);
+            }
+        };
+    }
+    
+    public Converter<WSUser, String> ApplicationConversionServiceFactoryBean.getWSUserToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.depich1987.wsih.domain.WSUser, java.lang.String>() {
+            public String convert(WSUser wSUser) {
+                return new StringBuilder().append(wSUser.getCivility()).append(' ').append(wSUser.getFirstName()).append(' ').append(wSUser.getLastName()).append(' ').append(wSUser.getUserName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, WSUser> ApplicationConversionServiceFactoryBean.getIdToWSUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.depich1987.wsih.domain.WSUser>() {
+            public com.depich1987.wsih.domain.WSUser convert(java.lang.Long id) {
+                return WSUser.findWSUser(id);
+            }
+        };
+    }
+    
+    public Converter<String, WSUser> ApplicationConversionServiceFactoryBean.getStringToWSUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.depich1987.wsih.domain.WSUser>() {
+            public com.depich1987.wsih.domain.WSUser convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), WSUser.class);
             }
         };
     }
@@ -318,9 +393,18 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getWSMedecineTypeToStringConverter());
         registry.addConverter(getIdToWSMedecineTypeConverter());
         registry.addConverter(getStringToWSMedecineTypeConverter());
+        registry.addConverter(getWSMeetingToStringConverter());
+        registry.addConverter(getIdToWSMeetingConverter());
+        registry.addConverter(getStringToWSMeetingConverter());
+        registry.addConverter(getWSPatientToStringConverter());
+        registry.addConverter(getIdToWSPatientConverter());
+        registry.addConverter(getStringToWSPatientConverter());
         registry.addConverter(getWSStockPileToStringConverter());
         registry.addConverter(getIdToWSStockPileConverter());
         registry.addConverter(getStringToWSStockPileConverter());
+        registry.addConverter(getWSUserToStringConverter());
+        registry.addConverter(getIdToWSUserConverter());
+        registry.addConverter(getStringToWSUserConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

@@ -64,6 +64,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
+    
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
@@ -86,5 +87,11 @@
     <bean id="healthCareTypeService" class="com.depich1987.wsih.services.dao.HealthCareTypeServiceImpl" />
     
     <bean id="healthCareService" class="com.depich1987.wsih.services.dao.HealthCareServiceImpl" />
+    
+    <bean id="userService" class="com.depich1987.wsih.services.dao.UserServiceImpl" />
+    
+    <bean id="meetingService" class="com.depich1987.wsih.services.dao.MeetingServiceImpl"/>
+    
+    <bean id="patientService" class="com.depich1987.wsih.services.dao.PatientServiceImpl" />
     
 </beans>

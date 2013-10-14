@@ -28,4 +28,10 @@ public class WSHealthCare {
      */
     @OneToMany(cascade = CascadeType.ALL)
     private Set<WSInuranceProduct> insuranceProducts = new HashSet<WSInuranceProduct>();
+    
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<WSHealthCareInMeeting> healthCareInMeeting = new HashSet<WSHealthCareInMeeting>();
 }

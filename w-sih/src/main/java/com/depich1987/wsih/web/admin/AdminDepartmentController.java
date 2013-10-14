@@ -1,5 +1,6 @@
 package com.depich1987.wsih.web.admin;
 
+import java.util.List;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
@@ -29,7 +31,7 @@ public class AdminDepartmentController {
 	
 	private static Logger logger = Logger.getLogger(AdminDepartmentController.class);
 	
-	private static final  String PATH = "/admin/departments";
+	private static final String PATH = "/admin/departments";
 	private static final String CREATE_VIEW = "admin/departments/create";
 	private static final String SHOW_VIEW = "admin/departments/show";
 	private static final String LIST_VIEW = "admin/departments/list";
@@ -79,6 +81,9 @@ public class AdminDepartmentController {
 	        uiModel.addAttribute("wsdepartment_", department);
 	        uiModel.addAttribute("wsjobs", department.getJobs());
 	        uiModel.addAttribute("itemId", id);
+	        
+	        uiModel.addAttribute("currentNav", "departments");
+	        
 	        return SHOW_VIEW;
 	    }
 	    
@@ -96,6 +101,10 @@ public class AdminDepartmentController {
 	        } else {
 	            uiModel.addAttribute("wsdepartments", departmentService.findAllDepartments());
 	        }
+	        
+	        uiModel.addAttribute("currentNav", "departments");
+	        
+	        
 	        return LIST_VIEW;
 	    }
 	    
@@ -188,6 +197,9 @@ public class AdminDepartmentController {
 	    public String showJob(@PathVariable("id") Long id, Model uiModel) {
 	        uiModel.addAttribute("wsjob_", departmentService.findJob(id));
 	        uiModel.addAttribute("itemId", id);
+	        
+	        uiModel.addAttribute("currentNav", "departments");
+	        
 	        return SHOW_JOB_VIEW;
 	    }
 
@@ -219,14 +231,23 @@ public class AdminDepartmentController {
 //	        return "redirect:"+PATH +"/"+ encodeUrlPathSegment(id.toString(), httpServletRequest);
 //	    }
 	    
+	    @RequestMapping(value ="/admin/jobs/getJobJSON", method = RequestMethod.POST ,produces = "application/json")
+	    public @ResponseBody String getJobJSON(@RequestParam("departmentId")Long departmentId){
+	    	WSDepartment department = departmentService.findDepartment(departmentId);
+	    	List<WSJob> jobs = departmentService.findJobsInDepartment(department);
+	    	return WSUtils.createJobJSONAsString(jobs);
+	    }
+	    
 	    void populateJobEditForm(Model uiModel, WSJob WSJob_) {
 	        uiModel.addAttribute("WSJob_", WSJob_);
 	        uiModel.addAttribute("wsdepartments", departmentService.findAllDepartments());
+	        uiModel.addAttribute("currentNav", "departments");
 	        //uiModel.addAttribute("wsusers", WSUser.findAllWSUsers());
 	    }
 	    
 	    void populateEditForm(Model uiModel, WSDepartment WSDepartment_) {
 	        uiModel.addAttribute("WSDepartment_", WSDepartment_);
+	        uiModel.addAttribute("currentNav", "departments");
 	    }
 	    
 	    String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

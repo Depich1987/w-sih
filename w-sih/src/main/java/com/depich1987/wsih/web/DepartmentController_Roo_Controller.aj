@@ -5,7 +5,6 @@ package com.depich1987.wsih.web;
 
 import com.depich1987.wsih.domain.WSDepartment;
 import com.depich1987.wsih.domain.WSJob;
-import com.depich1987.wsih.domain.WSMeeting;
 import com.depich1987.wsih.web.DepartmentController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -89,7 +88,6 @@ privileged aspect DepartmentController_Roo_Controller {
     void DepartmentController.populateEditForm(Model uiModel, WSDepartment WSDepartment_) {
         uiModel.addAttribute("WSDepartment_", WSDepartment_);
         uiModel.addAttribute("wsjobs", WSJob.findAllWSJobs());
-        uiModel.addAttribute("wsmeetings", WSMeeting.findAllWSMeetings());
     }
     
     String DepartmentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -1,26 +1,25 @@
 package com.depich1987.wsih.domain;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import javax.validation.constraints.NotNull;
-
-import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(table = "WS_PATIENT")
+@RooJpaActiveRecord(table = "WS_PATIENT", finders = { "findWSPatientsByPrincipalInsuredRegistrationIdLike" })
 public class WSPatient {
 
     /**
      */
-    @NotNull
+    //    @NotNull
     private String folderRegistrationId;
 
     /**
@@ -47,7 +46,7 @@ public class WSPatient {
 
     /**
      */
-    private String bithPlace;
+    private String birthPlace;
 
     /**
      */
@@ -64,12 +63,12 @@ public class WSPatient {
     /**
      */
     private String city;
-    
+
     /**
      */
     private float longitude;
-    
-    /** 
+
+    /**
      */
     private float latitude;
 
@@ -135,4 +134,13 @@ public class WSPatient {
      */
     @Transient
     private String confirmPassword;
+
+    /**
+     */
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<WSMeeting> meetings = new HashSet<WSMeeting>();
+
+    /**
+     */
+    private String registrationCNI;
 }

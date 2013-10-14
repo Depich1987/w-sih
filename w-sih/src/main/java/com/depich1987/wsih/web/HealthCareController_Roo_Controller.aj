@@ -4,6 +4,7 @@
 package com.depich1987.wsih.web;
 
 import com.depich1987.wsih.domain.WSHealthCare;
+import com.depich1987.wsih.domain.WSHealthCareInMeeting;
 import com.depich1987.wsih.domain.WSHealthCareType;
 import com.depich1987.wsih.domain.WSInuranceProduct;
 import com.depich1987.wsih.web.HealthCareController;
@@ -88,6 +89,7 @@ privileged aspect HealthCareController_Roo_Controller {
     
     void HealthCareController.populateEditForm(Model uiModel, WSHealthCare WSHealthCare_) {
         uiModel.addAttribute("WSHealthCare_", WSHealthCare_);
+        uiModel.addAttribute("wshealthcareinmeetings", WSHealthCareInMeeting.findAllWSHealthCareInMeetings());
         uiModel.addAttribute("wshealthcaretypes", WSHealthCareType.findAllWSHealthCareTypes());
         uiModel.addAttribute("wsinuranceproducts", WSInuranceProduct.findAllWSInuranceProducts());
     }

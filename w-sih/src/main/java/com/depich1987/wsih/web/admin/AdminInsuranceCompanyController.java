@@ -68,6 +68,7 @@ public class AdminInsuranceCompanyController {
     public String show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("wsinsurancecompany_", insuranceCompanyService.findInsuranceCompany(id));
         uiModel.addAttribute("itemId", id);
+        uiModel.addAttribute("currentNav", "insurances");
         return SHOW_VIEW;
     }
     
@@ -82,6 +83,9 @@ public class AdminInsuranceCompanyController {
         } else {
             uiModel.addAttribute("wsinsurancecompanys", insuranceCompanyService.findAllInsuranceCompanies());
         }
+        
+        uiModel.addAttribute("currentNav", "insurances");
+        
         return LIST_VIEW;
     }
     
@@ -121,6 +125,7 @@ public class AdminInsuranceCompanyController {
     
     void populateEditForm(Model uiModel, WSInsuranceCompany WSInsuranceCompany_) {
         uiModel.addAttribute("WSInsuranceCompany_", WSInsuranceCompany_);
+        uiModel.addAttribute("currentNav", "insurances");
     }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

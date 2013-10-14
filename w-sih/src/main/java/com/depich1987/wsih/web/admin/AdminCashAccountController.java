@@ -75,6 +75,9 @@ public class AdminCashAccountController {
     public String show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("wscashaccount_", cashAccountService.findCashAccount(id));
         uiModel.addAttribute("itemId", id);
+        
+        uiModel.addAttribute("currentNav", "cashaccounts");
+        
         return SHOW_VIEW;
     }
     
@@ -95,6 +98,9 @@ public class AdminCashAccountController {
         } else {
             uiModel.addAttribute("wscashaccounts", cashAccountService.findAllCashAccounts());
         }
+        
+        uiModel.addAttribute("currentNav", "cashaccounts");
+        
         return LIST_VIEW;
     }
     
@@ -133,6 +139,7 @@ public class AdminCashAccountController {
     
     void populateEditForm(Model uiModel, WSCashAccount WSCashAccount_) {
         uiModel.addAttribute("WSCashAccount_", WSCashAccount_);
+        uiModel.addAttribute("currentNav", "cashaccounts");
     }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

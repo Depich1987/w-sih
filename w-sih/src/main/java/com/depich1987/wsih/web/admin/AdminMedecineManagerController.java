@@ -59,8 +59,9 @@ public class AdminMedecineManagerController {
 	}
 	
 	@RequestMapping(value = PATH , produces = "text/html")
-	public String index(){
+	public String index(Model uiModel){
 		logger.debug("index() - Access to medecine manager index.");
+		uiModel.addAttribute("currentNav", "stocks");
 		return INDEX_VIEW;
 		
 	}
@@ -91,6 +92,7 @@ public class AdminMedecineManagerController {
 	    public String showMedecineType(@PathVariable("id") Long id, Model uiModel) {
 	        uiModel.addAttribute("wsmedecinetype_", WSMedecineType.findWSMedecineType(id));
 	        uiModel.addAttribute("itemId", id);
+	        uiModel.addAttribute("currentNav", "stocks");
 	        return SHOW_MEDECINETYPE_VIEW;
 	    }
 	    
@@ -107,6 +109,9 @@ public class AdminMedecineManagerController {
 	        } else {
 	            uiModel.addAttribute("wsmedecinetypes", medecineTypeService.findAllMedecineTypes());
 	        }
+	        
+	        uiModel.addAttribute("currentNav", "stocks");
+	        
 	        return LIST_MEDECINETYPE_VIEW;
 	    }
 	    
@@ -153,6 +158,7 @@ public class AdminMedecineManagerController {
 	    void populateMedecineTypeEditForm(Model uiModel, WSMedecineType WSMedecineType_) {
 	        uiModel.addAttribute("WSMedecineType_", WSMedecineType_);
 //	        uiModel.addAttribute("wsmedecines", medecineService.findAllMedecines());
+	        uiModel.addAttribute("currentNav", "stocks");
 	    }
 	
 	
@@ -198,6 +204,9 @@ public class AdminMedecineManagerController {
         uiModel.addAttribute("wstockpiles", medecine.getStockPiles());
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("itemId", id);
+        
+        uiModel.addAttribute("currentNav", "stocks");
+        
         return SHOW_MEDECINE_VIEW;
     }
 	
@@ -218,6 +227,8 @@ public class AdminMedecineManagerController {
             uiModel.addAttribute("wsmedecines", medecineService.findAllMedecines());
         }
        
+    	uiModel.addAttribute("currentNav", "stocks");
+    	
         return LIST_MEDECINE_VIEW;
     }
     
@@ -304,11 +315,13 @@ public class AdminMedecineManagerController {
     void populateMedecineEditForm(Model uiModel, WSMedecine WSMedecine_) {
         uiModel.addAttribute("WSMedecine_", WSMedecine_);
         uiModel.addAttribute("wsmedecinetypes", medecineTypeService.findAllMedecineTypes());
+        uiModel.addAttribute("currentNav", "stocks");
     }
     
     void populateStockPileEditForm(Model uiModel, WSStockPile WSStockPile_) {
         uiModel.addAttribute("WSStockPile_", WSStockPile_);
         uiModel.addAttribute("wsmedecines", medecineService.findAllMedecines());
+        uiModel.addAttribute("currentNav", "stocks");
     }
     
     void addDateTimeFormatPatterns(Model uiModel) {

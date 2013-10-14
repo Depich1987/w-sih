@@ -30,6 +30,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
     
     @Override
+    public List<WSDepartment> findDepartmentsByDepartmentType(String departmentType) {
+    	
+    	 if (departmentType == null || departmentType.length() == 0) throw new IllegalArgumentException("The 'departmentType' argument is required");
+    	
+    	return entityManager.createQuery("SELECT o FROM WSDepartment o WHERE o.departmentType = :departmentType", WSDepartment.class)
+    			.setParameter("departmentType", departmentType)
+    			.getResultList();
+    }
+    
+    @Override
     public WSDepartment findDepartment(Long id) {
         if (id == null) return null;
         return entityManager.find(WSDepartment.class, id);
@@ -43,6 +53,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<WSJob> findAllJobs() {
         return entityManager.createQuery("SELECT o FROM WSJob o", WSJob.class).getResultList();
+    }
+    
+    @Override
+    public List<WSJob> findJobsInDepartment(WSDepartment department) {
+    	return entityManager.createQuery("SELECT o FROM WSJob o WHERE o.department = :department", WSJob.class)
+    			.setParameter("department", department)
+    			.getResultList();
     }
     
     @Override

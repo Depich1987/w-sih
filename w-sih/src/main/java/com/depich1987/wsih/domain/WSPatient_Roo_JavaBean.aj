@@ -3,8 +3,10 @@
 
 package com.depich1987.wsih.domain;
 
+import com.depich1987.wsih.domain.WSMeeting;
 import com.depich1987.wsih.domain.WSPatient;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect WSPatient_Roo_JavaBean {
     
@@ -56,12 +58,12 @@ privileged aspect WSPatient_Roo_JavaBean {
         this.birthDate = birthDate;
     }
     
-    public String WSPatient.getBithPlace() {
-        return this.bithPlace;
+    public String WSPatient.getBirthPlace() {
+        return this.birthPlace;
     }
     
-    public void WSPatient.setBithPlace(String bithPlace) {
-        this.bithPlace = bithPlace;
+    public void WSPatient.setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
     
     public String WSPatient.getCountry() {
@@ -230,6 +232,22 @@ privileged aspect WSPatient_Roo_JavaBean {
     
     public void WSPatient.setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+    
+    public Set<WSMeeting> WSPatient.getMeetings() {
+        return this.meetings;
+    }
+    
+    public void WSPatient.setMeetings(Set<WSMeeting> meetings) {
+        this.meetings = meetings;
+    }
+    
+    public String WSPatient.getRegistrationCNI() {
+        return this.registrationCNI;
+    }
+    
+    public void WSPatient.setRegistrationCNI(String registrationCNI) {
+        this.registrationCNI = registrationCNI;
     }
     
 }

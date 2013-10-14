@@ -84,6 +84,7 @@ public class AdminHealthCareManagerController {
 	    public String showHealthCareType(@PathVariable("id") Long id, Model uiModel) {
 	        uiModel.addAttribute("wshealthcaretype_", healthCareTypeService.findHealthCareType(id));
 	        uiModel.addAttribute("itemId", id);
+	        uiModel.addAttribute("currentNav", "healthcare");
 	        return SHOW_HEALTHCARETYPE_VIEW;
 	    }
 	    
@@ -99,6 +100,8 @@ public class AdminHealthCareManagerController {
 	        } else {
 	            uiModel.addAttribute("wshealthcaretypes", healthCareTypeService.findAllHealthCareTypes());
 	        }
+	        uiModel.addAttribute("currentNav", "healthcare");
+	        
 	        return LIST_HEALTHCARETYPE_VIEW;
 	    }
 	    
@@ -160,6 +163,7 @@ public class AdminHealthCareManagerController {
 	    public String showHealthCare(@PathVariable("id") Long id, Model uiModel) {
 	        uiModel.addAttribute("wshealthcare_", healthCareService.findHealthCare(id));
 	        uiModel.addAttribute("itemId", id);
+	        uiModel.addAttribute("currentNav", "healthcare");
 	        return SHOW_HEALTHCARE_VIEW;
 	    }
 	    
@@ -174,6 +178,9 @@ public class AdminHealthCareManagerController {
 	        } else {
 	            uiModel.addAttribute("wshealthcares", healthCareService.findAllHealthCares());
 	        }
+	        
+	        uiModel.addAttribute("currentNav", "healthcare");
+	        
 	        return LIST_HEALTHCARE_VIEW;
 	    }
 	    
@@ -207,12 +214,14 @@ public class AdminHealthCareManagerController {
 	    void populateHealthCareEditForm(Model uiModel, WSHealthCare WSHealthCare_) {
 	        uiModel.addAttribute("WSHealthCare_", WSHealthCare_);
 	        uiModel.addAttribute("wshealthcaretypes", healthCareTypeService.findAllHealthCareTypes());
+	        uiModel.addAttribute("currentNav", "healthcare");
 	    }
 	    
 	    
 	    void populateHealthCareTypeEditForm(Model uiModel, WSHealthCareType WSHealthCareType_) {
 	        uiModel.addAttribute("WSHealthCareType_", WSHealthCareType_);
 	        uiModel.addAttribute("wshealthcares", WSHealthCareType_.getHealthCares());
+	        uiModel.addAttribute("currentNav", "healthcare");
 	    }
 	    
 	    

@@ -10,6 +10,8 @@ public interface DepartmentService {
 	public long countDepartments();
 
 	public List<WSDepartment> findAllDepartments();
+	
+	public List<WSDepartment> findDepartmentsByDepartmentType(String departmentType);
 
 	public WSDepartment findDepartment(Long id);
 
@@ -30,6 +32,8 @@ public interface DepartmentService {
 	public WSJob merge(WSJob job);
 
 	public List<WSJob> findAllJobs();
+	
+	public List<WSJob> findJobsInDepartment(WSDepartment department);
 
 	public WSJob findJob(Long id);
 

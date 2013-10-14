@@ -5,7 +5,6 @@ package com.depich1987.wsih.domain;
 
 import com.depich1987.wsih.domain.WSDepartment;
 import com.depich1987.wsih.domain.WSJob;
-import com.depich1987.wsih.domain.WSMeeting;
 import java.util.Set;
 
 privileged aspect WSDepartment_Roo_JavaBean {
@@ -34,28 +33,12 @@ privileged aspect WSDepartment_Roo_JavaBean {
         this.departmentType = departmentType;
     }
     
-    public Set<WSMeeting> WSDepartment.getMeetings() {
-        return this.meetings;
-    }
-    
-    public void WSDepartment.setMeetings(Set<WSMeeting> meetings) {
-        this.meetings = meetings;
-    }
-    
     public Set<WSJob> WSDepartment.getJobs() {
         return this.jobs;
     }
     
     public void WSDepartment.setJobs(Set<WSJob> jobs) {
         this.jobs = jobs;
-    }
-    
-    public WSJob WSDepartment.getJob() {
-        return this.job;
-    }
-    
-    public void WSDepartment.setJob(WSJob job) {
-        this.job = job;
     }
     
 }

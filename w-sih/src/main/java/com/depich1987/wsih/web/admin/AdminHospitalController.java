@@ -86,6 +86,9 @@ public class AdminHospitalController{
     public String show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("wshospital_", hospitalService.findHospital(id));
         uiModel.addAttribute("itemId", id);
+        
+        uiModel.addAttribute("currentNav", "hospital");
+        
         return SHOW_VIEW;
     }
 
@@ -122,13 +125,14 @@ public class AdminHospitalController{
         
         uiModel.addAttribute("budgetAccounts", budgetAccounts);
         uiModel.addAttribute("cashAccounts", cashAccounts);
-        
+
         return UPDATE_VIEW;
     }
 
     
     void populateEditForm(Model uiModel, WSHospital WSHospital_) {
         uiModel.addAttribute("WSHospital_", WSHospital_);
+        uiModel.addAttribute("currentNav", "hospital");
     }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

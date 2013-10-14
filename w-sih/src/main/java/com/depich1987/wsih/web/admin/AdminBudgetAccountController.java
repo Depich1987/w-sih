@@ -78,6 +78,8 @@ public class AdminBudgetAccountController {
         RequestContext context = new RequestContext(httpServletRequest);
         uiModel.addAttribute("accountTypes", WSUtils.getAccounType(httpServletRequest, context));
         
+        uiModel.addAttribute("currentNav", "budgetaccounts");
+        
         return SHOW_VIEW;
     }
     
@@ -95,6 +97,9 @@ public class AdminBudgetAccountController {
         } else {
             uiModel.addAttribute("wsbudgetaccounts", budgetAccountService.findAllBudgetAccounts());
         }
+        
+        uiModel.addAttribute("currentNav", "budgetaccounts");
+        
         return LIST_VIEW;
     }
     
@@ -142,6 +147,7 @@ public class AdminBudgetAccountController {
     
     void populateEditForm(Model uiModel, WSBudgetAccount WSBudgetAccount_) {
         uiModel.addAttribute("WSBudgetAccount_", WSBudgetAccount_);
+        uiModel.addAttribute("currentNav", "budgetaccounts");
     }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
