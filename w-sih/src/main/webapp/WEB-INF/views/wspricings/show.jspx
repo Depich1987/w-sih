@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSPricing" object="${wspricing_}" path="/wspricings" z="BvgPt4GlBuyaUTkg/5UMWhhtO4k=">
+        <field:display field="insuranceRate" id="s_com_depich1987_wsih_domain_WSPricing_insuranceRate" object="${wspricing_}" z="cKDOxToEi6T+iQ3V2ShbVcZeIys="/>
+        <field:display field="rateBNC" id="s_com_depich1987_wsih_domain_WSPricing_rateBNC" object="${wspricing_}" z="tva5hdHwA/isLgiSgcn1R+fCeOY="/>
+        <field:display field="vatRate" id="s_com_depich1987_wsih_domain_WSPricing_vatRate" object="${wspricing_}" z="TfIVDfhXJV3HOv8cZJlPnUcjDb0="/>
+        <field:display field="insuranceProduct" id="s_com_depich1987_wsih_domain_WSPricing_insuranceProduct" object="${wspricing_}" z="u5H/ComRtCCBTo2AzpuWhg5qBhk="/>
+        <field:display field="healthCare" id="s_com_depich1987_wsih_domain_WSPricing_healthCare" object="${wspricing_}" z="Qs8cqxpobuePgTMcTO7DDSb1rjA="/>
+        <field:display field="price" id="s_com_depich1987_wsih_domain_WSPricing_price" object="${wspricing_}" z="LE27FzVyCMwzHqZhQprzcqRIfJ8="/>
+    </page:show>
+</div>

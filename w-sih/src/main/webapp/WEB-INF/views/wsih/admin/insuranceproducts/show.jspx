@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_depich1987_wsih_domain_WSInuranceProduct" object="${wsinuranceproduct_}" path="/wsinuranceproducts" z="ujbcD50cvErdSbn3JRuxzkuffHE=">
+        <field:display field="name" id="s_com_depich1987_wsih_domain_WSInuranceProduct_name" object="${wsinuranceproduct_}" z="A63a5XiHeyNZb498nYvAbZosBFo="/>
+        <field:display field="contact" id="s_com_depich1987_wsih_domain_WSInuranceProduct_contact" object="${wsinuranceproduct_}" z="5ogxQfFWwtQulMXVBnBOPBKC4Nw="/>
+        <field:display field="insuranceCompany" id="s_com_depich1987_wsih_domain_WSInuranceProduct_insuranceCompany" object="${wsinuranceproduct_}" z="OplXVSSNKSZ2We36Pl+Z2IO8JnM="/>
+        <field:display field="healthCare" id="s_com_depich1987_wsih_domain_WSInuranceProduct_healthCare" object="${wsinuranceproduct_}" z="dK3ErMURcxKEQGrdcDzSbMRbRnM="/>
+    </page:show>
+</div>

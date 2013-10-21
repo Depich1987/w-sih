@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	 xmlns:jsp="http://java.sun.com/JSP/Page" 
+	 xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	 
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:url value="/admin/insurancemanagement" var="insurancemanagement_url"/>
+    
+    <spring:message code="menu_item_wsinsurancecompany_list_label" var="wsinsurancecompany_label"/>
+    <spring:message code="menu_item_wsinsuranceproduct_list_label" var="insuranceproduct_label"/>
+    <spring:message code="menu_item_wspricing_new_label" var="pricing_label"/>
+     
+    <spring:url value="/admin/insurancecompanies?size=10" var="insurancecompanies_url"/>
+    <spring:url value="/admin/insuranceproducts?size=10" var="insuranceproducts_url"/>
+    <spring:url value="/admin/prices?size=10" var="prices_url"/>
+    
+    <div class="row-fluid">
+	
+    	<fieldset>
+    		<legend>
+    			${insurancemanagement_url}
+    		</legend>
+    		
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${insurancecompanies_url}" class="btn btn-default">${wsinsurancecompany_label}</a>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${insuranceproducts_url}" class="btn btn-default">${insuranceproduct_label}</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="well well-small">
+						<a href="${prices_url}" class="btn btn-default">${pricing_label}</a>
+					</div>
+				</div>
+			</div>
+			
+    	</fieldset>
+	</div>
+    
+</div>
