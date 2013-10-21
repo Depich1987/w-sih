@@ -5,7 +5,12 @@
     <form:update id="fu_com_depich1987_wsih_domain_WSHealthCare" modelAttribute="WSHealthCare_" path="/wshealthcares" versionField="Version" z="EQyvp5njtmMGODgiflUjCNMIpUY=">
         <field:input field="name" id="c_com_depich1987_wsih_domain_WSHealthCare_name" z="E5V08y9dOGzk03j59f4dSMhb2ic="/>
         <field:select field="healthCareType" id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareType" itemValue="id" items="${wshealthcaretypes}" path="/wshealthcaretypes" z="/vWxMMofr0ktNBplxBNjutBKEbw="/>
-        <field:simple field="insuranceProducts" id="c_com_depich1987_wsih_domain_WSHealthCare_insuranceProducts" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Inurance Product" z="/JXyYF2Oxk+Pyq33ZKnkuExnvxc="/>
         <field:simple field="healthCareInMeeting" id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareInMeeting" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Health Care In Meeting" z="4yDIfO5ZAglKyVhdjSjzWXiASEU="/>
+        <field:input field="price" id="c_com_depich1987_wsih_domain_WSHealthCare_price" z="ZsWlXL7tDhvdQBP3LzE14Uyq5Ao="/>
+        <field:input field="hospitalPart" id="c_com_depich1987_wsih_domain_WSHealthCare_hospitalPart" z="TgsFWdFbdG6fPUpoPqU5fQQskNE="/>
+        <field:input field="rateBNC" id="c_com_depich1987_wsih_domain_WSHealthCare_rateBNC" z="IHmmy4ekZl+wvr9lgglG6Ap+GC8="/>
+        <field:input field="rateVAT" id="c_com_depich1987_wsih_domain_WSHealthCare_rateVAT" z="7p56uKP7bPaA1AT60KgamL2A68s="/>
+        <field:input field="doctorPart" id="c_com_depich1987_wsih_domain_WSHealthCare_doctorPart" z="6OSgiYUe63X6CdMcAiL0Egb6P4U="/>
+        <field:simple field="prices" id="c_com_depich1987_wsih_domain_WSHealthCare_prices" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Pricing" z="zssWUmUiM7Y+HSpSfCSEym39DRM="/>
     </form:update>
 </div>

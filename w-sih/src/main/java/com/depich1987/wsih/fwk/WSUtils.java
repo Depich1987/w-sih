@@ -2,6 +2,7 @@ package com.depich1987.wsih.fwk;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,13 +14,15 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import com.depich1987.wsih.domain.AccountType;
 import com.depich1987.wsih.domain.DepartmentType;
-import com.depich1987.wsih.domain.JobJSON;
-import com.depich1987.wsih.domain.PatientJSON;
-import com.depich1987.wsih.domain.UserJSON;
 import com.depich1987.wsih.domain.UserType;
+import com.depich1987.wsih.domain.WSHealthCareInMeeting;
 import com.depich1987.wsih.domain.WSJob;
 import com.depich1987.wsih.domain.WSPatient;
 import com.depich1987.wsih.domain.WSUser;
+import com.depich1987.wsih.json.EventJson;
+import com.depich1987.wsih.json.JobJSON;
+import com.depich1987.wsih.json.PatientJSON;
+import com.depich1987.wsih.json.UserJSON;
 
 
 public class WSUtils {
@@ -34,6 +37,8 @@ public class WSUtils {
 	
 	public static final String USERTYPE_DOCTOR = "wsih_userdoctor";
 	public static final String USERTYPE_SIMPLE = "wsih_usersimple";
+	
+	public static final String MEETING_DETAILS_URL = "/workbench/meetings/showdetails/";
 	
 	public static AccountType getAccounType(HttpServletRequest httpServletRequest, RequestContext context){
 
@@ -210,5 +215,48 @@ public class WSUtils {
 			userJSONsList.add(userJSON);
 		}
 		return userJSONsList;
+	}
+	
+	public static String createEventJSONAsString(List<WSHealthCareInMeeting> careInMeetings ){
+		// configure to avoid timestamp representation
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);
+		String json = null;
+		
+		try {
+			json = mapper.writeValueAsString( createEventJsonList(careInMeetings));
+			logger.debug("createEventJSONAsString() - Got Json for events : " + json);
+		} catch (IOException e) {
+			logger.error("createEventJSONAsString() - Failed mapping event into JSON. Cause: \n", e);
+		}
+		
+    	return json;
+	}
+	
+	private static List<EventJson> createEventJsonList(List<WSHealthCareInMeeting> careInMeetings ){
+		List<EventJson> eventJsons = new ArrayList<EventJson>();
+		
+		for (WSHealthCareInMeeting careInMeeting : careInMeetings) {
+			
+			EventJson eventJson =  new EventJson();
+			
+			Date md = careInMeeting.getMeetingDate();
+			Date sd = new Date();
+			sd.setTime(md.getTime());
+			sd.setHours(careInMeeting.getStartTime().getHours());
+			sd.setMinutes(careInMeeting.getStartTime().getMinutes());
+			
+			eventJson.setId(careInMeeting.getId());
+			eventJson.setTitle(careInMeeting.getHealthCare().getName());
+			eventJson.setAllDay(false);
+			eventJson.setStart(sd);
+			eventJson.setEnd(careInMeeting.getEndTime());
+			eventJson.setUrl(MEETING_DETAILS_URL);
+			eventJson.setColor(careInMeeting.getHealthCare().getHealthCareType().getColorPicker());
+			
+			eventJsons.add(eventJson);
+		}
+		
+		return eventJsons;
 	}
 }

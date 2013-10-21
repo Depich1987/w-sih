@@ -3,6 +3,7 @@
 
 package com.depich1987.wsih.domain;
 
+import com.depich1987.wsih.domain.WSInsuranceProduct;
 import com.depich1987.wsih.domain.WSMeeting;
 import com.depich1987.wsih.domain.WSPatient;
 import java.util.Date;
@@ -138,14 +139,6 @@ privileged aspect WSPatient_Roo_JavaBean {
         this.email = email;
     }
     
-    public Boolean WSPatient.getInsured() {
-        return this.insured;
-    }
-    
-    public void WSPatient.setInsured(Boolean insured) {
-        this.insured = insured;
-    }
-    
     public String WSPatient.getInsuredRegistrationId() {
         return this.insuredRegistrationId;
     }
@@ -248,6 +241,14 @@ privileged aspect WSPatient_Roo_JavaBean {
     
     public void WSPatient.setRegistrationCNI(String registrationCNI) {
         this.registrationCNI = registrationCNI;
+    }
+    
+    public WSInsuranceProduct WSPatient.getInsuranceProduct() {
+        return this.insuranceProduct;
+    }
+    
+    public void WSPatient.setInsuranceProduct(WSInsuranceProduct insuranceProduct) {
+        this.insuranceProduct = insuranceProduct;
     }
     
 }

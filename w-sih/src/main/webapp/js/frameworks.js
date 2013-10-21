@@ -13647,3 +13647,1576 @@ See the License for the specific language governing permissions and limitations 
    };
 
 }(jQuery));
+
+/*!
+ * Timepicker Component for Twitter Bootstrap
+ *
+ * Copyright 2013 Joris de Wit
+ *
+ * Contributors https://github.com/jdewit/bootstrap-timepicker/graphs/contributors
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+(function($, window, document, undefined) {
+  'use strict';
+
+  // TIMEPICKER PUBLIC CLASS DEFINITION
+  var Timepicker = function(element, options) {
+    this.widget = '';
+    this.$element = $(element);
+    this.defaultTime = options.defaultTime;
+    this.disableFocus = options.disableFocus;
+    this.disableMousewheel = options.disableMousewheel;
+    this.isOpen = options.isOpen;
+    this.minuteStep = options.minuteStep;
+    this.modalBackdrop = options.modalBackdrop;
+    this.secondStep = options.secondStep;
+    this.showInputs = options.showInputs;
+    this.showMeridian = options.showMeridian;
+    this.showSeconds = options.showSeconds;
+    this.template = options.template;
+    this.appendWidgetTo = options.appendWidgetTo;
+    this.showWidgetOnAddonClick = options.showWidgetOnAddonClick;
+
+    this._init();
+  };
+
+  Timepicker.prototype = {
+
+    constructor: Timepicker,
+    _init: function() {
+      var self = this;
+
+      if (this.showWidgetOnAddonClick && (this.$element.parent().hasClass('input-append') || this.$element.parent().hasClass('input-prepend'))) {
+        this.$element.parent('.input-append, .input-prepend').find('.add-on').on({
+          'click.timepicker': $.proxy(this.showWidget, this)
+        });
+        this.$element.on({
+          'focus.timepicker': $.proxy(this.highlightUnit, this),
+          'click.timepicker': $.proxy(this.highlightUnit, this),
+          'keydown.timepicker': $.proxy(this.elementKeydown, this),
+          'blur.timepicker': $.proxy(this.blurElement, this),
+          'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
+        });
+      } else {
+        if (this.template) {
+          this.$element.on({
+            'focus.timepicker': $.proxy(this.showWidget, this),
+            'click.timepicker': $.proxy(this.showWidget, this),
+            'blur.timepicker': $.proxy(this.blurElement, this),
+            'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
+          });
+        } else {
+          this.$element.on({
+            'focus.timepicker': $.proxy(this.highlightUnit, this),
+            'click.timepicker': $.proxy(this.highlightUnit, this),
+            'keydown.timepicker': $.proxy(this.elementKeydown, this),
+            'blur.timepicker': $.proxy(this.blurElement, this),
+            'mousewheel.timepicker DOMMouseScroll.timepicker': $.proxy(this.mousewheel, this)
+          });
+        }
+      }
+
+      if (this.template !== false) {
+        this.$widget = $(this.getTemplate()).prependTo(this.$element.parents(this.appendWidgetTo)).on('click', $.proxy(this.widgetClick, this));
+      } else {
+        this.$widget = false;
+      }
+
+      if (this.showInputs && this.$widget !== false) {
+        this.$widget.find('input').each(function() {
+          $(this).on({
+            'click.timepicker': function() { $(this).select(); },
+            'keydown.timepicker': $.proxy(self.widgetKeydown, self),
+            'keyup.timepicker': $.proxy(self.widgetKeyup, self)
+          });
+        });
+      }
+
+      this.setDefaultTime(this.defaultTime);
+    },
+
+    blurElement: function() {
+      this.highlightedUnit = null;
+      this.updateFromElementVal();
+    },
+
+    clear: function() {
+      this.hour = '';
+      this.minute = '';
+      this.second = '';
+      this.meridian = '';
+
+      this.$element.val('');
+    },
+
+    decrementHour: function() {
+      if (this.showMeridian) {
+        if (this.hour === 1) {
+          this.hour = 12;
+        } else if (this.hour === 12) {
+          this.hour--;
+
+          return this.toggleMeridian();
+        } else if (this.hour === 0) {
+          this.hour = 11;
+
+          return this.toggleMeridian();
+        } else {
+          this.hour--;
+        }
+      } else {
+        if (this.hour <= 0) {
+          this.hour = 23;
+        } else {
+          this.hour--;
+        }
+      }
+    },
+
+    decrementMinute: function(step) {
+      var newVal;
+
+      if (step) {
+        newVal = this.minute - step;
+      } else {
+        newVal = this.minute - this.minuteStep;
+      }
+
+      if (newVal < 0) {
+        this.decrementHour();
+        this.minute = newVal + 60;
+      } else {
+        this.minute = newVal;
+      }
+    },
+
+    decrementSecond: function() {
+      var newVal = this.second - this.secondStep;
+
+      if (newVal < 0) {
+        this.decrementMinute(true);
+        this.second = newVal + 60;
+      } else {
+        this.second = newVal;
+      }
+    },
+
+    elementKeydown: function(e) {
+      switch (e.keyCode) {
+      case 9: //tab
+      case 27: // escape
+        this.updateFromElementVal();
+        break;
+      case 37: // left arrow
+        e.preventDefault();
+        this.highlightPrevUnit();
+        break;
+      case 38: // up arrow
+        e.preventDefault();
+        switch (this.highlightedUnit) {
+        case 'hour':
+          this.incrementHour();
+          this.highlightHour();
+          break;
+        case 'minute':
+          this.incrementMinute();
+          this.highlightMinute();
+          break;
+        case 'second':
+          this.incrementSecond();
+          this.highlightSecond();
+          break;
+        case 'meridian':
+          this.toggleMeridian();
+          this.highlightMeridian();
+          break;
+        }
+        this.update();
+        break;
+      case 39: // right arrow
+        e.preventDefault();
+        this.highlightNextUnit();
+        break;
+      case 40: // down arrow
+        e.preventDefault();
+        switch (this.highlightedUnit) {
+        case 'hour':
+          this.decrementHour();
+          this.highlightHour();
+          break;
+        case 'minute':
+          this.decrementMinute();
+          this.highlightMinute();
+          break;
+        case 'second':
+          this.decrementSecond();
+          this.highlightSecond();
+          break;
+        case 'meridian':
+          this.toggleMeridian();
+          this.highlightMeridian();
+          break;
+        }
+
+        this.update();
+        break;
+      }
+    },
+
+    getCursorPosition: function() {
+      var input = this.$element.get(0);
+
+      if ('selectionStart' in input) {// Standard-compliant browsers
+
+        return input.selectionStart;
+      } else if (document.selection) {// IE fix
+        input.focus();
+        var sel = document.selection.createRange(),
+          selLen = document.selection.createRange().text.length;
+
+        sel.moveStart('character', - input.value.length);
+
+        return sel.text.length - selLen;
+      }
+    },
+
+    getTemplate: function() {
+      var template,
+        hourTemplate,
+        minuteTemplate,
+        secondTemplate,
+        meridianTemplate,
+        templateContent;
+
+      if (this.showInputs) {
+        hourTemplate = '<input type="text" class="bootstrap-timepicker-hour" maxlength="2"/>';
+        minuteTemplate = '<input type="text" class="bootstrap-timepicker-minute" maxlength="2"/>';
+        secondTemplate = '<input type="text" class="bootstrap-timepicker-second" maxlength="2"/>';
+        meridianTemplate = '<input type="text" class="bootstrap-timepicker-meridian" maxlength="2"/>';
+      } else {
+        hourTemplate = '<span class="bootstrap-timepicker-hour"></span>';
+        minuteTemplate = '<span class="bootstrap-timepicker-minute"></span>';
+        secondTemplate = '<span class="bootstrap-timepicker-second"></span>';
+        meridianTemplate = '<span class="bootstrap-timepicker-meridian"></span>';
+      }
+
+      templateContent = '<table>'+
+         '<tr>'+
+           '<td><a href="#" data-action="incrementHour"><i class="icon-chevron-up"></i></a></td>'+
+           '<td class="separator">&nbsp;</td>'+
+           '<td><a href="#" data-action="incrementMinute"><i class="icon-chevron-up"></i></a></td>'+
+           (this.showSeconds ?
+             '<td class="separator">&nbsp;</td>'+
+             '<td><a href="#" data-action="incrementSecond"><i class="icon-chevron-up"></i></a></td>'
+           : '') +
+           (this.showMeridian ?
+             '<td class="separator">&nbsp;</td>'+
+             '<td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="icon-chevron-up"></i></a></td>'
+           : '') +
+         '</tr>'+
+         '<tr>'+
+           '<td>'+ hourTemplate +'</td> '+
+           '<td class="separator">:</td>'+
+           '<td>'+ minuteTemplate +'</td> '+
+           (this.showSeconds ?
+            '<td class="separator">:</td>'+
+            '<td>'+ secondTemplate +'</td>'
+           : '') +
+           (this.showMeridian ?
+            '<td class="separator">&nbsp;</td>'+
+            '<td>'+ meridianTemplate +'</td>'
+           : '') +
+         '</tr>'+
+         '<tr>'+
+           '<td><a href="#" data-action="decrementHour"><i class="icon-chevron-down"></i></a></td>'+
+           '<td class="separator"></td>'+
+           '<td><a href="#" data-action="decrementMinute"><i class="icon-chevron-down"></i></a></td>'+
+           (this.showSeconds ?
+            '<td class="separator">&nbsp;</td>'+
+            '<td><a href="#" data-action="decrementSecond"><i class="icon-chevron-down"></i></a></td>'
+           : '') +
+           (this.showMeridian ?
+            '<td class="separator">&nbsp;</td>'+
+            '<td><a href="#" data-action="toggleMeridian"><i class="icon-chevron-down"></i></a></td>'
+           : '') +
+         '</tr>'+
+       '</table>';
+
+      switch(this.template) {
+      case 'modal':
+        template = '<div class="bootstrap-timepicker-widget modal hide fade in" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
+          '<div class="modal-header">'+
+            '<a href="#" class="close" data-dismiss="modal">×</a>'+
+            '<h3>Pick a Time</h3>'+
+          '</div>'+
+          '<div class="modal-content">'+
+            templateContent +
+          '</div>'+
+          '<div class="modal-footer">'+
+            '<a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>'+
+          '</div>'+
+        '</div>';
+        break;
+      case 'dropdown':
+        template = '<div class="bootstrap-timepicker-widget dropdown-menu">'+ templateContent +'</div>';
+        break;
+      }
+
+      return template;
+    },
+
+    getTime: function() {
+      if (!this.hour && !this.minute && !this.second) {
+        return '';
+      }
+
+      return this.hour + ':' + (this.minute.toString().length === 1 ? '0' + this.minute : this.minute) + (this.showSeconds ? ':' + (this.second.toString().length === 1 ? '0' + this.second : this.second) : '') + (this.showMeridian ? ' ' + this.meridian : '');
+    },
+
+    hideWidget: function() {
+      if (this.isOpen === false) {
+        return;
+      }
+
+      this.$element.trigger({
+        'type': 'hide.timepicker',
+        'time': {
+          'value': this.getTime(),
+          'hours': this.hour,
+          'minutes': this.minute,
+          'seconds': this.second,
+          'meridian': this.meridian
+        }
+      });
+
+      if (this.template === 'modal' && this.$widget.modal) {
+        this.$widget.modal('hide');
+      } else {
+        this.$widget.removeClass('open');
+      }
+
+      $(document).off('mousedown.timepicker, touchend.timepicker');
+
+      this.isOpen = false;
+    },
+
+    highlightUnit: function() {
+      this.position = this.getCursorPosition();
+      if (this.position >= 0 && this.position <= 2) {
+        this.highlightHour();
+      } else if (this.position >= 3 && this.position <= 5) {
+        this.highlightMinute();
+      } else if (this.position >= 6 && this.position <= 8) {
+        if (this.showSeconds) {
+          this.highlightSecond();
+        } else {
+          this.highlightMeridian();
+        }
+      } else if (this.position >= 9 && this.position <= 11) {
+        this.highlightMeridian();
+      }
+    },
+
+    highlightNextUnit: function() {
+      switch (this.highlightedUnit) {
+      case 'hour':
+        this.highlightMinute();
+        break;
+      case 'minute':
+        if (this.showSeconds) {
+          this.highlightSecond();
+        } else if (this.showMeridian){
+          this.highlightMeridian();
+        } else {
+          this.highlightHour();
+        }
+        break;
+      case 'second':
+        if (this.showMeridian) {
+          this.highlightMeridian();
+        } else {
+          this.highlightHour();
+        }
+        break;
+      case 'meridian':
+        this.highlightHour();
+        break;
+      }
+    },
+
+    highlightPrevUnit: function() {
+      switch (this.highlightedUnit) {
+      case 'hour':
+        if(this.showMeridian){
+          this.highlightMeridian();
+        } else if (this.showSeconds) {
+          this.highlightSecond();
+        } else {
+          this.highlightMinute();
+        }
+        break;
+      case 'minute':
+        this.highlightHour();
+        break;
+      case 'second':
+        this.highlightMinute();
+        break;
+      case 'meridian':
+        if (this.showSeconds) {
+          this.highlightSecond();
+        } else {
+          this.highlightMinute();
+        }
+        break;
+      }
+    },
+
+    highlightHour: function() {
+      var $element = this.$element.get(0),
+          self = this;
+
+      this.highlightedUnit = 'hour';
+
+			if ($element.setSelectionRange) {
+				setTimeout(function() {
+          if (self.hour < 10) {
+            $element.setSelectionRange(0,1);
+          } else {
+            $element.setSelectionRange(0,2);
+          }
+				}, 0);
+			}
+    },
+
+    highlightMinute: function() {
+      var $element = this.$element.get(0),
+          self = this;
+
+      this.highlightedUnit = 'minute';
+
+			if ($element.setSelectionRange) {
+				setTimeout(function() {
+          if (self.hour < 10) {
+            $element.setSelectionRange(2,4);
+          } else {
+            $element.setSelectionRange(3,5);
+          }
+				}, 0);
+			}
+    },
+
+    highlightSecond: function() {
+      var $element = this.$element.get(0),
+          self = this;
+
+      this.highlightedUnit = 'second';
+
+			if ($element.setSelectionRange) {
+				setTimeout(function() {
+          if (self.hour < 10) {
+            $element.setSelectionRange(5,7);
+          } else {
+            $element.setSelectionRange(6,8);
+          }
+				}, 0);
+			}
+    },
+
+    highlightMeridian: function() {
+      var $element = this.$element.get(0),
+          self = this;
+
+      this.highlightedUnit = 'meridian';
+
+			if ($element.setSelectionRange) {
+				if (this.showSeconds) {
+					setTimeout(function() {
+            if (self.hour < 10) {
+              $element.setSelectionRange(8,10);
+            } else {
+              $element.setSelectionRange(9,11);
+            }
+					}, 0);
+				} else {
+					setTimeout(function() {
+            if (self.hour < 10) {
+              $element.setSelectionRange(5,7);
+            } else {
+              $element.setSelectionRange(6,8);
+            }
+					}, 0);
+				}
+			}
+    },
+
+    incrementHour: function() {
+      if (this.showMeridian) {
+        if (this.hour === 11) {
+          this.hour++;
+          return this.toggleMeridian();
+        } else if (this.hour === 12) {
+          this.hour = 0;
+        }
+      }
+      if (this.hour === 23) {
+        this.hour = 0;
+
+        return;
+      }
+      this.hour++;
+    },
+
+    incrementMinute: function(step) {
+      var newVal;
+
+      if (step) {
+        newVal = this.minute + step;
+      } else {
+        newVal = this.minute + this.minuteStep - (this.minute % this.minuteStep);
+      }
+
+      if (newVal > 59) {
+        this.incrementHour();
+        this.minute = newVal - 60;
+      } else {
+        this.minute = newVal;
+      }
+    },
+
+    incrementSecond: function() {
+      var newVal = this.second + this.secondStep - (this.second % this.secondStep);
+
+      if (newVal > 59) {
+        this.incrementMinute(true);
+        this.second = newVal - 60;
+      } else {
+        this.second = newVal;
+      }
+    },
+
+    mousewheel: function(e) {
+      if (this.disableMousewheel) {
+        return;
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail,
+          scrollTo = null;
+
+      if (e.type === 'mousewheel') {
+        scrollTo = (e.originalEvent.wheelDelta * -1);
+      }
+      else if (e.type === 'DOMMouseScroll') {
+        scrollTo = 40 * e.originalEvent.detail;
+      }
+
+      if (scrollTo) {
+        e.preventDefault();
+        $(this).scrollTop(scrollTo + $(this).scrollTop());
+      }
+
+      switch (this.highlightedUnit) {
+      case 'minute':
+        if (delta > 0) {
+          this.incrementMinute();
+        } else {
+          this.decrementMinute();
+        }
+        this.highlightMinute();
+        break;
+      case 'second':
+        if (delta > 0) {
+          this.incrementSecond();
+        } else {
+          this.decrementSecond();
+        }
+        this.highlightSecond();
+        break;
+      case 'meridian':
+        this.toggleMeridian();
+        this.highlightMeridian();
+        break;
+      default:
+        if (delta > 0) {
+          this.incrementHour();
+        } else {
+          this.decrementHour();
+        }
+        this.highlightHour();
+        break;
+      }
+
+      return false;
+    },
+
+    remove: function() {
+      $('document').off('.timepicker');
+      if (this.$widget) {
+        this.$widget.remove();
+      }
+      delete this.$element.data().timepicker;
+    },
+
+    setDefaultTime: function(defaultTime) {
+      if (!this.$element.val()) {
+        if (defaultTime === 'current') {
+          var dTime = new Date(),
+            hours = dTime.getHours(),
+            minutes = dTime.getMinutes(),
+            seconds = dTime.getSeconds(),
+            meridian = 'AM';
+
+          if (seconds !== 0) {
+            seconds = Math.ceil(dTime.getSeconds() / this.secondStep) * this.secondStep;
+            if (seconds === 60) {
+              minutes += 1;
+              seconds = 0;
+            }
+          }
+
+          if (minutes !== 0) {
+            minutes = Math.ceil(dTime.getMinutes() / this.minuteStep) * this.minuteStep;
+            if (minutes === 60) {
+              hours += 1;
+              minutes = 0;
+            }
+          }
+
+          if (this.showMeridian) {
+            if (hours === 0) {
+              hours = 12;
+            } else if (hours >= 12) {
+              if (hours > 12) {
+                hours = hours - 12;
+              }
+              meridian = 'PM';
+            } else {
+              meridian = 'AM';
+            }
+          }
+
+          this.hour = hours;
+          this.minute = minutes;
+          this.second = seconds;
+          this.meridian = meridian;
+
+          this.update();
+
+        } else if (defaultTime === false) {
+          this.hour = 0;
+          this.minute = 0;
+          this.second = 0;
+          this.meridian = 'AM';
+        } else {
+          this.setTime(defaultTime);
+        }
+      } else {
+        this.updateFromElementVal();
+      }
+    },
+
+    setTime: function(time, ignoreWidget) {
+      if (!time) {
+        this.clear();
+        return;
+      }
+
+      var timeArray,
+          hour,
+          minute,
+          second,
+          meridian;
+
+      if (typeof time === 'object' && time.getMonth){
+        // this is a date object
+        hour    = time.getHours();
+        minute  = time.getMinutes();
+        second  = time.getSeconds();
+
+        if (this.showMeridian){
+          meridian = 'AM';
+          if (hour > 12){
+            meridian = 'PM';
+            hour = hour % 12;
+          }
+
+          if (hour === 12){
+            meridian = 'PM';
+          }
+        }
+      } else {
+        if (time.match(/p/i) !== null) {
+          meridian = 'PM';
+        } else {
+          meridian = 'AM';
+        }
+
+        time = time.replace(/[^0-9\:]/g, '');
+
+        timeArray = time.split(':');
+
+        hour = timeArray[0] ? timeArray[0].toString() : timeArray.toString();
+        minute = timeArray[1] ? timeArray[1].toString() : '';
+        second = timeArray[2] ? timeArray[2].toString() : '';
+
+        // idiot proofing
+        if (hour.length > 4) {
+          second = hour.substr(4, 2);
+        }
+        if (hour.length > 2) {
+          minute = hour.substr(2, 2);
+          hour = hour.substr(0, 2);
+        }
+        if (minute.length > 2) {
+          second = minute.substr(2, 2);
+          minute = minute.substr(0, 2);
+        }
+        if (second.length > 2) {
+          second = second.substr(2, 2);
+        }
+
+        hour = parseInt(hour, 10);
+        minute = parseInt(minute, 10);
+        second = parseInt(second, 10);
+
+        if (isNaN(hour)) {
+          hour = 0;
+        }
+        if (isNaN(minute)) {
+          minute = 0;
+        }
+        if (isNaN(second)) {
+          second = 0;
+        }
+
+        if (this.showMeridian) {
+          if (hour < 1) {
+            hour = 1;
+          } else if (hour > 12) {
+            hour = 12;
+          }
+        } else {
+          if (hour >= 24) {
+            hour = 23;
+          } else if (hour < 0) {
+            hour = 0;
+          }
+          if (hour < 13 && meridian === 'PM') {
+            hour = hour + 12;
+          }
+        }
+
+        if (minute < 0) {
+          minute = 0;
+        } else if (minute >= 60) {
+          minute = 59;
+        }
+
+        if (this.showSeconds) {
+          if (isNaN(second)) {
+            second = 0;
+          } else if (second < 0) {
+            second = 0;
+          } else if (second >= 60) {
+            second = 59;
+          }
+        }
+      }
+
+      this.hour = hour;
+      this.minute = minute;
+      this.second = second;
+      this.meridian = meridian;
+
+      this.update(ignoreWidget);
+    },
+
+    showWidget: function() {
+      if (this.isOpen) {
+        return;
+      }
+
+      if (this.$element.is(':disabled')) {
+        return;
+      }
+
+      var self = this;
+      $(document).on('mousedown.timepicker, touchend.timepicker', function (e) {
+        // Clicked outside the timepicker, hide it
+        if ($(e.target).closest('.bootstrap-timepicker-widget').length === 0) {
+          self.hideWidget();
+        }
+      });
+
+      this.$element.trigger({
+        'type': 'show.timepicker',
+        'time': {
+          'value': this.getTime(),
+          'hours': this.hour,
+          'minutes': this.minute,
+          'seconds': this.second,
+          'meridian': this.meridian
+        }
+      });
+
+      if (this.disableFocus) {
+        this.$element.blur();
+      }
+
+      // widget shouldn't be empty on open
+      if (!this.hour) {
+        if (this.defaultTime) {
+          this.setDefaultTime(this.defaultTime);
+        } else {
+          this.setTime('0:0:0');
+        }
+      }
+
+      if (this.template === 'modal' && this.$widget.modal) {
+        this.$widget.modal('show').on('hidden', $.proxy(this.hideWidget, this));
+      } else {
+        if (this.isOpen === false) {
+          this.$widget.addClass('open');
+        }
+      }
+
+      this.isOpen = true;
+    },
+
+    toggleMeridian: function() {
+      this.meridian = this.meridian === 'AM' ? 'PM' : 'AM';
+    },
+
+    update: function(ignoreWidget) {
+      this.updateElement();
+      if (!ignoreWidget) {
+        this.updateWidget();
+      }
+
+      this.$element.trigger({
+        'type': 'changeTime.timepicker',
+        'time': {
+          'value': this.getTime(),
+          'hours': this.hour,
+          'minutes': this.minute,
+          'seconds': this.second,
+          'meridian': this.meridian
+        }
+      });
+    },
+
+    updateElement: function() {
+      this.$element.val(this.getTime()).change();
+    },
+
+    updateFromElementVal: function() {
+      this.setTime(this.$element.val());
+    },
+
+    updateWidget: function() {
+      if (this.$widget === false) {
+        return;
+      }
+
+      var hour = this.hour,
+          minute = this.minute.toString().length === 1 ? '0' + this.minute : this.minute,
+          second = this.second.toString().length === 1 ? '0' + this.second : this.second;
+
+      if (this.showInputs) {
+        this.$widget.find('input.bootstrap-timepicker-hour').val(hour);
+        this.$widget.find('input.bootstrap-timepicker-minute').val(minute);
+
+        if (this.showSeconds) {
+          this.$widget.find('input.bootstrap-timepicker-second').val(second);
+        }
+        if (this.showMeridian) {
+          this.$widget.find('input.bootstrap-timepicker-meridian').val(this.meridian);
+        }
+      } else {
+        this.$widget.find('span.bootstrap-timepicker-hour').text(hour);
+        this.$widget.find('span.bootstrap-timepicker-minute').text(minute);
+
+        if (this.showSeconds) {
+          this.$widget.find('span.bootstrap-timepicker-second').text(second);
+        }
+        if (this.showMeridian) {
+          this.$widget.find('span.bootstrap-timepicker-meridian').text(this.meridian);
+        }
+      }
+    },
+
+    updateFromWidgetInputs: function() {
+      if (this.$widget === false) {
+        return;
+      }
+
+      var t = this.$widget.find('input.bootstrap-timepicker-hour').val() + ':' +
+              this.$widget.find('input.bootstrap-timepicker-minute').val() +
+              (this.showSeconds ? ':' + this.$widget.find('input.bootstrap-timepicker-second').val() : '') +
+              (this.showMeridian ? this.$widget.find('input.bootstrap-timepicker-meridian').val() : '')
+      ;
+
+      this.setTime(t, true);
+    },
+
+    widgetClick: function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+
+      var $input = $(e.target),
+          action = $input.closest('a').data('action');
+
+      if (action) {
+        this[action]();
+      }
+      this.update();
+
+      if ($input.is('input')) {
+        $input.get(0).setSelectionRange(0,2);
+      }
+    },
+
+    widgetKeydown: function(e) {
+      var $input = $(e.target),
+          name = $input.attr('class').replace('bootstrap-timepicker-', '');
+
+      switch (e.keyCode) {
+      case 9: //tab
+        if ((this.showMeridian && name === 'meridian') || (this.showSeconds && name === 'second') || (!this.showMeridian && !this.showSeconds && name === 'minute')) {
+          return this.hideWidget();
+        }
+        break;
+      case 27: // escape
+        this.hideWidget();
+        break;
+      case 38: // up arrow
+        e.preventDefault();
+        switch (name) {
+        case 'hour':
+          this.incrementHour();
+          break;
+        case 'minute':
+          this.incrementMinute();
+          break;
+        case 'second':
+          this.incrementSecond();
+          break;
+        case 'meridian':
+          this.toggleMeridian();
+          break;
+        }
+        this.setTime(this.getTime());
+        $input.get(0).setSelectionRange(0,2);
+        break;
+      case 40: // down arrow
+        e.preventDefault();
+        switch (name) {
+        case 'hour':
+          this.decrementHour();
+          break;
+        case 'minute':
+          this.decrementMinute();
+          break;
+        case 'second':
+          this.decrementSecond();
+          break;
+        case 'meridian':
+          this.toggleMeridian();
+          break;
+        }
+        this.setTime(this.getTime());
+        $input.get(0).setSelectionRange(0,2);
+        break;
+      }
+    },
+
+    widgetKeyup: function(e) {
+      if ((e.keyCode === 65) || (e.keyCode === 77) || (e.keyCode === 80) || (e.keyCode === 46) || (e.keyCode === 8) || (e.keyCode >= 46 && e.keyCode <= 57)) {
+        this.updateFromWidgetInputs();
+      }
+    }
+  };
+
+  //TIMEPICKER PLUGIN DEFINITION
+  $.fn.timepicker = function(option) {
+    var args = Array.apply(null, arguments);
+    args.shift();
+    return this.each(function() {
+      var $this = $(this),
+        data = $this.data('timepicker'),
+        options = typeof option === 'object' && option;
+
+      if (!data) {
+        $this.data('timepicker', (data = new Timepicker(this, $.extend({}, $.fn.timepicker.defaults, options, $(this).data()))));
+      }
+
+      if (typeof option === 'string') {
+        data[option].apply(data, args);
+      }
+    });
+  };
+
+  $.fn.timepicker.defaults = {
+    defaultTime: 'current',
+    disableFocus: false,
+    disableMousewheel: false,
+    isOpen: false,
+    minuteStep: 15,
+    modalBackdrop: false,
+    secondStep: 15,
+    showSeconds: false,
+    showInputs: true,
+    showMeridian: true,
+    template: 'dropdown',
+    appendWidgetTo: '.bootstrap-timepicker',
+    showWidgetOnAddonClick: true
+  };
+
+  $.fn.timepicker.Constructor = Timepicker;
+
+})(jQuery, window, document);
+
+/* =========================================================
+ * bootstrap-colorpicker.js 
+ * http://www.eyecon.ro/bootstrap-colorpicker
+ * =========================================================
+ * Copyright 2012 Stefan Petre
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ========================================================= */
+ 
+!function( $ ) {
+	
+	// Color object
+	
+	var Color = function(val) {
+		this.value = {
+			h: 1,
+			s: 1,
+			b: 1,
+			a: 1
+		};
+		this.setColor(val);
+	};
+	
+	Color.prototype = {
+		constructor: Color,
+		
+		//parse a string to HSB
+		setColor: function(val){
+			val = val.toLowerCase();
+			var that = this;
+			$.each( CPGlobal.stringParsers, function( i, parser ) {
+				var match = parser.re.exec( val ),
+					values = match && parser.parse( match ),
+					space = parser.space||'rgba';
+				if ( values ) {
+					if (space === 'hsla') {
+						that.value = CPGlobal.RGBtoHSB.apply(null, CPGlobal.HSLtoRGB.apply(null, values));
+					} else {
+						that.value = CPGlobal.RGBtoHSB.apply(null, values);
+					}
+					return false;
+				}
+			});
+		},
+		
+		setHue: function(h) {
+			this.value.h = 1- h;
+		},
+		
+		setSaturation: function(s) {
+			this.value.s = s;
+		},
+		
+		setLightness: function(b) {
+			this.value.b = 1- b;
+		},
+		
+		setAlpha: function(a) {
+			this.value.a = parseInt((1 - a)*100, 10)/100;
+		},
+		
+		// HSBtoRGB from RaphaelJS
+		// https://github.com/DmitryBaranovskiy/raphael/
+		toRGB: function(h, s, b, a) {
+			if (!h) {
+				h = this.value.h;
+				s = this.value.s;
+				b = this.value.b;
+			}
+			h *= 360;
+			var R, G, B, X, C;
+			h = (h % 360) / 60;
+			C = b * s;
+			X = C * (1 - Math.abs(h % 2 - 1));
+			R = G = B = b - C;
+
+			h = ~~h;
+			R += [C, X, 0, 0, X, C][h];
+			G += [X, C, C, X, 0, 0][h];
+			B += [0, 0, X, C, C, X][h];
+			return {
+				r: Math.round(R*255),
+				g: Math.round(G*255),
+				b: Math.round(B*255),
+				a: a||this.value.a
+			};
+		},
+		
+		toHex: function(h, s, b, a){
+			var rgb = this.toRGB(h, s, b, a);
+			return '#'+((1 << 24) | (parseInt(rgb.r) << 16) | (parseInt(rgb.g) << 8) | parseInt(rgb.b)).toString(16).substr(1);
+		},
+		
+		toHSL: function(h, s, b, a){
+			if (!h) {
+				h = this.value.h;
+				s = this.value.s;
+				b = this.value.b;
+			}
+			var H = h,
+				L = (2 - s) * b,
+				S = s * b;
+			if (L > 0 && L <= 1) {
+				S /= L;
+			} else {
+				S /= 2 - L;
+			}
+			L /= 2;
+			if (S > 1) {
+				S = 1;
+			}
+			return {
+				h: H,
+				s: S,
+				l: L,
+				a: a||this.value.a
+			};
+		}
+	};
+	
+	// Picker object
+	
+	var Colorpicker = function(element, options){
+		this.element = $(element);
+		var format = options.format||this.element.data('color-format')||'hex';
+		this.format = CPGlobal.translateFormats[format];
+		this.isInput = this.element.is('input');
+		this.component = this.element.is('.color') ? this.element.find('.add-on') : false;
+		
+		this.picker = $(CPGlobal.template)
+							.appendTo('body')
+							.on('mousedown', $.proxy(this.mousedown, this));
+		
+		if (this.isInput) {
+			this.element.on({
+				'focus': $.proxy(this.show, this),
+				'keyup': $.proxy(this.update, this)
+			});
+		} else if (this.component){
+			this.component.on({
+				'click': $.proxy(this.show, this)
+			});
+		} else {
+			this.element.on({
+				'click': $.proxy(this.show, this)
+			});
+		}
+		if (format === 'rgba' || format === 'hsla') {
+			this.picker.addClass('alpha');
+			this.alpha = this.picker.find('.colorpicker-alpha')[0].style;
+		}
+		
+		if (this.component){
+			this.picker.find('.colorpicker-color').hide();
+			this.preview = this.element.find('i')[0].style;
+		} else {
+			this.preview = this.picker.find('div:last')[0].style;
+		}
+		
+		this.base = this.picker.find('div:first')[0].style;
+		this.update();
+	};
+	
+	Colorpicker.prototype = {
+		constructor: Colorpicker,
+		
+		show: function(e) {
+			this.picker.show();
+			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
+			this.place();
+			$(window).on('resize', $.proxy(this.place, this));
+			if (!this.isInput) {
+				if (e) {
+					e.stopPropagation();
+					e.preventDefault();
+				}
+			}
+			$(document).on({
+				'mousedown': $.proxy(this.hide, this)
+			});
+			this.element.trigger({
+				type: 'show',
+				color: this.color
+			});
+		},
+		
+		update: function(){
+			this.color = new Color(this.isInput ? this.element.prop('value') : this.element.data('color'));
+			this.picker.find('i')
+				.eq(0).css({left: this.color.value.s*100, top: 100 - this.color.value.b*100}).end()
+				.eq(1).css('top', 100 * (1 - this.color.value.h)).end()
+				.eq(2).css('top', 100 * (1 - this.color.value.a));
+			this.previewColor();
+		},
+		
+		setValue: function(newColor) {
+			this.color = new Color(newColor);
+			this.picker.find('i')
+				.eq(0).css({left: this.color.value.s*100, top: 100 - this.color.value.b*100}).end()
+				.eq(1).css('top', 100 * (1 - this.color.value.h)).end()
+				.eq(2).css('top', 100 * (1 - this.color.value.a));
+			this.previewColor();
+			this.element.trigger({
+				type: 'changeColor',
+				color: this.color
+			});
+		},
+		
+		hide: function(){
+			this.picker.hide();
+			$(window).off('resize', this.place);
+			if (!this.isInput) {
+				$(document).off({
+					'mousedown': this.hide
+				});
+				if (this.component){
+					this.element.find('input').prop('value', this.format.call(this));
+				}
+				this.element.data('color', this.format.call(this));
+			} else {
+				this.element.prop('value', this.format.call(this));
+			}
+			this.element.trigger({
+				type: 'hide',
+				color: this.color
+			});
+		},
+		
+		place: function(){
+			var offset = this.component ? this.component.offset() : this.element.offset();
+			this.picker.css({
+				top: offset.top + this.height,
+				left: offset.left
+			});
+		},
+		
+		//preview color change
+		previewColor: function(){
+			try {
+				this.preview.backgroundColor = this.format.call(this);
+			} catch(e) {
+				this.preview.backgroundColor = this.color.toHex();
+			}
+			//set the color for brightness/saturation slider
+			this.base.backgroundColor = this.color.toHex(this.color.value.h, 1, 1, 1);
+			//set te color for alpha slider
+			if (this.alpha) {
+				this.alpha.backgroundColor = this.color.toHex();
+			}
+		},
+		
+		pointer: null,
+		
+		slider: null,
+		
+		mousedown: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			
+			var target = $(e.target);
+			
+			//detect the slider and set the limits and callbacks
+			var zone = target.closest('div');
+			if (!zone.is('.colorpicker')) {
+				if (zone.is('.colorpicker-saturation')) {
+					this.slider = $.extend({}, CPGlobal.sliders.saturation);
+				} 
+				else if (zone.is('.colorpicker-hue')) {
+					this.slider = $.extend({}, CPGlobal.sliders.hue);
+				}
+				else if (zone.is('.colorpicker-alpha')) {
+					this.slider = $.extend({}, CPGlobal.sliders.alpha);
+				} else {
+					return false;
+				}
+				var offset = zone.offset();
+				//reference to knob's style
+				this.slider.knob = zone.find('i')[0].style;
+				this.slider.left = e.pageX - offset.left;
+				this.slider.top = e.pageY - offset.top;
+				this.pointer = {
+					left: e.pageX,
+					top: e.pageY
+				};
+				//trigger mousemove to move the knob to the current position
+				$(document).on({
+					mousemove: $.proxy(this.mousemove, this),
+					mouseup: $.proxy(this.mouseup, this)
+				}).trigger('mousemove');
+			}
+			return false;
+		},
+		
+		mousemove: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			var left = Math.max(
+				0,
+				Math.min(
+					this.slider.maxLeft,
+					this.slider.left + ((e.pageX||this.pointer.left) - this.pointer.left)
+				)
+			);
+			var top = Math.max(
+				0,
+				Math.min(
+					this.slider.maxTop,
+					this.slider.top + ((e.pageY||this.pointer.top) - this.pointer.top)
+				)
+			);
+			this.slider.knob.left = left + 'px';
+			this.slider.knob.top = top + 'px';
+			if (this.slider.callLeft) {
+				this.color[this.slider.callLeft].call(this.color, left/100);
+			}
+			if (this.slider.callTop) {
+				this.color[this.slider.callTop].call(this.color, top/100);
+			}
+			this.previewColor();
+			this.element.trigger({
+				type: 'changeColor',
+				color: this.color
+			});
+			return false;
+		},
+		
+		mouseup: function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$(document).off({
+				mousemove: this.mousemove,
+				mouseup: this.mouseup
+			});
+			return false;
+		}
+	}
+
+	$.fn.colorpicker = function ( option, val ) {
+		return this.each(function () {
+			var $this = $(this),
+				data = $this.data('colorpicker'),
+				options = typeof option === 'object' && option;
+			if (!data) {
+				$this.data('colorpicker', (data = new Colorpicker(this, $.extend({}, $.fn.colorpicker.defaults,options))));
+			}
+			if (typeof option === 'string') data[option](val);
+		});
+	};
+
+	$.fn.colorpicker.defaults = {
+	};
+	
+	$.fn.colorpicker.Constructor = Colorpicker;
+	
+	var CPGlobal = {
+	
+		// translate a format from Color object to a string
+		translateFormats: {
+			'rgb': function(){
+				var rgb = this.color.toRGB();
+				return 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')';
+			},
+			
+			'rgba': function(){
+				var rgb = this.color.toRGB();
+				return 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+rgb.a+')';
+			},
+			
+			'hsl': function(){
+				var hsl = this.color.toHSL();
+				return 'hsl('+Math.round(hsl.h*360)+','+Math.round(hsl.s*100)+'%,'+Math.round(hsl.l*100)+'%)';
+			},
+			
+			'hsla': function(){
+				var hsl = this.color.toHSL();
+				return 'hsla('+Math.round(hsl.h*360)+','+Math.round(hsl.s*100)+'%,'+Math.round(hsl.l*100)+'%,'+hsl.a+')';
+			},
+			
+			'hex': function(){
+				return  this.color.toHex();
+			}
+		},
+		
+		sliders: {
+			saturation: {
+				maxLeft: 100,
+				maxTop: 100,
+				callLeft: 'setSaturation',
+				callTop: 'setLightness'
+			},
+			
+			hue: {
+				maxLeft: 0,
+				maxTop: 100,
+				callLeft: false,
+				callTop: 'setHue'
+			},
+			
+			alpha: {
+				maxLeft: 0,
+				maxTop: 100,
+				callLeft: false,
+				callTop: 'setAlpha'
+			}
+		},
+		
+		// HSBtoRGB from RaphaelJS
+		// https://github.com/DmitryBaranovskiy/raphael/
+		RGBtoHSB: function (r, g, b, a){
+			r /= 255;
+			g /= 255;
+			b /= 255;
+
+			var H, S, V, C;
+			V = Math.max(r, g, b);
+			C = V - Math.min(r, g, b);
+			H = (C === 0 ? null :
+				V == r ? (g - b) / C :
+				V == g ? (b - r) / C + 2 :
+					(r - g) / C + 4
+				);
+			H = ((H + 360) % 6) * 60 / 360;
+			S = C === 0 ? 0 : C / V;
+			return {h: H||1, s: S, b: V, a: a||1};
+		},
+		
+		HueToRGB: function (p, q, h) {
+			if (h < 0)
+				h += 1;
+			else if (h > 1)
+				h -= 1;
+
+			if ((h * 6) < 1)
+				return p + (q - p) * h * 6;
+			else if ((h * 2) < 1)
+				return q;
+			else if ((h * 3) < 2)
+				return p + (q - p) * ((2 / 3) - h) * 6;
+			else
+				return p;
+		},
+	
+		HSLtoRGB: function (h, s, l, a)
+		{
+			if (s < 0) {
+				s = 0;
+			}
+			var q;
+			if (l <= 0.5) {
+				q = l * (1 + s);
+			} else {
+				q = l + s - (l * s);
+			}
+			
+			var p = 2 * l - q;
+
+			var tr = h + (1 / 3);
+			var tg = h;
+			var tb = h - (1 / 3);
+
+			var r = Math.round(CPGlobal.HueToRGB(p, q, tr) * 255);
+			var g = Math.round(CPGlobal.HueToRGB(p, q, tg) * 255);
+			var b = Math.round(CPGlobal.HueToRGB(p, q, tb) * 255);
+			return [r, g, b, a||1];
+		},
+		
+		// a set of RE's that can match strings and generate color tuples.
+		// from John Resig color plugin
+		// https://github.com/jquery/jquery-color/
+		stringParsers: [
+			{
+				re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				parse: function( execResult ) {
+					return [
+						execResult[ 1 ],
+						execResult[ 2 ],
+						execResult[ 3 ],
+						execResult[ 4 ]
+					];
+				}
+			}, {
+				re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				parse: function( execResult ) {
+					return [
+						2.55 * execResult[1],
+						2.55 * execResult[2],
+						2.55 * execResult[3],
+						execResult[ 4 ]
+					];
+				}
+			}, {
+				re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
+				parse: function( execResult ) {
+					return [
+						parseInt( execResult[ 1 ], 16 ),
+						parseInt( execResult[ 2 ], 16 ),
+						parseInt( execResult[ 3 ], 16 )
+					];
+				}
+			}, {
+				re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/,
+				parse: function( execResult ) {
+					return [
+						parseInt( execResult[ 1 ] + execResult[ 1 ], 16 ),
+						parseInt( execResult[ 2 ] + execResult[ 2 ], 16 ),
+						parseInt( execResult[ 3 ] + execResult[ 3 ], 16 )
+					];
+				}
+			}, {
+				re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+				space: 'hsla',
+				parse: function( execResult ) {
+					return [
+						execResult[1]/360,
+						execResult[2] / 100,
+						execResult[3] / 100,
+						execResult[4]
+					];
+				}
+			}
+		],
+		template: '<div class="colorpicker dropdown-menu">'+
+							'<div class="colorpicker-saturation"><i><b></b></i></div>'+
+							'<div class="colorpicker-hue"><i></i></div>'+
+							'<div class="colorpicker-alpha"><i></i></div>'+
+							'<div class="colorpicker-color"><div /></div>'+
+						'</div>'
+	};
+
+}( window.jQuery )

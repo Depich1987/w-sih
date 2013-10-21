@@ -2,7 +2,6 @@ package com.depich1987.wsih.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,13 +24,32 @@ public class Meeting  implements Serializable {
 	
 	private Long patientId;
 	
-	private Set<HealthCare> cares;
+    /**
+     */
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(style = "M-")
+    private Date startTime;
+
+    /**
+     */
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(style = "M-")
+    private Date endTime;
+    
+	
+	private WSHealthCare care;
 	
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "M-")
     private Date meetingDate;
+    
+    private String doctorFullName;
+    
+    private Long doctorId;
 
+    private Long department;
+    
     private String description;
 
 	public Meeting() {
@@ -46,12 +64,12 @@ public class Meeting  implements Serializable {
 		this.id = id;
 	}
 
-	public Set<HealthCare> getCares() {
-		return cares;
+	public WSHealthCare getCare() {
+		return care;
 	}
 
-	public void setCares(Set<HealthCare> cares) {
-		this.cares = cares;
+	public void setCare(WSHealthCare care) {
+		this.care = care;
 	}
 
 	public Date getMeetingDate() {
@@ -108,6 +126,46 @@ public class Meeting  implements Serializable {
 
 	public void setPatientId(Long patientId) {
 		this.patientId = patientId;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getDoctorFullName() {
+		return doctorFullName;
+	}
+
+	public void setDoctorFullName(String doctorFullName) {
+		this.doctorFullName = doctorFullName;
+	}
+
+	public Long getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public Long getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Long department) {
+		this.department = department;
 	}
 	
 	

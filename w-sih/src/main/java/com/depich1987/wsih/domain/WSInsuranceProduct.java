@@ -3,15 +3,23 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import javax.persistence.ManyToOne;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(table = "WS_INSURANCE_PRODUCT")
-public class WSInuranceProduct {
+public class WSInsuranceProduct {
 
     /**
      */
-    private String title;
+    private String name;
+
+    /**
+     */
+    private String contact;
 
     /**
      */
@@ -20,6 +28,6 @@ public class WSInuranceProduct {
 
     /**
      */
-    @ManyToOne
-    private WSHealthCare healthCare;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<WSPricing> prices = new HashSet<WSPricing>();
 }

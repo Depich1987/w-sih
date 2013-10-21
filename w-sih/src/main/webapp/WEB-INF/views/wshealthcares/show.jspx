@@ -5,5 +5,10 @@
     <page:show id="ps_com_depich1987_wsih_domain_WSHealthCare" object="${wshealthcare_}" path="/wshealthcares" z="QwVgrBdE2rp9Mpb7yJV4Hj/+f5M=">
         <field:display field="name" id="s_com_depich1987_wsih_domain_WSHealthCare_name" object="${wshealthcare_}" z="rCKAFYnlyz6wfH0GECRoe0q3cuU="/>
         <field:display field="healthCareType" id="s_com_depich1987_wsih_domain_WSHealthCare_healthCareType" object="${wshealthcare_}" z="ufNYOwnNvP8FoLOX4Xv5DNosECI="/>
+        <field:display field="price" id="s_com_depich1987_wsih_domain_WSHealthCare_price" object="${wshealthcare_}" z="u01jpMFlABsM/lXfRurmUM+888A="/>
+        <field:display field="hospitalPart" id="s_com_depich1987_wsih_domain_WSHealthCare_hospitalPart" object="${wshealthcare_}" z="4KtcjajH0IX3XdgbTqn3SuHnrFw="/>
+        <field:display field="rateBNC" id="s_com_depich1987_wsih_domain_WSHealthCare_rateBNC" object="${wshealthcare_}" z="k+Yd2IqdFIe04hWQXoVeI2qxixY="/>
+        <field:display field="rateVAT" id="s_com_depich1987_wsih_domain_WSHealthCare_rateVAT" object="${wshealthcare_}" z="vNT3hD5ShAv6R1MVVDKc7nAv8dI="/>
+        <field:display field="doctorPart" id="s_com_depich1987_wsih_domain_WSHealthCare_doctorPart" object="${wshealthcare_}" z="+1kTOC7QbQLYA1mJhLnCDnfu9xA="/>
     </page:show>
 </div>

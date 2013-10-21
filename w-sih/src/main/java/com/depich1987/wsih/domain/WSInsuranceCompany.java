@@ -29,5 +29,5 @@ public class WSInsuranceCompany {
     /**
      */
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<WSInuranceProduct> insuranceProducts = new HashSet<WSInuranceProduct>();
+    private Set<WSInsuranceProduct> insuranceProducts = new HashSet<WSInsuranceProduct>();
 }

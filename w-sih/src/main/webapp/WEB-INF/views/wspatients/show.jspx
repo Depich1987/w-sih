@@ -18,7 +18,6 @@
         <field:display field="phoneHome" id="s_com_depich1987_wsih_domain_WSPatient_phoneHome" object="${wspatient_}" z="xZA0GXjpGvnccJOpn50O091PyAU="/>
         <field:display field="mobilePhone" id="s_com_depich1987_wsih_domain_WSPatient_mobilePhone" object="${wspatient_}" z="bJQh8vmY5ai88LGVdMa4jIlfKXc="/>
         <field:display field="email" id="s_com_depich1987_wsih_domain_WSPatient_email" object="${wspatient_}" z="mUrD06JfrnLqc3cZvtBG7tbg0cw="/>
-        <field:display field="insured" id="s_com_depich1987_wsih_domain_WSPatient_insured" object="${wspatient_}" z="T8iadDp3/VuhpkjzafA7RzU+nD8="/>
         <field:display field="insuredRegistrationId" id="s_com_depich1987_wsih_domain_WSPatient_insuredRegistrationId" object="${wspatient_}" z="nmz7WgVJgzU23x7JVF+Am2K83IA="/>
         <field:display field="insuredCardId" id="s_com_depich1987_wsih_domain_WSPatient_insuredCardId" object="${wspatient_}" z="HFdRZxBnNQ9KF09V3NzoS/6FnLg="/>
         <field:display field="principalInsuredRegistrationId" id="s_com_depich1987_wsih_domain_WSPatient_principalInsuredRegistrationId" object="${wspatient_}" z="t/VMJV3t/HEJfv9B2NXCg48c06Y="/>
@@ -32,5 +31,6 @@
         <field:display field="confirmPassword" id="s_com_depich1987_wsih_domain_WSPatient_confirmPassword" object="${wspatient_}" z="NotOdVcABnyKgCRJDpOpWfNczbo="/>
         <field:display field="birthPlace" id="s_com_depich1987_wsih_domain_WSPatient_birthPlace" object="${wspatient_}" z="XgTt1kHWgfjV3cM9sMjlddtKXcU="/>
         <field:display field="registrationCNI" id="s_com_depich1987_wsih_domain_WSPatient_registrationCNI" object="${wspatient_}" z="tn5GvRdE7FgKATftFfgyLP1F1Mk="/>
+        <field:display field="insuranceProduct" id="s_com_depich1987_wsih_domain_WSPatient_insuranceProduct" object="${wspatient_}" z="rKqRoMy5LOEzOd4QtAmX2psLKKo="/>
     </page:show>
 </div>

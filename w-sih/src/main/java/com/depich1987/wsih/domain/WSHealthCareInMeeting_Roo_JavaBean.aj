@@ -6,16 +6,17 @@ package com.depich1987.wsih.domain;
 import com.depich1987.wsih.domain.WSHealthCare;
 import com.depich1987.wsih.domain.WSHealthCareInMeeting;
 import com.depich1987.wsih.domain.WSMeeting;
+import com.depich1987.wsih.domain.WSUser;
 import java.util.Date;
 
 privileged aspect WSHealthCareInMeeting_Roo_JavaBean {
     
-    public Long WSHealthCareInMeeting.getUserId() {
-        return this.userId;
+    public WSUser WSHealthCareInMeeting.getUser() {
+        return this.user;
     }
     
-    public void WSHealthCareInMeeting.setUserId(Long userId) {
-        this.userId = userId;
+    public void WSHealthCareInMeeting.setUser(WSUser user) {
+        this.user = user;
     }
     
     public Date WSHealthCareInMeeting.getCreationDate() {
@@ -64,6 +65,30 @@ privileged aspect WSHealthCareInMeeting_Roo_JavaBean {
     
     public void WSHealthCareInMeeting.setDiagnostic(String diagnostic) {
         this.diagnostic = diagnostic;
+    }
+    
+    public Date WSHealthCareInMeeting.getMeetingDate() {
+        return this.meetingDate;
+    }
+    
+    public void WSHealthCareInMeeting.setMeetingDate(Date meetingDate) {
+        this.meetingDate = meetingDate;
+    }
+    
+    public Date WSHealthCareInMeeting.getStartTime() {
+        return this.startTime;
+    }
+    
+    public void WSHealthCareInMeeting.setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+    
+    public Date WSHealthCareInMeeting.getEndTime() {
+        return this.endTime;
+    }
+    
+    public void WSHealthCareInMeeting.setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
     
 }

@@ -21,17 +21,37 @@ public class WSHealthCare {
 
     /**
      */
+    private double price;
+
+    /**
+     */
+    private double hospitalPart;
+    
+    /**
+     */
+    private double doctorPart;
+
+    /**
+     */
+    private double rateBNC;
+
+    /**
+     */
+    private double rateVAT;
+    
+    /**
+     */
     @ManyToOne
     private WSHealthCareType healthCareType;
 
     /**
      */
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<WSInuranceProduct> insuranceProducts = new HashSet<WSInuranceProduct>();
-    
+    private Set<WSPricing> prices = new HashSet<WSPricing>();
 
     /**
      */
     @OneToMany(cascade = CascadeType.ALL)
     private Set<WSHealthCareInMeeting> healthCareInMeeting = new HashSet<WSHealthCareInMeeting>();
+
 }

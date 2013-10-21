@@ -26,7 +26,7 @@
     		</div>
 	        <table:table data="${wshealthcaretypes}" id="l_com_depich1987_wsih_domain_WSHealthCareType" path="/admin/healthcaremanagement/healthcaretypes">
 	            <table:column id="c_com_depich1987_wsih_domain_WSHealthCareType_name" property="name"/>
-	            <table:column id="c_com_depich1987_wsih_domain_WSHealthCareType_description" property="description"/>
+	            <table:column id="c_com_depich1987_wsih_domain_WSHealthCareType_colorPicker" property="colorPicker"/>
 	        </table:table>
     	</fieldset>
 	</div>

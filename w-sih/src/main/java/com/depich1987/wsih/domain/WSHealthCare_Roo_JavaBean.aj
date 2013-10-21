@@ -6,7 +6,7 @@ package com.depich1987.wsih.domain;
 import com.depich1987.wsih.domain.WSHealthCare;
 import com.depich1987.wsih.domain.WSHealthCareInMeeting;
 import com.depich1987.wsih.domain.WSHealthCareType;
-import com.depich1987.wsih.domain.WSInuranceProduct;
+import com.depich1987.wsih.domain.WSPricing;
 import java.util.Set;
 
 privileged aspect WSHealthCare_Roo_JavaBean {
@@ -19,6 +19,46 @@ privileged aspect WSHealthCare_Roo_JavaBean {
         this.name = name;
     }
     
+    public double WSHealthCare.getPrice() {
+        return this.price;
+    }
+    
+    public void WSHealthCare.setPrice(double price) {
+        this.price = price;
+    }
+    
+    public double WSHealthCare.getHospitalPart() {
+        return this.hospitalPart;
+    }
+    
+    public void WSHealthCare.setHospitalPart(double hospitalPart) {
+        this.hospitalPart = hospitalPart;
+    }
+    
+    public double WSHealthCare.getDoctorPart() {
+        return this.doctorPart;
+    }
+    
+    public void WSHealthCare.setDoctorPart(double doctorPart) {
+        this.doctorPart = doctorPart;
+    }
+    
+    public double WSHealthCare.getRateBNC() {
+        return this.rateBNC;
+    }
+    
+    public void WSHealthCare.setRateBNC(double rateBNC) {
+        this.rateBNC = rateBNC;
+    }
+    
+    public double WSHealthCare.getRateVAT() {
+        return this.rateVAT;
+    }
+    
+    public void WSHealthCare.setRateVAT(double rateVAT) {
+        this.rateVAT = rateVAT;
+    }
+    
     public WSHealthCareType WSHealthCare.getHealthCareType() {
         return this.healthCareType;
     }
@@ -27,12 +67,12 @@ privileged aspect WSHealthCare_Roo_JavaBean {
         this.healthCareType = healthCareType;
     }
     
-    public Set<WSInuranceProduct> WSHealthCare.getInsuranceProducts() {
-        return this.insuranceProducts;
+    public Set<WSPricing> WSHealthCare.getPrices() {
+        return this.prices;
     }
     
-    public void WSHealthCare.setInsuranceProducts(Set<WSInuranceProduct> insuranceProducts) {
-        this.insuranceProducts = insuranceProducts;
+    public void WSHealthCare.setPrices(Set<WSPricing> prices) {
+        this.prices = prices;
     }
     
     public Set<WSHealthCareInMeeting> WSHealthCare.getHealthCareInMeeting() {

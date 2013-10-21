@@ -3,6 +3,7 @@
 
 package com.depich1987.wsih.web;
 
+import com.depich1987.wsih.domain.WSInsuranceProduct;
 import com.depich1987.wsih.domain.WSMeeting;
 import com.depich1987.wsih.domain.WSPatient;
 import com.depich1987.wsih.web.PatientController;
@@ -97,6 +98,7 @@ privileged aspect PatientController_Roo_Controller {
     void PatientController.populateEditForm(Model uiModel, WSPatient WSPatient_) {
         uiModel.addAttribute("WSPatient_", WSPatient_);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("wsinsuranceproducts", WSInsuranceProduct.findAllWSInsuranceProducts());
         uiModel.addAttribute("wsmeetings", WSMeeting.findAllWSMeetings());
     }
     

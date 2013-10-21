@@ -12,6 +12,7 @@
   <spring:message code="label_com_depich1987_wsih_domain_wsstockpile" var="stockpile_label"/>
 
   <spring:url value="/workbench/meetings/create?form" var="createmeeting_url"/>
+   <spring:url value="/workbench/meetings/events.json" var="eventsjson_url"/>
   	
 	<div class="row-fluid">
 	
@@ -24,7 +25,7 @@
  
 	    		<div class="span5">
 	    			<select id="departmentFilter">
-	    				<option value="all">All Departments</option>
+	    				<option value="0">All Departments</option>
 	    				<c:forEach items="${wsdepartments}" var="department">
 	    					<option value="${department.id}">
 	    						${department.name}
@@ -51,8 +52,29 @@
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
+		
+		function getEventsByDepartment(departmentId,startCriteria, endCriteria){
+
+			$.ajax({
+				url:'${eventsjson_url}',
+				type:'post',
+				data:{departmentId:departmentId, startDate: new Date(startCriteria).getTime(), endDate:new Date(endCriteria).getTime()},
+				dataType:'json',
+				async:false,
+				success:function(eventJson){
+					console.log(eventJson);
+					$('#agendaArea').fullCalendar('removeEvents');
+					$('#agendaArea').fullCalendar('events',eventJson);
+				},
+				error: function (request, status, error) {
+			        console.log(request.responseText);
+			    }
+			});
+		}
 	
 		$(document).ready(function(){
+			
+			//getEventsByDepartment()
 			
 			var eventObject = {
 					title: 'Franck Agah Events',// use the element's text as the event title
@@ -67,11 +89,15 @@
 					right: 'month,agendaWeek,agendaDay'
 				},
 				editable: false,
-				droppable: false
+				droppable: false,
+				allDaySlot:false,
+				viewRender:function(view, element){
+					getEventsByDepartment($('#departmentFilter').val(), view.start , view.end);
+				}
 			});
 			$('#agendaArea').fullCalendar('renderEvent', {title: 'Franck Agah Events Today',start: new Date(y, m, d),allDay: false}, true);
 			$('#departmentFilter').change(function(){
-				$('#agendaArea').fullCalendar('renderEvent', eventObject, true);
+				//$('#agendaArea').fullCalendar('renderEvent', eventObject, true);
 				
 			});
 		});

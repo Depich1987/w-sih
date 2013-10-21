@@ -63,5 +63,17 @@
             <menu:item id="i_wspatient_new" messageCode="global_menu_new" url="/wspatients?form" z="B1QPhHHACeCtqH681hoQn7Dy9z8="/>
             <menu:item id="i_wspatient_list" messageCode="global_menu_list" url="/wspatients?page=1&amp;size=${empty param.size ? 10 : param.size}" z="WAQQkl3fOqz/wUZHEPB4xCvuBMU="/>
         </menu:category>
+        <menu:category id="c_wsinuranceproduct" z="WgbSYKnJchExV+DKN8VXYY6BqIg=">
+            <menu:item id="i_wsinuranceproduct_new" messageCode="global_menu_new" url="/wsinuranceproducts?form" z="BWqZlqG644BkDbps/XjPSzq8eHM="/>
+            <menu:item id="i_wsinuranceproduct_list" messageCode="global_menu_list" url="/wsinuranceproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="hSNaZDFVXbxJbBvNvG1cEKQth7E="/>
+        </menu:category>
+        <menu:category id="c_wspricing" z="a8xNanplAFZaSVQhawEzUlztp0Q=">
+            <menu:item id="i_wspricing_new" messageCode="global_menu_new" url="/wspricings?form" z="HNOSW6aPFnkal/VjOXSRTlGMG70="/>
+            <menu:item id="i_wspricing_list" messageCode="global_menu_list" url="/wspricings?page=1&amp;size=${empty param.size ? 10 : param.size}" z="A31NOGzmYQNtekiyTk0O9o2xa6k="/>
+        </menu:category>
+        <menu:category id="c_wsinsuranceproduct" z="2WCNdbGI/4obP0ULowU8WboeQ7c=">
+            <menu:item id="i_wsinsuranceproduct_new" messageCode="global_menu_new" url="/wsinuranceproducts?form" z="4XO7+h9z7FUKVdXcKrWSKhnG2XU="/>
+            <menu:item id="i_wsinsuranceproduct_list" messageCode="global_menu_list" url="/wsinuranceproducts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7wL0NWDhFLkSq/4M5NLMXHqukXM="/>
+        </menu:category>
     </menu:menu>
 </div>

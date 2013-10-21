@@ -15,4 +15,9 @@
     <put-attribute name="body" value="/WEB-INF/views/wsih/admin/stockindex.jspx" />
   </definition>
   
+  <definition name="admin/insurancemanagement" extends="defaultLayout">
+  	<put-attribute name="navigation" value="/WEB-INF/views/wsih/admin/navigation.jspx" />
+    <put-attribute name="body" value="/WEB-INF/views/wsih/admin/insuranceindex.jspx" />
+  </definition>
+  
 </tiles-definitions>

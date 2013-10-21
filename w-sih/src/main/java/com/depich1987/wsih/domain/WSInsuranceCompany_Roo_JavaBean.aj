@@ -4,7 +4,7 @@
 package com.depich1987.wsih.domain;
 
 import com.depich1987.wsih.domain.WSInsuranceCompany;
-import com.depich1987.wsih.domain.WSInuranceProduct;
+import com.depich1987.wsih.domain.WSInsuranceProduct;
 import java.util.Set;
 
 privileged aspect WSInsuranceCompany_Roo_JavaBean {
@@ -33,11 +33,11 @@ privileged aspect WSInsuranceCompany_Roo_JavaBean {
         this.email = email;
     }
     
-    public Set<WSInuranceProduct> WSInsuranceCompany.getInsuranceProducts() {
+    public Set<WSInsuranceProduct> WSInsuranceCompany.getInsuranceProducts() {
         return this.insuranceProducts;
     }
     
-    public void WSInsuranceCompany.setInsuranceProducts(Set<WSInuranceProduct> insuranceProducts) {
+    public void WSInsuranceCompany.setInsuranceProducts(Set<WSInsuranceProduct> insuranceProducts) {
         this.insuranceProducts = insuranceProducts;
     }
     

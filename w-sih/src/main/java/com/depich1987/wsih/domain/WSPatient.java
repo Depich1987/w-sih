@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
@@ -86,10 +87,6 @@ public class WSPatient {
 
     /**
      */
-    private Boolean insured;
-
-    /**
-     */
     private String insuredRegistrationId;
 
     /**
@@ -143,4 +140,9 @@ public class WSPatient {
     /**
      */
     private String registrationCNI;
+
+    /**
+     */
+    @ManyToOne(optional = true)
+    private WSInsuranceProduct insuranceProduct;
 }

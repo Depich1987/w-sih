@@ -13,7 +13,7 @@
     <spring:message code="button_save" var="buttonsave_label"/>
     <spring:message code="button_cancel" var="cancel_label"/>
     
-    <spring:url value="/workbench/patients/createAjax" var="createpatientajax_url"/>
+    <spring:url value="/workbench/meetings/candidates" var="getcandidatesajax_url"/>
     <spring:url value="/workbench/patients/autocomplete" var="autocompletePatientPath"/>
     <spring:url value="/workbench/meetings/create" var="createmeeting_url"/>
     
@@ -28,9 +28,10 @@
     
     <spring:message code="label_com_depich1987_wsih_domain_wspatient_firstname" var="firstname_label"/>
     <spring:message code="label_com_depich1987_wsih_domain_wspatient_lastname" var="lastname_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_wspatient_mobilephone" var="mobilephone_label"/>
-    <spring:message code="label_com_depich1987_wsih_domain_wspatient_registrationcni" var="registrationcni_label"/>
-    <spring:message code="wsih_workbench_newpatient" var="newpatient_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_doctorid" var="doctorid_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_starttime" var="starttime_label"/>
+     <spring:message code="label_com_depich1987_wsih_domain_wsmeeting_endtime" var="endtime_label"/>
+    <spring:message code="label_com_depich1987_wsih_domain_wshealthcare" var="healthcare_label"/>
     
     <form:form action="${createmeeting_url}" method="post" modelAttribute="WSMeeting_" cssClass="form-horizontal">
   	
@@ -51,15 +52,60 @@
 	    			<form:textarea path="description" cssClass="input-xlarge" />
 	    		</div>
     		</div>
-    		
-    					
+    		<hr />
+   			<div class="control-group">
+   				<label class="control-label" for="department">${department_label}</label>
+   				<div class="controls">
+   					<form:select path="department" cssClass="input-xlarge">
+   						<form:options items="${wsdepartments}" itemLabel="name" itemValue="id"/>
+   					</form:select>
+   				</div>
+   			</div>
+   			<div class="control-group">
+   				<label class="control-label" for="doctorId">${doctorid_label}</label>
+   				<div class="controls">
+   					<select name="doctorId" id="doctorId" class="input-xlarge">
+   						<option>--Select a Doctor --</option>
+   					</select>
+   				</div>
+   			</div>
+   			<div class="control-group">
+   				<label class="control-label" for="healthCare">${healthcare_label}</label>
+   				<div class="controls">
+   					<form:select path="healthCare" cssClass="input-xlarge">
+   						<form:options items="${cares}" itemLabel="name" itemValue="id"/>
+   					</form:select>
+   				</div>
+   			</div>
+    		<hr />			
 			<div class="control-group">
     			<label class="control-label" for="meetingDate">${meetingdate_label}</label>
 	    		<div class="controls">
 	    			<form:input path="meetingDate" autocomplete="off" />
 	    		</div>
     		</div>
+    		
+			<div class="control-group">
+    			<label class="control-label" for="startTime">${starttime_label}</label>
+	    		<div class="controls">
+	    			<div class="input-append bootstrap-timepicker">
+	    				<form:input path="startTime" autocomplete="off" />
+	    				<span class="add-on"><span class="icon-time"></span></span>
+	    			</div>
+	    		</div>
+    		</div>
+    		
+			<div class="control-group">
+    			<label class="control-label" for="endTime">${endtime_label}</label>
+	    		<div class="controls">
+	    			<div class="input-append bootstrap-timepicker">
+	    				<form:input path="endTime" autocomplete="off" />
+	    				<span class="add-on"><span class="icon-time"></span></span>
+	    			</div>
+	    		</div>
+    		</div>
 
+			<hr />
 			<div class="row-fluid">
 				<div class="alert alert-success">
 					<strong>${patientdetails_label}</strong>
@@ -78,18 +124,18 @@
 	  			</div>
 	  		</div>
 	  		<hr />
-		  		<div class="control-group">
-	    			<label class="control-label" for="patientId">${patient_label}</label>
-	    			<div class="controls">
-		    			<form:select path="patientId" cssClass="input-xlarge">
-		    				<c:forEach items="${wspatients}" var="patient">
-		    					<form:option value="${patient.id}">
-		    						${patient.firstName} ${patient.lastName}
-		    					</form:option>
-		    				</c:forEach>
-		    			</form:select>
-		    		</div>
+	  		<div class="control-group">
+    			<label class="control-label" for="patientId">${patient_label}</label>
+    			<div class="controls">
+	    			<form:select path="patientId" cssClass="input-xlarge">
+	    				<c:forEach items="${wspatients}" var="patient">
+	    					<form:option value="${patient.id}">
+	    						${patient.firstName} ${patient.lastName}
+	    					</form:option>
+	    				</c:forEach>
+	    			</form:select>
 	    		</div>
+    		</div>
 	  		<hr />
 	  		<div class="control-group">
     			<label class="control-label" for="firstName">${firstname_label}</label>
@@ -116,10 +162,38 @@
   </form:form>
     <SCRIPT type="text/javascript">
     
+    function getCandidates(departmentId,selectTarget){
+    	$.ajax({
+    		url:'${getcandidatesajax_url}',
+    		type:'post',
+    		data:{departmentId:departmentId},
+    		dataType:'json',
+    		async:false,
+    		success:function(callback){
+    			selectTarget.empty();
+    			if(callback.length > 0){
+        			$.each(callback, function(k,item){
+        				selectTarget.append('<option value="'+item.id+'">'+ item.firstName+' '+item.lastName +'</option>');
+        			});
+    			}
+
+    		},error:function(err,xhr,status){
+    			console.log(status.status);
+    		}
+    	});
+    	
+    }
+    
      	$(document).ready(function(){
+
      		
      		$('#patientId').attr('disabled',true);
      		
+     		getCandidates($('#department').val(),$('#doctorId'));
+     		
+     		$('#department').change(function(){
+     			getCandidates($(this).val(),$('#doctorId'));
+     		});
      		
      		$('input[name="newPatient"]').change(function(){
      			var currentValue = $(this);
@@ -137,7 +211,9 @@
      		});
      		
     		
-    		$('#meetingDate').datepicker();
+    		$('#meetingDate').datepicker({autoclose  : true});
+    		$('#startTime').timepicker();
+    		$('#endTime').timepicker();
     		
     		$('#WSMeeting_').validate({
     			rules: {

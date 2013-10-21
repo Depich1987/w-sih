@@ -25,6 +25,14 @@ privileged aspect WSHealthCareType_Roo_JavaBean {
         this.description = description;
     }
     
+    public String WSHealthCareType.getColorPicker() {
+        return this.colorPicker;
+    }
+    
+    public void WSHealthCareType.setColorPicker(String colorPicker) {
+        this.colorPicker = colorPicker;
+    }
+    
     public Set<WSHealthCare> WSHealthCareType.getHealthCares() {
         return this.healthCares;
     }

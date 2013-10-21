@@ -30,4 +30,5 @@ public class WSDepartment {
      */
     @OneToMany(cascade = CascadeType.ALL)
     private Set<WSJob> jobs = new HashSet<WSJob>();
+
 }

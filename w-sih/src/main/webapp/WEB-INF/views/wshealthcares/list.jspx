@@ -5,7 +5,11 @@
     <page:list id="pl_com_depich1987_wsih_domain_WSHealthCare" items="${wshealthcares}" z="jbG/4zre6M9oiEJyWN8QYYq/JCA=">
         <table:table data="${wshealthcares}" id="l_com_depich1987_wsih_domain_WSHealthCare" path="/wshealthcares" z="Pww5lp2YrqlWC2hBf5xIKXjnkww=">
             <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_name" property="name" z="3D3am5eiL4dhX53L3r1LzuJ9HcI="/>
-            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_healthCareType" property="healthCareType" z="Vr8k6RsrflV+Pj2TwgB/YmF/UGc="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_price" property="price" z="DE904/M97ky/U/3LLxSclbtAyRY="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_hospitalPart" property="hospitalPart" z="w9O6pZiYB5/jSNQlsMy0tfd8WfY="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_doctorPart" property="doctorPart" z="PB5nUlV18kVA4YktE6c95XkJlwE="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_rateBNC" property="rateBNC" z="gKXyftXEBW3Mz+LOU0vAGoCRxLY="/>
+            <table:column id="c_com_depich1987_wsih_domain_WSHealthCare_rateVAT" property="rateVAT" z="XevL8K2fC7JtldWeTxxlvqRwFQE="/>
         </table:table>
     </page:list>
 </div>

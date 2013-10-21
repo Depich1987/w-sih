@@ -9,7 +9,7 @@
   <spring:message code="menu_item_wsdepartment_list_label" var="departments_label"/>
   <spring:message code="menu_item_wsbudgetaccount_list_label" var="budgetaccounts_label"/>
   <spring:message code="menu_item_wscashaccount_list_label" var="cashaccounts_label"/>
-  <spring:message code="menu_item_wsinsurancecompany_list_label" var="wsinsurancecompany_label"/>
+  <spring:message code="wsih_admin_insurancemanagement" var="insurancemanagement_label"/>
   <spring:message code="wsih_medicalsupplies" var="medicalsupplies_label"/>
   <spring:message code="wsih_healthcare_settings" var="healthcaresettings_label"/>
   <spring:message code="wsih_security_useraccounts" var="security_label"/>
@@ -19,7 +19,7 @@
   <spring:url value="/admin/departments" var="departments_url"/>
   <spring:url value="/admin/budgetaccounts" var="budgetaccounts_url"/>
   <spring:url value="/admin/cashaccounts" var="cashaccounts_url"/>
-  <spring:url value="/admin/insurancecompanies" var="insurancecompanies_url"/>
+  <spring:url value="/admin/insurancemanagement" var="insurancemanagement_url"/>
   <spring:url value="/admin/stockmanager" var="stockmanager_url"/>
   <spring:url value="/admin/healthcaremanagement" var="healthcaremanagement_url"/>
   <spring:url value="/admin/users" var="users_url"/>
@@ -37,7 +37,7 @@
          </li>
          
        	 <li id="insurances_activeNav">
-         	<a href="${insurancecompanies_url}">${wsinsurancecompany_label}</a>
+         	<a href="${insurancemanagement_url}">${insurancemanagement_label}</a>
          </li>
          
          <li id="healthcare_activeNav">

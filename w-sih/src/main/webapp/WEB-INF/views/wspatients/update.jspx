@@ -18,7 +18,6 @@
         <field:input field="phoneHome" id="c_com_depich1987_wsih_domain_WSPatient_phoneHome" z="A3d6bh2CD+jCnl8r3Nq3msB2108="/>
         <field:input field="mobilePhone" id="c_com_depich1987_wsih_domain_WSPatient_mobilePhone" z="ZcZD9OxUGbaz5Q6jGupH8qRzM0g="/>
         <field:input field="email" id="c_com_depich1987_wsih_domain_WSPatient_email" validationMessageCode="field_invalid_email" z="Sh0Z/2l0stsO6z3FPa9OuuYdZj0="/>
-        <field:checkbox field="insured" id="c_com_depich1987_wsih_domain_WSPatient_insured" z="5HNFkZzDAYPPsFq36pik3iyZ4Lg="/>
         <field:input field="insuredRegistrationId" id="c_com_depich1987_wsih_domain_WSPatient_insuredRegistrationId" z="ElHMqCoOhpdBJD4OEkWHhrpTGr8="/>
         <field:input field="insuredCardId" id="c_com_depich1987_wsih_domain_WSPatient_insuredCardId" z="T34R5Po83GOfDirksmdmTnrXKGU="/>
         <field:input field="principalInsuredRegistrationId" id="c_com_depich1987_wsih_domain_WSPatient_principalInsuredRegistrationId" z="yjH/m68Eh1LwwMmcBzKWC/kTNhE="/>
@@ -33,5 +32,6 @@
         <field:simple field="meetings" id="c_com_depich1987_wsih_domain_WSPatient_meetings" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Meeting" z="RP0nf2x0QT7C4sdmhUXDxr0Tn0U="/>
         <field:input field="birthPlace" id="c_com_depich1987_wsih_domain_WSPatient_birthPlace" z="iHytWnsW+GVZFYMUtihKvXGkUIk="/>
         <field:input field="registrationCNI" id="c_com_depich1987_wsih_domain_WSPatient_registrationCNI" z="ZLtSrBd0utXN6fZcB8nCRJIc9DA="/>
+        <field:select field="insuranceProduct" id="c_com_depich1987_wsih_domain_WSPatient_insuranceProduct" itemValue="id" items="${wsinsuranceproducts}" path="/wsinuranceproducts" z="Zl8W21VTbozD8SeRBQEUVANoulY="/>
     </form:update>
 </div>

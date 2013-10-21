@@ -94,4 +94,8 @@
     
     <bean id="patientService" class="com.depich1987.wsih.services.dao.PatientServiceImpl" />
     
+    <bean id="insuranceProductService" class="com.depich1987.wsih.services.dao.InsuranceProductServiceImpl"/>
+    
+    <bean id="pricingService" class="com.depich1987.wsih.services.dao.PricingServiceImpl"/>
+    
 </beans>

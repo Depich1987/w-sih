@@ -4,7 +4,7 @@
 package com.depich1987.wsih.web;
 
 import com.depich1987.wsih.domain.WSInsuranceCompany;
-import com.depich1987.wsih.domain.WSInuranceProduct;
+import com.depich1987.wsih.domain.WSInsuranceProduct;
 import com.depich1987.wsih.web.InsuranceCompanyController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +87,7 @@ privileged aspect InsuranceCompanyController_Roo_Controller {
     
     void InsuranceCompanyController.populateEditForm(Model uiModel, WSInsuranceCompany WSInsuranceCompany_) {
         uiModel.addAttribute("WSInsuranceCompany_", WSInsuranceCompany_);
-        uiModel.addAttribute("wsinuranceproducts", WSInuranceProduct.findAllWSInuranceProducts());
+        uiModel.addAttribute("wsinsuranceproducts", WSInsuranceProduct.findAllWSInsuranceProducts());
     }
     
     String InsuranceCompanyController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

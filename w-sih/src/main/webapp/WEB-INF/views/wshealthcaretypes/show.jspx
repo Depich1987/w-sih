@@ -5,5 +5,6 @@
     <page:show id="ps_com_depich1987_wsih_domain_WSHealthCareType" object="${wshealthcaretype_}" path="/wshealthcaretypes" z="e8xXXTIyj/2EPK9lce1z7Z1vh3U=">
         <field:display field="name" id="s_com_depich1987_wsih_domain_WSHealthCareType_name" object="${wshealthcaretype_}" z="letSdkMSXJxxBPGwW+HJTaaFQDw="/>
         <field:display field="description" id="s_com_depich1987_wsih_domain_WSHealthCareType_description" object="${wshealthcaretype_}" z="f24OzDGkwVUbGZ+jNeu5+LpTPFg="/>
+        <field:display field="colorPicker" id="s_com_depich1987_wsih_domain_WSHealthCareType_colorPicker" object="${wshealthcaretype_}" z="CBiWBul38KQzV6OOqT6Z+3U62iU="/>
     </page:show>
 </div>

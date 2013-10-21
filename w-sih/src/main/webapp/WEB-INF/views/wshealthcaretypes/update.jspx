@@ -6,5 +6,6 @@
         <field:input field="name" id="c_com_depich1987_wsih_domain_WSHealthCareType_name" z="SrMJ4p6DDKQGuMWuXtXqtyhybAg="/>
         <field:input field="description" id="c_com_depich1987_wsih_domain_WSHealthCareType_description" z="cQDs0I7itDisqQISCO0gTgwzYoA="/>
         <field:simple field="healthCares" id="c_com_depich1987_wsih_domain_WSHealthCareType_healthCares" messageCode="entity_reference_not_managed" messageCodeAttribute="W S Health Care" z="euvypGcLv2JX2GRivw2on0RZI5o="/>
+        <field:input field="colorPicker" id="c_com_depich1987_wsih_domain_WSHealthCareType_colorPicker" z="5bZ27kmKdv9/CugIRNa06aAKoOs="/>
     </form:update>
 </div>
